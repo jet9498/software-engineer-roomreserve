@@ -28,31 +28,25 @@
   <div id="background">
       <font style="font-size:50px"><center>Study-Room-Reservation</center></font>
       <font style="font-size:24px"><center>สะดวก รวดเร็ว และ ง่ายดาย</center></font>
-      <center><button style="margin-top:10px; width:180px;height:50px;font-size:20px;color:white;background-color:#2185D0;border:0;border-radius:3px">จองห้อง</button></center>
+      <center><button style="margin-top:10px; width:180px;height:50px;font-size:20px;color:white;background-color:#2185D0;border:0;border-radius:3px;"><font style="padding:0;">จองห้อง</font><span class="glyphicon glyphicon-info-sign"></span></button></center>
       
   </div>
-
-         @foreach($Rooms as $Room)
-            <div class="col-md-4">
-              <div class="card mb-4 shadow-sm">
-                  <br>
-                 <center><p>{{ $Room->roomName }}</p></center>
-                <img class="card-img-top" src="img/demo/box1.jpg" alt="">
-                <div class="card-body">
-                  <p>{{ $Room->roomDescription }}</p>
-                  <div class="d-flex justify-content-between align-items-center">
-                    <div class="btn-group">
-                      <div>
-                          <button type="button" class="btn btn-success" href = "login.php">จองห้อง</button>
-                          <button type="button" class="btn btn-primary">ดู</button>
-                      </div>
-                    </div>
-
-                  </div>
-                </div>
-              </div>
-            </div>
-        @endforeach
+  <div class="container">
+    <font id="aaa">dasdasdas</font>
+    <hr/>
+    <br>
+     @foreach($Rooms as $Room)
+      <div class="col-md-3 col-sm-4 col-xs-12">
+        <div class="card">
+          <img src="img_avatar.png" alt="Avatar" style="width:100%">
+          <div class="container">
+            <h4><b>{{ $Room->roomName }}</b></h4> 
+            <p>{{ $Room->roomDescription}}</p> 
+          </div>
+        </div>
+      </div>
+     @endforeach
+  </div>
 
 
 </main>
