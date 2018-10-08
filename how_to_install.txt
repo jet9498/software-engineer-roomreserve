@@ -3,4 +3,10 @@
 3. cd ไปที่อยู่โปรเจค แล้วพิม --> composer install
 4. แก้ไฟล์ .env ให้ตรงตามเครื่อง เช่น database password database name เป็นต้น
 5.php artisan key:generate เอาไว้ใช้เมื่อ มีการลงใหม่
+คำสั่ง git เบื้องต้น 
+git status ดูสถานะ
+git add เพิ่มงานที่เพิ่งทำไป
+git commit  -m "ข้อความบอกเพื่อน"ทำหลัง add
+git push origin master
+git checkout file/folder คล้ายๆ add
 __finish__
