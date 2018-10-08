@@ -2,28 +2,35 @@
 
 @section('content')
 <main role="main">
+  @if (Route::has('login'))
+    <div class="top-right links">
 
-      <!--start slide-->
-      <div class="card bg-dark text-white">
-        <img class="card-img" src="img/demo/photo.jpg" alt="Card image">
-        <div class="card-img-overlay">
-          <br>
-          <br>
-          <br>
-          <center><FONT SIZE="+20" class="card-title">YOUR WELCOME</FONT></center>
-          <center><p class="card-text">ยินดีต้อนรับสู่ระบบจองห้อง</p></center>
-
+    </div>
+  @endif
+  <nav class="navbar">
+    <div class="container-fluid">
+      <div class="navbar-header">
+      </div>
+      <ul class="nav navbar-nav" id="left-Menu">
+        <li class="active"><a href="#">Home</a></li>
+        <li><a href="#">Room</a></li>
+        <li><a href="#">Admin</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+      <ul class="nav navbar-nav" id="right-Menu">
+        @if (Route::has('login'))
+            <li id="Login"><a href="{{ url('/login') }}">Login</a></li>
+            <li id="Register"><a href="{{ url('/register') }}">Sign Up</a></li>
+        @endif
+      </ul>
+    </div>
+  </nav>
+  <div id="background">
+      <font style="font-size:50px"><center>Study-Room-Reservation</center></font>
+      <font style="font-size:24px"><center>สะดวก รวดเร็ว และ ง่ายดาย</center></font>
+      <center><button style="margin-top:10px; width:180px;height:50px;font-size:20px;color:white;background-color:#2185D0;border:0;border-radius:3px">จองห้อง</button></center>
+      
   </div>
-</div>
-
-
-
-      <!--end slide-->
-
-      <div class="album py-5 bg-light">
-        <div class="container">
-
-          <div class="row">
 
          @foreach($Rooms as $Room)
             <div class="col-md-4">
@@ -39,10 +46,6 @@
                           <button type="button" class="btn btn-success" href = "login.php">จองห้อง</button>
                           <button type="button" class="btn btn-primary">ดู</button>
                       </div>
-
-                      <!--<button type="button" class="btn btn-sm btn-outline-secondary">จอง</button>
-                      <button type="button" class="btn btn-sm btn-outline-secondary">ดู</button>
-                    </center>-->
                     </div>
 
                   </div>
@@ -51,35 +54,6 @@
             </div>
         @endforeach
 
-          
 
-
-          </div>
-
-        </div>
-
-      </div>
-      <section id="list">
-          <div class="container">
-              <header class="body-header">
-                  <h2>เกี่ยวกับเรา.</h2>
-                  <p>ไม่มีใครรู้จักตัวคุณนอกจากตัวคุณเอง</p>
-              </header>
-              <article>
-                  <div class="list-row cf">
-                      <div class="list-item">
-                          <i class="fa fa-bullhorn fa-2x"></i>
-                          <h3>ติดต่อเรา</h3>
-                          <p>ใครบ้างก็ไม่รู้เหมือนกัน</p>
-                      </div>
-
-                  </div>
-
-
-              </article>
-          </div>
-      </section>
-
-
-    </main>
+</main>
 @endsection
