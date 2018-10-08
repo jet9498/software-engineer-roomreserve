@@ -2,5 +2,5 @@
 2. download composer for win10 64bit --> https://getcomposer.org/Composer-Setup.exe
 3. cd ไปที่อยู่โปรเจค แล้วพิม --> composer install
 4. แก้ไฟล์ .env ให้ตรงตามเครื่อง เช่น database password database name เป็นต้น
-
+5.php artisan key:generate เอาไว้ใช้เมื่อ มีการลงใหม่
 __finish__
