@@ -4,6 +4,11 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
+use Socialite;
+use App\User;
+use Illuminate\Http\Request;
 
 class LoginController extends Controller
 {
@@ -25,7 +30,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/';
 
     /**
      * Create a new controller instance.
@@ -35,5 +40,21 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest', ['except' => 'logout']);
+    }
+    // public function login()
+    // {
+    //     if(Auth::attempt([$this->field() => request()->StudentID , 'password' => request()->password])){
+    //         return redirect()->intended('/userlogin');
+    //     }
+    //     else{
+    //         \Session::flash('flash_message','คุณกรอก User ID หรือ รหัสผ่านผิด โปรดลองใหม่อีกครั้ง');
+    //         return redirect()->back();
+    //     }
+    // }
+    public function logout()
+    {
+        Auth::logout();
+        Session::flush();
+        return redirect('/');
     }
 }

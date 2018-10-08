@@ -13,7 +13,6 @@
 
 Route::get('/', 'HomeController@index');
 
-
 // 7 Routes = Restful API
 Route::get('/movies','MovieController@index');
 Route::get('/movies/create','MovieController@create');
@@ -22,5 +21,8 @@ Route::get('/movies/{id}','MovieController@show');
 Route::get('/movies/{id}/edit','MovieController@edit');
 Route::put('/movies/{id}','MovieController@update');
 Route::delete('/movies/{id}','MovieController@destroy');
+
+Route::get('/logout', 'Auth\LoginController@logout');
+
 Auth::routes();
 

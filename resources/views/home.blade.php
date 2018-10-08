@@ -18,9 +18,12 @@
         <li><a href="#">Contact</a></li>
       </ul>
       <ul class="nav navbar-nav" id="right-Menu">
-        @if (Route::has('login'))
+        @if (Auth::guest())
+            
             <li id="Login"><a href="{{ url('/login') }}">Login</a></li>
             <li id="Register"><a href="{{ url('/register') }}">Sign Up</a></li>
+        @else
+            <li id="Login"><a href="{{ url('/logout') }}">Logout</a></li>
         @endif
       </ul>
     </div>
