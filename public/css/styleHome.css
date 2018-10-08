@@ -1,0 +1,121 @@
+#right-Menu{
+	float:right;
+}
+.navbar{
+	border:0!important;
+	margin-bottom:0!important;
+}
+
+#background{
+	background-color:black;
+	height:30vw;
+	padding-bottom:10vw;
+	padding-left:22vw;
+	padding-right:22vw;
+	padding-top:10vw;
+	color:white;
+}
+
+#Login{
+	list-style-position:inside;
+    border: 2px solid white;
+    border-radius:4px;
+    font-weight: bold;
+    margin-right:10px;
+
+}
+#Register{
+	list-style-position:inside;
+    border: 2px solid white;
+    border-radius:4px;
+    font-weight: bold;
+
+}
+#Login a{
+	padding-top:7px;
+	padding-bottom:7px;
+
+}
+#Register a{
+	padding-top:7px;
+	padding-bottom:7px;
+
+}
+
+
+.container-fluid{
+	padding-left:22vw !important;
+	padding-right:22vw !important;
+	padding-top:1vw !important;
+	background-color:black;
+}
+.container-fluid a{
+	color:white;
+}
+
+#left-Menu{
+	font-size:15px;
+}
+#right-Menu{
+	font-size:15px;
+}
+
+#left-Menu > .active {
+	border-bottom:2px solid white;
+	padding-bottom:0px;
+}
+#left-Menu > .active a {
+	color:white;
+	font-weight: bold;
+}
+
+#left-Menu > li > a {
+	color:lightgrey;
+	font-weight:100;
+}
+
+#left-Menu a{
+	padding-bottom:10px;
+}
+#left-Menu > li > a:hover {
+	background-color:transparent !important;
+	color:white !important;
+}
+#left-Menu > li > a:focus {
+	background-color:transparent !important;
+}
+
+
+@media only screen and (max-width: 767px) {
+	#right-Menu{
+		float:none;
+	}
+	#Login{
+		list-style-position:inside;
+	    border:0;
+	    border-radius:0;
+	    font-weight: bold;
+	    margin-right:10px;
+
+	}
+	#Register{
+	    border:0;
+	    border-radius:0;
+	    font-weight: bold;
+
+	}
+	#Login a{
+		padding-top:10px;
+		padding-bottom:10px;
+	}
+	#Register a{
+		padding-top:10px;
+		padding-bottom:10px;
+	}
+	#right-Menu{
+		margin-top:0;
+	}
+	#left-menu li{
+		border-bottom:0;
+	}
+}
