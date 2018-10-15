@@ -9,5 +9,5 @@ git add เพิ่มงานที่เพิ่งทำไป
 git commit  -m "ข้อความบอกเพื่อน"ทำหลัง add
 git push origin master
 git checkout file/folder คล้ายๆ add
-สอนทำ git
+สอนทำ gitเบื้องต้น
 __finish__
