@@ -19,14 +19,19 @@ body {
 
 .card {
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-    transition: 0.3s;
+    transition: 0.7s;
     width: 100%;
     margin-top:20px;
     padding-top:150px;
 }
+#textButton{
+	padding-left:15px;
+	padding-right:15px;
+}
 
 .card:hover {
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    border-radius: 15px 50px;
 }
 
 .container {
@@ -46,7 +51,7 @@ body {
 	box-shadow: 0 4px 6px 0 rgba(0,0,0,0.2);
 }
 .nav.navbar-nav{
-
+	background-color:#404040;
 	margin-top:-4px;
 	font-size:17px;
 	display:inline;
@@ -54,11 +59,13 @@ body {
 }
 .nav.navbar-nav a{
 	color:white;
+	transition: 0.7s;
 }
 .navbar{
 	min-height:0px;
 	z-index: 9999;
 	height:30px;
+	color: #F74443;
 }
 .navbar .navbar-nav > li > a:hover ,.navbar .navbar-nav > .active > a, .navbar .navbar-nav > li > a:focus {
     background-color: transparent;
@@ -136,7 +143,7 @@ body {
 	padding-bottom:7px;
 
 }
-
+#modal-fadein
 
 .container-fluid{
 	padding-left:22vw !important;
@@ -194,8 +201,8 @@ body {
 	background-color:#343434;
 }
 .leftfooter{
-	padding-left:7vw;
-	padding-right:7vw;
+	padding-left:10vw;
+	padding-right:10vw;
 	margin-top:5vw;
 	padding-bottom:30px;
 	font-size:16px;

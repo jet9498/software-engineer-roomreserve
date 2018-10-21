@@ -30,8 +30,7 @@
  
   <nav class="navbar">
     <div class="container-fluid">
-      <div class="navbar-header">
-      </div>
+      
 
       <ul class="nav navbar-nav" id="right-Menu">
         <li class="active"><a href="home.blade.php">Home</a></li>
@@ -53,17 +52,19 @@
         <font id="destext" >สะดวก มีประสิทธิภาพ ใช้งานง่าย</font>
 
     </div>
+    <br>
     <div class="col-md-12 columButton" style="text-align: center;">
-        <form action=" login.php">
-              <button id="button-menu"><font id="textButton">เข้าสู่ระบบ</font></button>
-        </form>
+        
+              <button id="button-menu" data-toggle="modal" data-target="#myModal"><font id="textButton">เข้าสู่ระบบ</font></button>
+        
     </div>
   </div>
   </div>
-
+  <br>
+  <br>
   <div class="container">
-    <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>
-    <font id="aaa">ROOM</font>
+    
+    <font id="room">ROOM</font>
     <hr/>
     <br>
      @foreach($Rooms as $Room)
@@ -109,7 +110,7 @@
 </main>
 
 
-<div class="modal fade" id="myModal" role="dialog">
+<div class="modal fade " id="myModal" role="dialog" style="z-index: 9999">
     <div class="modal-dialog">
     
       <!-- Modal content-->
