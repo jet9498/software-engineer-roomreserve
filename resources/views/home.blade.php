@@ -32,8 +32,9 @@
     <div class="container-fluid">
       <div class="navbar-header">
       </div>
+
       <ul class="nav navbar-nav" id="right-Menu">
-        <li class="active"><a href="#">Home</a></li>
+        <li class="active"><a href="home.blade.php">Home</a></li>
         <li><a href="#">Room</a></li>
         <li><a href="#">Admin</a></li>
         <li><a href="#">Contact</a></li>
@@ -53,15 +54,12 @@
 
     </div>
     <div class="col-md-12 columButton" style="text-align: center;">
-        <form action=" http://libapp.src.ku.ac.th/userlogin">
+        <form action=" login.php">
               <button id="button-menu"><font id="textButton">เข้าสู่ระบบ</font></button>
         </form>
     </div>
   </div>
   </div>
-  </div>
-   
-
 
   <div class="container">
     
@@ -81,6 +79,33 @@
      @endforeach
   
   </div>
+  
+   
+
+
+  
+  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 footer" id="section4">
+      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 leftfooter" style="height:auto;">
+        <button id="borderButton" style="margin-bottom:40px;font-size:17px !important;">วันทำการจองห้อง</button>
+        <p style="color:white;">เปิดบริการ วันจันทร์-เสาร์ เวลา 9.00–23.00 น.</p> 
+      </div>
+      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 rightfooter" style="height:auto;">
+        <button id="borderButton" style="margin-bottom:40px;font-size:17px !important;">ติดต่อห้องช่าง</button>
+        <font style="color:white;display:block;">Room Kasetsart University Sriracha Campus</font>
+        <font style="color:white;display:block;margin-top:40px;">เว็บไซต์ : http://lib.vit.src.ku.ac.th/</font>
+        <font style="color:white;display:block;">อีเมลล์ : libraryreservsrc@gmail.com</font>
+        <font style="color:white;display:block;">โทรศัพท์ : 038-354580-4 ต่อ 2730</font>
+                                            
+          
+        
+      </div>
+      <div id="desktopfooter">
+        <font  style="margin-bottom:20px;width:100%;left:0;text-align:center;position:absolute;bottom:0;display:block;color:white;font-size:14px;">Copyright @ 2018, Room Reservation Powered By <font style="color:#F74443;">Computer Engineering-KUSRC</font></font>
+      </div>
+      <div id="mobilefooter">
+        <font style="margin-bottom:20px;width:100%;left:0;text-align:center;position:absolute;bottom:0;display:block;color:white;font-size:14px;">Powered By <font style="color:#F74443;">CPE-KUSRC @ 2018</font></font>
+      </div>
+    </div>
 
 
 </main>
