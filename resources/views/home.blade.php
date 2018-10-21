@@ -1,40 +1,70 @@
-@extends('layouts.app')
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-@section('content')
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="{{ asset('/css/styleHome.css') }}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+
+
+    <title>HOME</title>
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
+
+    <!-- Styles -->
+</head>
+<body  bgcolor="#8B8B83">
+
+
 <main role="main">
-  @if (Route::has('login'))
-    <div class="top-right links">
-
-    </div>
-  @endif
+  
+ 
   <nav class="navbar">
     <div class="container-fluid">
       <div class="navbar-header">
       </div>
-      <ul class="nav navbar-nav" id="left-Menu">
+      <ul class="nav navbar-nav" id="right-Menu">
         <li class="active"><a href="#">Home</a></li>
         <li><a href="#">Room</a></li>
         <li><a href="#">Admin</a></li>
         <li><a href="#">Contact</a></li>
       </ul>
-      <ul class="nav navbar-nav" id="right-Menu">
-        @if (Auth::guest())
-            
-            <li id="Login"><a href="{{ url('/login') }}">Login</a></li>
-            <li id="Register"><a href="{{ url('/register') }}">Sign Up</a></li>
-        @else
-            <li id="Login"><a href="{{ url('/logout') }}">Logout</a></li>
-        @endif
-      </ul>
+      
     </div>
   </nav>
-  <div id="background">
-      <font style="font-size:50px"><center>Study-Room-Reservation</center></font>
-      <font style="font-size:24px"><center>สะดวก รวดเร็ว และ ง่ายดาย</center></font>
-      <center><button style="margin-top:10px; width:180px;height:50px;font-size:20px;color:white;background-color:#2185D0;border:0;border-radius:3px;"><font style="padding:0;">จองห้อง</font><span class="glyphicon glyphicon-info-sign"></span></button></center>
-      
+  
+    <div id="background">
+    <div class="col-md-12 col-sm-12 col-xs-12" id="allTextWelcome">
+    <div class="col-md-12" style="text-align: center;">
+
+        <font id="welcometext">ระบบจองห้องเรียนออนไลน์</font>
+    </div>
+    <div class="col-md-12 columDes" style="text-align: center;">
+        <font id="destext" >สะดวก มีประสิทธิภาพ ใช้งานง่าย</font>
+
+    </div>
+    <div class="col-md-12 columButton" style="text-align: center;">
+        <form action=" http://libapp.src.ku.ac.th/userlogin">
+              <button id="button-menu"><font id="textButton">เข้าสู่ระบบ</font></button>
+        </form>
+    </div>
   </div>
+  </div>
+  </div>
+   
+
+
   <div class="container">
+    
     <font id="aaa">ROOM</font>
     <hr/>
     <br>
@@ -49,8 +79,17 @@
         </div>
       </div>
      @endforeach
+  
   </div>
 
 
 </main>
-@endsection
+ @yield('content')
+    </div>
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</body>
+</html>
+
