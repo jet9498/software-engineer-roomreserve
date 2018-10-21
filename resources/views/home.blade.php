@@ -70,10 +70,8 @@
       <div class="col-md-3 col-sm-4 col-xs-12">
         <div class="card">
           <img src="img_avatar.png" alt="Avatar" style="width:100%">
-          <div class="container">
             <h4><b>{{ $Room->roomName }}</b></h4> 
             <p>{{ $Room->roomDescription}}</p> 
-          </div>
         </div>
       </div>
      @endforeach
