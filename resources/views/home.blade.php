@@ -33,10 +33,10 @@
       
 
       <ul class="nav navbar-nav" id="right-Menu">
-        <li class="active"><a href="home.blade.php">หน้าแรก</a></li>
+        <li class="active"><a href="http://localhost:8000/#">หน้าแรก</a></li>
         <li><a href="#">ดูห้อง</a></li>
         <li><a href="#" data-toggle="modal" data-target="#fam">วิธีใช้</a></li>
-        <li><a href="#">ติดต่อเรา</a></li>
+        <li><a href="#link3">ติดต่อเรา</a></li>
       </ul>
       
     
@@ -55,7 +55,7 @@
 
     <div class="col-md-12 columButton" style="text-align: center;">
         
-              <button id="button-menu" data-toggle="modal" data-target="#myModal"><font id="textButton">เข้าสู่ระบบ</font></button>
+              <button id="button-menu" data-toggle="modal" data-target="#login-modal"><font id="textButton">เข้าสู่ระบบ</font></button>
         
     </div>
   </div>
@@ -82,7 +82,7 @@
    
 
 
-  
+  <a href="#link3">ติดต่อเรา</a>
   <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 footer" id="section4">
       <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 leftfooter" style="height:auto;">
         <button id="borderButton" style="margin-bottom:40px;font-size:17px !important;">วันทำการจองห้อง</button>
@@ -108,27 +108,25 @@
 
 
 </main>
-
-
-<div class="modal fade " id="myModal" role="dialog" style="z-index: 9999">
-    <div class="modal-dialog">
-    
-      <!-- Modal content-->
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Modal Header</h4>
-        </div>
-        <div class="modal-body">
-          <p>Some text in the modal.</p>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        </div>
+<div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+  <div class="modal-dialog">
+      <div class="loginmodal-container">
+           <h1>Login to Your Account</h1><br>
+          <form>
+              <input type="text" name="user" placeholder="Email">
+              <input type="password" name="pass" placeholder="Password">
+              <input type="submit" name="login" class="login loginmodal-submit" value="Login">
+          </form>
+                    
+          <div class="login-help">
+              <a href="#">Register</a> - <a href="#">Forgot Password</a>
+          </div>
       </div>
-      
-    </div>
   </div>
+</div>
+
+
+
 
   <div class="modal fade " id="fam" role="dialog" style="z-index: 9999">
     <div class="modal-dialog">
@@ -178,6 +176,7 @@
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  
 </body>
 </html>
 
