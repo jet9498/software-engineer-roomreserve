@@ -219,8 +219,8 @@ body {
 	border-radius:15px;
 	border-color:#F74443;
 	color:white;
-	padding-left:17px;
-	padding-right:17px;
+	padding-left:20px;
+	padding-right:20px;
 	height:40px;
 	transition: 0.7s;
 
@@ -409,6 +409,7 @@ hr {
 		border-right:0px;
 		margin-top:10vw;
 		padding-bottom:7vw;
+
 		border-bottom:2px solid #F74443;
 		text-align:center;
 	}
