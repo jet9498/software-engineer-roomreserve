@@ -35,7 +35,7 @@
       <ul class="nav navbar-nav" id="right-Menu">
         <li class="active"><a href="http://localhost:8000/#">หน้าแรก</a></li>
         <li><a href="#">ดูห้อง</a></li>
-        <li><a href="#" data-toggle="modal" data-target="#fam">วิธีใช้</a></li>
+        <li><a href="#" data-toggle="modal" data-target="#fam">ข้อปฏิบัติ</a></li>
         <li><a href="#link3">ติดต่อเรา</a></li>
       </ul>
       
@@ -80,7 +80,7 @@
   </div>
   <br>
   <br>
-  
+
    
 
 
