@@ -53,7 +53,7 @@
 
     </div>
 
-    <div class="col-md-12 columButton" style="text-align: center;">
+    <div class="col-md-12 columButton" style="text-align: center;padding-top: 1vw">
         
               <button id="button-menu" data-toggle="modal" data-target="#login-modal"><font id="textButton">เข้าสู่ระบบ</font></button>
         
@@ -78,11 +78,13 @@
      @endforeach
   
   </div>
+  <br>
+  <br>
   
    
 
 
-  <a href="#link3">ติดต่อเรา</a>
+  
   <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 footer" id="section4">
       <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 leftfooter" style="padding-left:10vw"style="height:auto;">
         <button id="borderButton" style="margin-bottom:40px;font-size:17px !important;">วันทำการจองห้อง</button>
