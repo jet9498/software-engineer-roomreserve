@@ -29,17 +29,17 @@
   
  
   <nav class="navbar">
-    <div class="container-fluid">
+    
       
 
       <ul class="nav navbar-nav" id="right-Menu">
-        <li class="active"><a href="home.blade.php">Home</a></li>
-        <li><a href="#">Room</a></li>
-        <li><a href="#">Admin</a></li>
-        <li><a href="#">Contact</a></li>
+        <li class="active"><a href="home.blade.php">หน้าแรก</a></li>
+        <li><a href="#">ดูห้อง</a></li>
+        <li><a href="#" data-toggle="modal" data-target="#fam">วิธีใช้</a></li>
+        <li><a href="#">ติดต่อเรา</a></li>
       </ul>
       
-    </div>
+    
   </nav>
   
     <div id="background">
@@ -52,7 +52,7 @@
         <font id="destext" >สะดวก มีประสิทธิภาพ ใช้งานง่าย</font>
 
     </div>
-    <br>
+
     <div class="col-md-12 columButton" style="text-align: center;">
         
               <button id="button-menu" data-toggle="modal" data-target="#myModal"><font id="textButton">เข้าสู่ระบบ</font></button>
@@ -129,6 +129,49 @@
       
     </div>
   </div>
+
+  <div class="modal fade " id="fam" role="dialog" style="z-index: 9999">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">ข้อปฏิบัติในการใช้งานการจองห้อง</h4>
+        </div>
+        <div class="modal-body">
+          <p> 
+        <b>
+          <span>1) สามารถจองได้เพียง 1 ห้องเท่านั้น เมื่อใช้ห้องเสร็จแล้ว จึงจะสามารถจองต่อได้</span>
+          <br>
+          <span>2) เวลาการจองห้องต้องอยู่ในช่วง 45 นาที - 3 ชั่วโมง และสามารถจองล่วงหน้าได้ 1 วันเท่านั้น</span>
+          <br>
+          <span>3) เมื่อทำการจองห้องแล้ว ต้องมายืนยันสิทธิ์กับเจ้าหน้าที่</span>
+          <br>
+          <span>4) หากไม่มายืนยันการจองภายในเวลา 15 นาทีของเวลาที่เริ่มใช้งาน ระบบจะยกเลิกการจองอัตโนมัติ</span>
+          <br>
+          <span>5) ระบบจะส่งอีเมลแจ้งเตือนเมื่อถึงเวลาใช้งาน และยกเลิกการใข้งานกรณีไม่ได้ยืนยันสิทธิ์</span>
+          <br>
+          <span>6) ท่านสามารถยกเลิก / แก้ไข การจองของตนเองได้ที่เมนู My Reservation</span>
+          <br>
+          <span>7) เปิดให้บริการ วันจันทร์ - อาทิตย์ เวลา 9.00 - 23.00 น.</span>
+        <br>
+        <br>
+        <span class ="pull-right" ><font color ="#711400">ROOM RESERVATION </font></span>
+        </b>
+      </p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+
+
+
+
  @yield('content')
     </div>
 
