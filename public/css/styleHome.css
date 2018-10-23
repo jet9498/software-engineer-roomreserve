@@ -65,7 +65,7 @@ body {
 	min-height:0px;
 	z-index: 9999;
 	height:30px;
-	background-color:#343434;
+	background-color:#7B878B;
 }
 .navbar .navbar-nav > li > a:hover ,.navbar .navbar-nav > .active > a, .navbar .navbar-nav > li > a:focus {
     background-color: transparent;
@@ -110,7 +110,7 @@ body {
 }
 #button-menu{
 	height:40px;
-	background-color:#F74443;
+	background-color:#DE2714;
 	color:white;
 	border:0;
 	border-radius:4px;
@@ -198,7 +198,7 @@ body {
 }
 .footer{
 	height:500px;
-	background-color:#343434;
+	background-color:#7B878B;
 }
 .leftfooter{
 	padding-left:10vw;

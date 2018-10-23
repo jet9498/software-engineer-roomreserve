@@ -88,7 +88,7 @@
   <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 footer" id="section4">
       <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 leftfooter" style="padding-left:10vw"style="height:auto;">
         <button id="borderButton" style="margin-bottom:40px;font-size:17px !important;">วันทำการจองห้อง</button>
-        <p style="color:white;">เปิดบริการ วันจันทร์-เสาร์ เวลา 9.00–23.00 น.</p> 
+        <p style="color:white;">เปิดให้บริการทุกวัน วันจันทร์ - อาทิตย์ เวลา 9.00–23.00 น.</p> 
       </div>
       <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 rightfooter" style="padding-left:10vw"style="height:auto;">
         <button id="borderButton" style="margin-bottom:40px;font-size:17px !important;">ติดต่อห้องช่าง</button>
@@ -101,10 +101,10 @@
         
       </div>
       <div id="desktopfooter">
-        <font  style="margin-bottom:20px;width:100%;left:0;text-align:center;position:absolute;bottom:0;display:block;color:white;font-size:14px;">Copyright @ 2018, Room Reservation Powered By <font style="color:#F74443;">Computer Engineering-KUSRC</font></font>
+        <font  style="margin-bottom:20px;width:100%;left:0;text-align:center;position:absolute;bottom:0;display:block;color:black;font-size:14px;">Copyright @ 2018, Room Reservation Powered By <font style="color:white;">Computer Engineering-KUSRC</font></font>
       </div>
       <div id="mobilefooter">
-        <font style="margin-bottom:20px;width:100%;left:0;text-align:center;position:absolute;bottom:0;display:block;color:white;font-size:14px;">Powered By <font style="color:#F74443;">CPE-KUSRC @ 2018</font></font>
+        <font style="margin-bottom:20px;width:100%;left:0;text-align:center;position:absolute;bottom:0;display:block;color:black;font-size:14px;">Powered By <font style="color:#F74443;">CPE-KUSRC @ 2018</font></font>
       </div>
     </div>
 
@@ -123,6 +123,7 @@
           <div class="login-help">
               <a href="#">Register</a> - <a href="#">Forgot Password</a>
           </div>
+          <button type="button" class="btn btn-primary btn-xs">ADMIN</button>
       </div>
   </div>
 </div>
