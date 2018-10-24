@@ -45,17 +45,12 @@ body {
 }
 .navbar-fixed-top{
 	background-color:#404040;
-	margin-bottom:0;
-	height:59px !important;
-	padding-top:9px;
+	height:50px !important;
 	box-shadow: 0 4px 6px 0 rgba(0,0,0,0.2);
 }
 .nav.navbar-nav{
-
-	margin-top:-4px;
 	font-size:17px;
 	display:inline;
-
 }
 .nav.navbar-nav a{
 	color:white;
@@ -74,13 +69,12 @@ body {
 
 .navbar .navbar-nav > .active{
 	 -webkit-text-decoration-line: line-through; /* Safari */
-     text-decoration: underline;
 }
+
 
 
 #background{
 	background-image: url("/images/2270.jpg");
-
 	background-position-y:-150px;
 	background-position-x:center;
     background-repeat: no-repeat;
@@ -91,7 +85,6 @@ body {
 }
 #background2{
 	background-image: url("/images/2144.jpg");
-
 	background-position-y:-150px;
 	background-position-x:center;
     background-repeat: no-repeat;
@@ -156,10 +149,7 @@ body {
 
 
 .container-fluid{
-	padding-left:22vw !important;
-	padding-right:22vw !important;
-	padding-top:1vw !important;
-	background-color:#343434;
+	
 }
 .container-fluid a{
 	color:white;
@@ -361,19 +351,12 @@ hr {
 	#right-Menu{
 		float:none;
 	}
-	.nav.navbar-nav a{
-		font-size:12px;
-	}
-	.nav.navbar-nav{
-		margin-top:-10px;
-	}
 	#right-Menu{
 		margin-top:0;
 	}
 	#left-menu li{
 		border-bottom:0;
 	}
-
 	#button-menu{
 		height:37px;
 		background-color:#F74443;
