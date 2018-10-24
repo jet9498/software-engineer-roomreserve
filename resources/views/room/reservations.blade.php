@@ -1,18 +1,14 @@
 <!DOCTYPE html>
 <html lang="en"><head>
-    <title>Library Reservation</title>
+    <title>Reservation</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- CSRF Token -->
-    <meta name="csrf-token" content="fywJr6ESbLn45aWpdvnqauw20dLdrlehT1L7Cz6I">
+    <meta name="csrf-token" content="CG07Q6CxQFBmUXetWruibRxDBe6jXXQ4ZM67Mg6J">
     <link rel="shortcut icon" href="images/bs.png">
 
-
-
-    <script src="http://libapp.src.ku.ac.th/dist/js/lightbox-plus-jquery.min.js"></script>
-    <link rel="stylesheet" href="http://libapp.src.ku.ac.th/dist/css/lightbox.min.css">
     <link rel="stylesheet" type="text/css" href="http://libapp.src.ku.ac.th/semantic/semantic.min.css">
     <!-- Styles -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
@@ -288,7 +284,11 @@
     </style>
     </head>
 <body id="bodycolor">
+    <div id="loading">
+    </div>
     <div id="app">
+        <audio id="audio" src="http://libapp.src.ku.ac.th/sound/noti.mp3" autostart="false"></audio>
+
         <div class="container transition visible" id="allmenu" style="display: block !important;">
     <div class="row">
         <div class="col-md-12 col-md-offset-0">
@@ -296,12 +296,13 @@
           <br>
           <br>
           <br>
-          <h2 class="ui left floated header"><font id="statustext" size="6" color="#B92000">ROOM 310</font><br></h2>
-                      <a href="http://libapp.src.ku.ac.th/home">
+          <h2 class="ui left floated header"><font id="statustext" size="6" color="#B92000">STATUS</font><br>
+            <font id="roomnametext" size="5" color="#828282">ห้องศึกษากลุ่มขนาดเล็ก ชั้น 2</font>
+          </h2>
+                    <div class="ui clearing divider"></div>
+          <iframe src="http://localhost:8000/room/table" style="width:100%; height:370px;"></iframe>
+          <br>
 
-            </a>
-              <div class="ui clearing divider"></div>
-            </div>
                 <br>
                 <div class="table-responsive table-inverse transition visible" id="table" style="display: block !important;">
                     <table class="table table-bordered" id="border">
@@ -312,17 +313,17 @@
                         <th class="bg-primary">Status</th>
                       </tr>
                       </thead>
-                                               <tbody>
+                            <tbody>
                             <tr>
-                                 <td id="tablecolor"><font size="3">24/10/2018  </font></td>
-                                 <td id="tablecolor"><font size="3">16 : 30 - 18 : 30</font></td>
-                                 <td id="tablecolor">
-                                                                          <img width="12" height="12" src="http://libapp.src.ku.ac.th/seimg/circlewaiting.png">&nbsp;<font size="3" color="red">รอใช้งาน</font>
-                                                                     </td>
+                                 <td class="bg-warning"><font size="3">25/10/2018 <font color="red">** </font> </font></td>
+                                 <td class="bg-warning"><font size="3">13 : 00 - 15 : 00</font></td>
+                                 <td class="bg-warning">
+                                <img width="12" height="12" src="http://libapp.src.ku.ac.th/seimg/circlewaiting.png">&nbsp;<font size="3" color="red">รอใช้งาน</font>
+                           </td>
 
                             </tr>
                           </tbody>
-                                         </table>
+                          </table>
                   </div>
                   <span class="pull-right"> </span>
 
@@ -338,65 +339,49 @@
                         <h2 class="ui left floated header">
                         <font id="formtext" size="6" color="#B92000">FORM</font><br> <font id="reservetext" size="5" color="#828282">RESERVATION</font>
                         </h2>
-                                            <div class="ui clearing divider"></div>
-                      <div class="ui raised segment">
-                        <br>
-                        <font size="3">
-                                                                                                      </font>
-                        <div id="textrule" style="display: none;">
-                            <center><h2><i style="font-size:0.8em;" class="warning circle icon"></i><font id="finishReserve">ข้อปฏิบัติเมื่อจองห้องเสร็จแล้ว</font></h2></center>
-                            <font size="3">
-                              <br>
-                              <ul id="ruletextall">
-                                <li>ท่านต้องมายืนยันการใช้งานด้วยตนเอง</li>
-                                <li>ยืนยันกับเจ้าหน้าที่ประจำเคาน์เตอร์ให้บริการ โดยใช้บัตรนิสิต</li>
-                                <li>มีเวลายืนยัน 15 นาทีหลังเวลาจองเริ่มต้น</li>
-                                <li>หากไม่ได้ยืนยัน จะถูกยกเลิกสิทธิ์อัตโนมัติ</li>
-                              </ul>
-                            </font>
-                            <center>
-                            <button class="btn btn-primary" id="jong"><font size="2"><i class="sign in icon"></i>จองห้อง</font></button></center>
+            <div class="ui clearing divider"></div>
+                <div class="ui raised segment">
+                  <br>
+                  <form class="form-horizontal transition visible" action="http://libapp.src.ku.ac.th/reservation/add/8" enctype="multipart/form-data" method="post" onsubmit="return confirm('ก่อนดำเนินการใดๆ ควรอ่านกฏการจองห้องในหน้าแรกก่อน คุณพร้อมแล้วใช่ไหม?')" id="reservationform" style="display: block !important;">
+                      <input type="hidden" name="_token" value="CG07Q6CxQFBmUXetWruibRxDBe6jXXQ4ZM67Mg6J">
+                      <input type="hidden" name="_method" value="PUT">
+                          <font size="3">
+                            <div class="form-group" id="studentForm">
+                                                                            <input type="hidden" id="studentID" name="StudentID" value="5830301032" class="form-control">
+
+                                                                  </div>
+                            <div class="form-group">
+                                <label class="col-md-5 control-label">Date<font color="red">**</font></label>
+
+                                <div class="col-md-3">
+                                      <input type="t3ext" name="date" class="form-control" id="datetimepicker1" placeholder="วันที่" required="">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-5 control-label">Time Start<font color="red">**</font></label>
+
+                                <div class="col-md-3">
+                                      <input type="text" name="timestart" class="form-control" id="datetimepicker2" placeholder="เวลาเริ่มต้น" required="">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-5 control-label">Time End<font color="red">**</font></label>
+
+                                <div class="col-md-3">
+                                      <input type="text" name="timeend" class="form-control" id="datetimepicker3" placeholder="เวลาสิ้นสุด" required="">
+                                </div>
+                            </div>
+
+                          </font>
+                        <div class="form-group">
+                                <div class="col-md-5 col-md-offset-5">
+                                    <button type="submit" class="btn btn-primary">
+                                    <i class="write icon"></i>Submit</button>
+                                </div>
                         </div>
-                        <form class="form-horizontal transition visible" action="http://libapp.src.ku.ac.th/reservation/add/8" enctype="multipart/form-data" method="post" onsubmit="return confirm('ก่อนดำเนินการใดๆ ควรอ่านกฏการจองห้องในหน้าแรกก่อน คุณพร้อมแล้วใช่ไหม?')" id="reservationform" style="display: block !important;">
-                            <input type="hidden" name="_token" value="fywJr6ESbLn45aWpdvnqauw20dLdrlehT1L7Cz6I">
-                            <input type="hidden" name="_method" value="PUT">
-                                <font size="3">
-                                  <div class="form-group" id="studentForm">
-                                                                                  <input type="hidden" id="studentID" name="StudentID" value="5830301032" class="form-control">
-
-                                                                        </div>
-                                  <div class="form-group">
-                                      <label class="col-md-5 control-label">Date<font color="red">**</font></label>
-
-                                      <div class="col-md-3">
-                                            <input type="t3ext" name="date" class="form-control" id="datetimepicker1" placeholder="วันที่" required="">
-                                      </div>
-                                  </div>
-                                  <div class="form-group">
-                                      <label class="col-md-5 control-label">Time Start<font color="red">**</font></label>
-
-                                      <div class="col-md-3">
-                                            <input type="text" name="timestart" class="form-control" id="datetimepicker2" placeholder="เวลาเริ่มต้น" required="">
-                                      </div>
-                                  </div>
-                                  <div class="form-group">
-                                      <label class="col-md-5 control-label">Time End<font color="red">**</font></label>
-
-                                      <div class="col-md-3">
-                                            <input type="text" name="timeend" class="form-control" id="datetimepicker3" placeholder="เวลาสิ้นสุด" required="">
-                                      </div>
-                                  </div>
-
-                                </font>
-                              <div class="form-group">
-                                      <div class="col-md-5 col-md-offset-5">
-                                          <button type="submit" class="btn btn-primary">
-                                          <i class="write icon"></i>Submit</button>
-                                      </div>
-                              </div>
-                        </form>
-                        <br>
-                    </div>
+                  </form>
+                  <br>
+              </div>
                     <br>
                     <br>
           </div>
@@ -409,6 +394,102 @@
         <font size="2"> Powered by CPE-KUSRC © 2017</font>
     </div>
     </center>
+    <!-- Scripts -->
+    <script src="http://libapp.src.ku.ac.th/semantic/semantic.min.js"></script>
+    <script>
+        function goBack() {
+            window.history.back();
+        }
+    </script>
+
+    <script type="text/javascript">
+          var date = new Date();
+  date.setHours(0,0,0,0);
+  $(function () {
+             $('#datetimepicker1').datetimepicker({
+                format: 'DD-MM-YYYY'
+            });
+        });
+        $(function () {
+             $('#datetimepicker2').datetimepicker({
+                format: 'HH:mm',
+                useCurrent: 'day'
+            });
+        });
+        $(function () {
+             $('#datetimepicker3').datetimepicker({
+                format: 'HH:mm',
+                useCurrent: 'day'
+            });
+        });
+
+
+  //       $(document).ready( function() {
+  //           $('#allmenu').transition('scale');
+  //           $('#table')
+  //             .transition({
+  //               animation  : 'fade down in',
+  //               duration   : '0.4s',
+  //             })
+  //           ;
+  //           $('#form')
+  //             .transition({
+  //               animation  : 'fly up',
+  //               duration   : '1s',
+  //             })
+  //           ;
+  //           $('#bar')
+  //             .transition({
+  //               animation  : 'scale',
+  //               duration   : '0.6s',
+  //             })
+  //           ;
+  //
+  //        });
+  //       function playSound() {
+  //         var sound = document.getElementById("audio");
+  //         sound.play();
+  //       }
+  //       $(".navbar-fixed-bottom").fadeToggle();
+  //
+  //         $('#shownisit').hide();
+  // $('#shownadmin').hide();
+  // $('#textadmin').hide();
+  // $('#textnisit').hide();
+  //
+  // $('#reservationform').hide();
+  // $('#jong').on('click', function(){
+  //   $('#textrule').hide();
+  //   $('#message').hide();
+  //   $('#message2').hide();
+  //   $('#message3').hide();
+  //   $('#reservationform').transition('scale');
+  //   $('#showadmin').fadeIn();
+  //   $('#textadmin').fadeIn();
+  // });
+  // $('#showadmin').on('click', function(){
+  //   $('#shownisit').fadeIn();
+  //   $('#showadmin').hide();
+  //   $('#textadmin').hide();
+  //   $('#textnisit').fadeIn();
+  //   $('#studentForm').fadeOut("fast");
+  //   $("#studentID").val("myself");
+  // });
+  // $('#shownisit').on('click', function(){
+  //   $('#showadmin').fadeIn();
+  //   $('#shownisit').hide();
+  //   $('#textadmin').fadeIn();
+  //   $('#textnisit').hide();
+  //   $('#studentForm').fadeIn();
+  //   $("#studentID").val("");
+  // });
+  //
+  // $('.ui.accordion')
+  //   .accordion()
+  // ;
+
+    </script>
+
 
 </div>
 
