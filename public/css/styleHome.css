@@ -22,7 +22,7 @@ body {
     transition: 0.7s;
     width: 100%;
     margin-top:20px;
-    padding-top:150px;
+    /* padding-top:150px; */
 }
 #textButton{
 	padding-left:15px;
@@ -80,9 +80,9 @@ body {
 
 #background{
 	background-image: url("/images/2270.jpg");
-	
-	background-position-y:-150px; 
-	background-position-x:center; 
+
+	background-position-y:-150px;
+	background-position-x:center;
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;
@@ -91,9 +91,9 @@ body {
 }
 #background2{
 	background-image: url("/images/2144.jpg");
-	
-	background-position-y:-150px; 
-	background-position-x:center; 
+
+	background-position-y:-150px;
+	background-position-x:center;
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;
@@ -112,6 +112,15 @@ body {
 #button-menu{
 	height:40px;
 	background-color:#DE2714;
+	color:white;
+	border:0;
+	border-radius:4px;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	transition: 0.7s;
+}
+#button-menu1{
+	height:40px;
+	background-color:#2E5894;
 	color:white;
 	border:0;
 	border-radius:4px;
@@ -295,14 +304,14 @@ hr {
 		border-radius:4px;
 		box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 	}
-	
+
 }
 @media only screen and (max-width: 1204px) {
-	
+
 	#allTextWelcome{
 		padding-top:4vw;
 	}
-	
+
 
 }
 
@@ -343,8 +352,8 @@ hr {
 		color:white;
 		font-size:32px;
 	}
-	
-	
+
+
 
 }
 
@@ -364,7 +373,7 @@ hr {
 	#left-menu li{
 		border-bottom:0;
 	}
-	
+
 	#button-menu{
 		height:37px;
 		background-color:#F74443;
@@ -373,7 +382,7 @@ hr {
 		border-radius:4px;
 		box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 	}
-	
+
 }
 
 
@@ -382,7 +391,7 @@ hr {
 	#right-Menu{
 		float:none;
 	}
-	
+
 	#right-Menu{
 		margin-top:0;
 	}
@@ -397,7 +406,7 @@ hr {
 		color:white;
 		font-size:15px;
 	}
-	
+
 	#button-menu{
 		height:37px;
 		background-color:#F74443;
@@ -439,7 +448,7 @@ hr {
 	#mobilefooter{
 		display:block;
 	}
-	
+
 }
 
 
@@ -508,7 +517,7 @@ hr {
   /* border: 1px solid #3079ed; */
   border: 0px;
   color: #fff;
-  text-shadow: 0 1px rgba(0,0,0,0.1); 
+  text-shadow: 0 1px rgba(0,0,0,0.1);
   background-color: #4d90fe;
   padding: 17px 0px;
   font-family: roboto;
@@ -532,7 +541,7 @@ hr {
   display: inline-block;
   opacity: 0.6;
   transition: opacity ease 0.5s;
-} 
+}
 
 .login-help{
   font-size: 12px;
@@ -558,6 +567,3 @@ hr {
 .button:visited {
   background: #006cba;
   color: #fff;
-
-
-

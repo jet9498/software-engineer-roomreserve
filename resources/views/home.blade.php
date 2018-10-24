@@ -26,6 +26,7 @@
 
 
 <main role="main">
+<<<<<<< HEAD
   
   <nav class="navbar navbar-inverse">
     <div class="container">
@@ -52,6 +53,7 @@
  
   
   
+
     <div id="background">
     <div class="col-md-12 col-sm-12 col-xs-12" id="allTextWelcome">
     <div class="col-md-12" style="text-align: center;">
@@ -63,42 +65,44 @@
 
     </div>
 
-    <div class="col-md-12 columButton" style="text-align: center;padding-top: 1vw">
-        
-              <button id="button-menu" data-toggle="modal" data-target="#login-modal"><font id="textButton">เข้าสู่ระบบ</font></button>
-        
-    </div>
+    
   </div>
   </div>
   <br>
   <br>
   <div class="container">
-    
+
     <font id="room">ROOM</font>
     <hr/>
     <br>
      @foreach($Rooms as $Room)
       <div class="col-md-3 col-sm-4 col-xs-12">
         <div class="card">
-          <img src="img_avatar.png" alt="Avatar" style="width:100%">
-            <h4><b>{{ $Room->roomName }}</b></h4> 
-            <p>{{ $Room->roomDescription}}</p> 
+          <img src="img/demo/{{$Room->remember_token}}" alt="Avatar" style="width:100%">
+            <h4><b>{{ $Room->roomName }}</b></h4>
+            <p>{{ $Room->roomDescription}}</p>
+            <div class="col-md-12 columButton" style="text-align: center;padding-top: 1vw">
+
+              <button id="button-menu" data-toggle="modal" data-target="#login-modal"><font id="textButton">จอง</font></button>
+              <button id="button-menu1" data-toggle="modal" data-target="#login-modal"><font id="textButton">ดูห้อง</font></button>
+
+    </div>
         </div>
       </div>
      @endforeach
-  
+
   </div>
   <br>
   <br>
 
-   
 
 
-  
+
+
   <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 footer" id="section4">
       <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 leftfooter" style="padding-left:10vw"style="height:auto;">
         <button id="borderButton" style="margin-bottom:40px;font-size:17px !important;">วันทำการจองห้อง</button>
-        <p style="color:white;">เปิดให้บริการทุกวัน วันจันทร์ - อาทิตย์ เวลา 9.00–23.00 น.</p> 
+        <p style="color:white;">เปิดให้บริการทุกวัน วันจันทร์ - อาทิตย์ เวลา 9.00–23.00 น.</p>
       </div>
       <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 rightfooter" style="padding-left:10vw"style="height:auto;">
         <button id="borderButton" style="margin-bottom:40px;font-size:17px !important;">ติดต่อห้องช่าง</button>
@@ -106,9 +110,9 @@
         <font style="color:white;display:block;margin-top:40px;">เว็บไซต์ : http://lib.vit.src.ku.ac.th/</font>
         <font style="color:white;display:block;">อีเมลล์ : libraryreservsrc@gmail.com</font>
         <font style="color:white;display:block;">โทรศัพท์ : 038-354580-4 ต่อ 2730</font>
-                                            
-          
-        
+
+
+
       </div>
       <div id="desktopfooter">
         <font  style="margin-bottom:20px;width:100%;left:0;text-align:center;position:absolute;bottom:0;display:block;color:black;font-size:14px;">Copyright @ 2018, Room Reservation Powered By <font style="color:white;">Computer Engineering-KUSRC</font></font>
@@ -129,7 +133,7 @@
               <input type="password" name="pass" placeholder="Password">
               <input type="submit" name="login" class="login loginmodal-submit" value="Login">
           </form>
-                    
+
           <div class="login-help">
             <a href="#">Forgot Password</a>
           </div>
@@ -143,7 +147,7 @@
 
   <div class="modal fade " id="fam" role="dialog" style="z-index: 9999">
     <div class="modal-dialog">
-    
+
       <!-- Modal content-->
       <div class="modal-content">
         <div class="modal-header">
@@ -151,7 +155,7 @@
           <h4 class="modal-title">ข้อปฏิบัติในการใช้งานการจองห้อง</h4>
         </div>
         <div class="modal-body">
-          <p> 
+          <p>
         <b>
           <span>1) สามารถจองได้เพียง 1 ห้องเท่านั้น เมื่อใช้ห้องเสร็จแล้ว จึงจะสามารถจองต่อได้</span>
           <br>
@@ -176,7 +180,7 @@
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
         </div>
       </div>
-      
+
     </div>
   </div>
 
@@ -188,8 +192,12 @@
 
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<<<<<<< HEAD
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   
+=======
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+>>>>>>> 55266270dd6a3f849a665c944b254b5bbc8d42b1
 </body>
 </html>
-
