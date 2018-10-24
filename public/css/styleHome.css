@@ -38,7 +38,7 @@ body {
     padding: 2px 16px;
 }
 #allTextWelcome{
-	padding-top:7vw;
+	padding-top:10vw;
 }
 #myNavbar{
 	margin-top:-3px !important;
@@ -264,7 +264,7 @@ hr {
 
 @media only screen and (max-width: 1670px){
 	#allTextWelcome{
-		padding-top:6vw;
+		padding-top:10vw;
 	}
 }
 
@@ -309,7 +309,7 @@ hr {
 @media only screen and (max-width: 1204px) {
 
 	#allTextWelcome{
-		padding-top:4vw;
+		padding-top:10vw;
 	}
 
 

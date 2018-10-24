@@ -70,6 +70,7 @@
   </div>
   <br>
   <br>
+
   <div class="container">
 
     <font id="room">ROOM</font>
@@ -90,11 +91,11 @@
         </div>
       </div>
      @endforeach
+   </div>
 
-  </div>
   <br>
   <br>
-
+  <br>
 
 
 
