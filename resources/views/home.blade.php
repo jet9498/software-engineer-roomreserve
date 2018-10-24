@@ -57,11 +57,7 @@
 
     </div>
 
-    <div class="col-md-12 columButton" style="text-align: center;padding-top: 1vw">
-
-              <button id="button-menu" data-toggle="modal" data-target="#login-modal"><font id="textButton">เข้าสู่ระบบ</font></button>
-
-    </div>
+    
   </div>
   </div>
   <br>
@@ -77,6 +73,12 @@
           <img src="img/demo/{{$Room->remember_token}}" alt="Avatar" style="width:100%">
             <h4><b>{{ $Room->roomName }}</b></h4>
             <p>{{ $Room->roomDescription}}</p>
+            <div class="col-md-12 columButton" style="text-align: center;padding-top: 1vw">
+
+              <button id="button-menu" data-toggle="modal" data-target="#login-modal"><font id="textButton">จอง</font></button>
+              <button id="button-menu1" data-toggle="modal" data-target="#login-modal"><font id="textButton">ดูห้อง</font></button>
+
+    </div>
         </div>
       </div>
      @endforeach
