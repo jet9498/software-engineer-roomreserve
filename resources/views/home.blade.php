@@ -27,24 +27,31 @@
 
 <main role="main">
   
- 
-  <nav class="navbar">
-    
-      
-
-      <ul class="nav navbar-nav" id="left-Menu">
-        <li class="active"><a href="http://localhost:8000/#">หน้าแรก</a></li>
-        <li><a href="#">ดูห้อง</a></li>
-        <li><a href="#" data-toggle="modal" data-target="#fam">ข้อปฏิบัติ</a></li>
-        <li><a href="#link3">ติดต่อเรา</a></li>
-      </ul>
-      <ul class="nav navbar-nav" id="right-Menu">
-              <button id="button-menu" data-toggle="modal" data-target="#login-modal"><font id="textButton">เข้าสู่ระบบ</font></button>
-       </ul> 
-   
-      
-    
+  <nav class="navbar navbar-inverse">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>                        
+        </button>
+      </div>
+      <div class="collapse navbar-collapse" id="myNavbar">
+        <ul class="nav navbar-nav" id="left-Menu">
+          <li class="active"><a href="http://localhost:8000/#">หน้าแรก</a></li>
+          <li class="dropdown">
+          <li><a href="#">ดูห้อง</a></li>
+          <li><a href="#" data-toggle="modal" data-target="#fam">ข้อปฏิบัติ</a></li>
+          <li><a href="#link3">ติดต่อเรา</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="#" data-toggle="modal" data-target="#login-modal"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+        </ul>
+      </div>
+    </div>
   </nav>
+ 
+  
   
     <div id="background">
     <div class="col-md-12 col-sm-12 col-xs-12" id="allTextWelcome">
