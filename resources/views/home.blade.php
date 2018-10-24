@@ -26,7 +26,7 @@
 
 
 <main role="main">
-<<<<<<< HEAD
+
   
   <nav class="navbar navbar-inverse">
     <div class="container">
