@@ -21,15 +21,20 @@
     <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
 
     <!-- Styles -->
+
+
+
 </head>
+
 <body  bgcolor="#8B8B83">
 
+<main role="main" style="margin-top:50px">
 
-<main role="main">
 
 
-  <nav class="navbar navbar-inverse">
-    <div class="container">
+  <nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+
       <div class="navbar-header">
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
           <span class="icon-bar"></span>
@@ -40,9 +45,9 @@
       <div class="collapse navbar-collapse" id="myNavbar" style="width: -webkit-fill-available">
         <ul class="nav navbar-nav navbar-left" id="left-Menu">
           <li class="active"><a href="http://localhost:8000/#">หน้าแรก</a></li>
-          <li><a href="#">ดูห้อง</a></li>
+          <li><a href="#section1">ดูห้อง</a></li>
           <li><a href="#" data-toggle="modal" data-target="#fam">ข้อปฏิบัติ</a></li>
-          <li><a href="#link3">ติดต่อเรา</a></li>
+          <li><a href="#section2">ติดต่อเรา</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
           <li><a href="#" data-toggle="modal" data-target="#login-modal"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
@@ -52,9 +57,7 @@
   </nav>
 
 
-
-
-    <div id="background">
+  <div id="background">
     <div class="col-md-12 col-sm-12 col-xs-12" id="allTextWelcome">
     <div class="col-md-12" style="text-align: center;">
 
@@ -62,16 +65,12 @@
     </div>
     <div class="col-md-12 columDes" style="text-align: center;">
         <font id="destext" >สะดวก มีประสิทธิภาพ ใช้งานง่าย</font>
-
     </div>
 
-
   </div>
-  </div>
-  <br>
-  <br>
-  <div class="container">
 
+  <div class="container" id="section1" style="padding-top: 50px">
+    <br>
     <font id="room">ROOM</font>
     <hr/>
     <br>
@@ -90,16 +89,16 @@
         </div>
       </div>
      @endforeach
+   </div>
 
-  </div>
   <br>
   <br>
+  <br>
 
 
 
 
-
-  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 footer" id="section4">
+  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 footer" id="section2">
       <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 leftfooter" style="padding-left:10vw"style="height:auto;">
         <button id="borderButton" style="margin-bottom:40px;font-size:17px !important;">วันทำการจองห้อง</button>
         <p style="color:white;">เปิดให้บริการทุกวัน วันจันทร์ - อาทิตย์ เวลา 9.00–23.00 น.</p>
@@ -115,10 +114,10 @@
 
       </div>
       <div id="desktopfooter">
-        <font  style="margin-bottom:20px;width:100%;left:0;text-align:center;position:absolute;bottom:0;display:block;color:black;font-size:14px;">Copyright @ 2018, Room Reservation Powered By <font style="color:white;">Computer Engineering-KUSRC</font></font>
+        <font  style="margin-bottom:20px;width:100%;left:0;text-align:center;position:absolute;bottom:0;display:block;color:#DE2714;font-size:14px;">Copyright @ 2018, Room Reservation Powered By <font style="color:white;">Computer Engineering-KUSRC</font></font>
       </div>
       <div id="mobilefooter">
-        <font style="margin-bottom:20px;width:100%;left:0;text-align:center;position:absolute;bottom:0;display:block;color:black;font-size:14px;">Powered By <font style="color:#F74443;">CPE-KUSRC @ 2018</font></font>
+        <font style="margin-bottom:20px;width:100%;left:0;text-align:center;position:absolute;bottom:0;display:block;color:black;font-size:14px;">Powered By <font style="color:white;">CPE-KUSRC @ 2018</font></font>
       </div>
     </div>
 
@@ -192,12 +191,9 @@
 
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<<<<<<< HEAD
+
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-=======
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
->>>>>>> 55266270dd6a3f849a665c944b254b5bbc8d42b1
 </body>
 </html>
