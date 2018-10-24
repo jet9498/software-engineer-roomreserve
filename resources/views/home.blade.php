@@ -30,16 +30,13 @@
 
 <main role="main" style="margin-top:50px">
 
-
-
   <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container-fluid">
-
       <div class="navbar-header">
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>                        
         </button>
       </div>
 
@@ -61,7 +58,6 @@
     </div>
   </nav>
 
-
   <div id="background">
     <div class="col-md-12 col-sm-12 col-xs-12" id="allTextWelcome">
     <div class="col-md-12" style="text-align: center;">
@@ -71,7 +67,7 @@
     <div class="col-md-12 columDes" style="text-align: center;">
         <font id="destext" >สะดวก มีประสิทธิภาพ ใช้งานง่าย</font>
     </div>
-
+    </div>
   </div>
 
   <div class="container" id="section1" style="padding-top: 50px">
@@ -88,7 +84,7 @@
             <div class="col-md-12 columButton" style="text-align: center;padding-top: 1vw">
 
               <button id="button-menu" data-toggle="modal" data-target="#login-modal"><font id="textButton">จอง</font></button>
-              <a href="/room/"><button id="button-menu1" data-toggle="modal" herf="room/reservations.blade."><font id="textButton">ดูห้อง</font></button></a>
+              <button id="button-menu1" data-toggle="modal" data-target="#login-modal"><font id="textButton">ดูห้อง</font></button>
 
     </div>
         </div>
@@ -198,7 +194,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
+  
 
 </body>
 </html>
