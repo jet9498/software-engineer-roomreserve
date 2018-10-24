@@ -36,10 +36,9 @@
           <span class="icon-bar"></span>                        
         </button>
       </div>
-      <div class="collapse navbar-collapse" id="myNavbar">
-        <ul class="nav navbar-nav" id="left-Menu">
+      <div class="collapse navbar-collapse" id="myNavbar" style="width: -webkit-fill-available">
+        <ul class="nav navbar-nav navbar-left" id="left-Menu">
           <li class="active"><a href="http://localhost:8000/#">หน้าแรก</a></li>
-          <li class="dropdown">
           <li><a href="#">ดูห้อง</a></li>
           <li><a href="#" data-toggle="modal" data-target="#fam">ข้อปฏิบัติ</a></li>
           <li><a href="#link3">ติดต่อเรา</a></li>
@@ -189,7 +188,7 @@
 
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   
 </body>
 </html>
