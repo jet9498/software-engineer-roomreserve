@@ -27,14 +27,14 @@
 
 <main role="main">
 
-  
+
   <nav class="navbar navbar-inverse">
     <div class="container">
       <div class="navbar-header">
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
-          <span class="icon-bar"></span>                        
+          <span class="icon-bar"></span>
         </button>
       </div>
       <div class="collapse navbar-collapse" id="myNavbar" style="width: -webkit-fill-available">
@@ -50,9 +50,9 @@
       </div>
     </div>
   </nav>
- 
-  
-  
+
+
+
 
     <div id="background">
     <div class="col-md-12 col-sm-12 col-xs-12" id="allTextWelcome">
@@ -65,7 +65,7 @@
 
     </div>
 
-    
+
   </div>
   </div>
   <br>
@@ -84,7 +84,7 @@
             <div class="col-md-12 columButton" style="text-align: center;padding-top: 1vw">
 
               <button id="button-menu" data-toggle="modal" data-target="#login-modal"><font id="textButton">จอง</font></button>
-              <button id="button-menu1" data-toggle="modal" data-target="#login-modal"><font id="textButton">ดูห้อง</font></button>
+              <a href="/room/"><button id="button-menu1" data-toggle="modal" herf="room/reservations.blade."><font id="textButton">ดูห้อง</font></button></a>
 
     </div>
         </div>
@@ -194,7 +194,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <<<<<<< HEAD
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  
+
 =======
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
