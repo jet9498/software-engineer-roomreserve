@@ -37,7 +37,7 @@
           <span class="icon-bar"></span>                        
         </button>
       </div>
-      <div class="collapse navbar-collapse" id="myNavbar" style="width: -webkit-fill-available">
+      <div class="collapse navbar-collapse" id="myNavbar"style="width: -webkit-fill-available">
         <ul class="nav navbar-nav navbar-left" id="left-Menu">
           <li class="active"><a href="http://localhost:8000/#">หน้าแรก</a></li>
           <li><a href="#">ดูห้อง</a></li>
@@ -115,10 +115,10 @@
 
       </div>
       <div id="desktopfooter">
-        <font  style="margin-bottom:20px;width:100%;left:0;text-align:center;position:absolute;bottom:0;display:block;color:black;font-size:14px;">Copyright @ 2018, Room Reservation Powered By <font style="color:white;">Computer Engineering-KUSRC</font></font>
+        <font  style="margin-bottom:20px;width:100%;left:0;text-align:center;position:absolute;bottom:0;display:block;color:#DE2714;font-size:14px;">Copyright @ 2018, Room Reservation Powered By <font style="color:white;">Computer Engineering-KUSRC</font></font>
       </div>
       <div id="mobilefooter">
-        <font style="margin-bottom:20px;width:100%;left:0;text-align:center;position:absolute;bottom:0;display:block;color:black;font-size:14px;">Powered By <font style="color:#F74443;">CPE-KUSRC @ 2018</font></font>
+        <font style="margin-bottom:20px;width:100%;left:0;text-align:center;position:absolute;bottom:0;display:block;color:black;font-size:14px;">Powered By <font style="color:white;">CPE-KUSRC @ 2018</font></font>
       </div>
     </div>
 

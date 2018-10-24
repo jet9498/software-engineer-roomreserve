@@ -208,7 +208,7 @@ body {
 }
 .footer{
 	height:500px;
-	background-color:#7B878B;
+	background-color:#2E2E2E;
 }
 .leftfooter{
 	padding-left:10vw;
@@ -429,7 +429,7 @@ hr {
 	}
 	.footer{
 		height:700px;
-		background-color:#343434;
+		background-color:#2E2E2E;
 	}
 	.nav.navbar-nav a{
 		text-align: center;
