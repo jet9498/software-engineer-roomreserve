@@ -32,12 +32,16 @@
     
       
 
-      <ul class="nav navbar-nav" id="right-Menu">
+      <ul class="nav navbar-nav" id="left-Menu">
         <li class="active"><a href="http://localhost:8000/#">หน้าแรก</a></li>
         <li><a href="#">ดูห้อง</a></li>
         <li><a href="#" data-toggle="modal" data-target="#fam">ข้อปฏิบัติ</a></li>
         <li><a href="#link3">ติดต่อเรา</a></li>
       </ul>
+      <ul class="nav navbar-nav" id="right-Menu">
+              <button id="button-menu" data-toggle="modal" data-target="#login-modal"><font id="textButton">เข้าสู่ระบบ</font></button>
+       </ul> 
+   
       
     
   </nav>
@@ -121,7 +125,7 @@
           </form>
                     
           <div class="login-help">
-              <a href="#">Register</a> - <a href="#">Forgot Password</a>
+            <a href="#">Forgot Password</a>
           </div>
           <button type="button" class="btn btn-primary btn-xs">ADMIN</button>
       </div>
