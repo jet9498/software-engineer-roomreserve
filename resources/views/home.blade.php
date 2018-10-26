@@ -28,7 +28,7 @@
 
 <body  style="background-color:#E0E3E4">
 
-<main role="main" style="margin-top:50px">
+<main role="main" style="margin-top:50px" >
 
   <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container-fluid">
