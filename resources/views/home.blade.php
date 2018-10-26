@@ -85,7 +85,7 @@
             <div class="col-md-12 columButton" style="text-align: center;padding-top: 1vw">
 
               <button id="button-menu" data-toggle="modal" data-target="#login-modal"><font id="textButton">จอง</font></button>
-              <a href="/room/view?txtroom=<?php echo "$Room->roomName" ?>" target='_parent'><button id="button-menu1" data-toggle="modal" ><font id="textButton">ดูห้อง</font></button></a>
+              <a href="room/view?txtroom=<?php echo "$Room->roomName" ?>" target='_parent'><button id="button-menu1" data-toggle="modal" ><font id="textButton">ดูห้อง</font></button></a>
 
     </div>
         </div>
