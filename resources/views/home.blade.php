@@ -26,7 +26,7 @@
 
 </head>
 
-<body  bgcolor="#8B8B83">
+<body  style="background-color:#E0E3E4">
 
 <main role="main" style="margin-top:50px">
 
@@ -71,13 +71,14 @@
   </div>
 
   <div class="container" id="section1" style="padding-top: 50px">
-    <br>
+
     <font id="room">ROOM</font>
+    <font id="share">Reservation</font>
     <hr/>
     <br>
      @foreach($Rooms as $Room)
       <div class="col-md-3 col-sm-4 col-xs-12">
-        <div class="card">
+        <div class="card" style="text-align:center">
           <img src="img/demo/{{$Room->remember_token}}" alt="Avatar" style="width:100%">
             <h4><b>{{ $Room->roomName }}</b></h4>
             <p>{{ $Room->roomDescription}}</p>
@@ -157,19 +158,13 @@
         <div class="modal-body">
           <p>
         <b>
-          <span>1) สามารถจองได้เพียง 1 ห้องเท่านั้น เมื่อใช้ห้องเสร็จแล้ว จึงจะสามารถจองต่อได้</span>
+          <span>1) เวลาการจองห้องต้องอยู่ในช่วง 45 นาที - 3 ชั่วโมง และสามารถจองล่วงหน้าได้ 1 เดือนเท่านั้น</span>
           <br>
-          <span>2) เวลาการจองห้องต้องอยู่ในช่วง 45 นาที - 3 ชั่วโมง และสามารถจองล่วงหน้าได้ 1 วันเท่านั้น</span>
+          <span>2) ระบบจะส่งอีเมลแจ้งเตือนเมื่อถึงเวลาใช้งาน และยกเลิกการใข้งานกรณีไม่ได้ยืนยันสิทธิ์</span>
           <br>
-          <span>3) เมื่อทำการจองห้องแล้ว ต้องมายืนยันสิทธิ์กับเจ้าหน้าที่</span>
+          <span>3) ท่านสามารถยกเลิก / แก้ไข การจองของตนเองได้ที่หน้าการจองของท่านได้ทันที</span>
           <br>
-          <span>4) หากไม่มายืนยันการจองภายในเวลา 15 นาทีของเวลาที่เริ่มใช้งาน ระบบจะยกเลิกการจองอัตโนมัติ</span>
-          <br>
-          <span>5) ระบบจะส่งอีเมลแจ้งเตือนเมื่อถึงเวลาใช้งาน และยกเลิกการใข้งานกรณีไม่ได้ยืนยันสิทธิ์</span>
-          <br>
-          <span>6) ท่านสามารถยกเลิก / แก้ไข การจองของตนเองได้ที่เมนู My Reservation</span>
-          <br>
-          <span>7) เปิดให้บริการ วันจันทร์ - อาทิตย์ เวลา 9.00 - 23.00 น.</span>
+          <span>4) เปิดให้บริการ วันจันทร์ - อาทิตย์ เวลา 9.00 - 23.00 น.</span>
         <br>
         <br>
         <span class ="pull-right" ><font color ="#711400">ROOM RESERVATION </font></span>
