@@ -28,7 +28,7 @@
 
 <body  style="background-color:#E0E3E4">
 
-<main role="main" style="margin-top:50px">
+<main role="main" style="margin-top:50px" >
 
   <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container-fluid">
@@ -138,7 +138,7 @@
           <div class="login-help">
             <a href="#">Forgot Password</a>
           </div>
-          <button type="button" class="btn btn-primary btn-xs">ADMIN</button>
+          <button type="button" class="admin-btn">ADMIN</button>
       </div>
   </div>
 </div>
