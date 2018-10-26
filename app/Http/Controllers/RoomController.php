@@ -26,6 +26,10 @@ class RoomController extends Controller
     {
       return view('room.reservations');
     }
+    public function view()
+    {
+      return view('room.view');
+    }
     public function table()
     {
       return view('room.table');

@@ -14,6 +14,7 @@
 Route::get('/', 'HomeController@index');
 Route::get('/room', 'RoomController@index');
 Route::get('/room/table', 'RoomController@table');
+Route::get('/room/view', 'RoomController@view');
 
 // 7 Routes = Restful API
 Route::get('/movies','MovieController@index');

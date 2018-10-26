@@ -36,17 +36,17 @@
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
-          <span class="icon-bar"></span>                        
+          <span class="icon-bar"></span>
         </button>
       </div>
 
       <div class="collapse navbar-collapse" id="myNavbar"style="width: -webkit-fill-available">
         <ul class="nav navbar-nav navbar-left" id="left-Menu">
-         
+
           <li class="active"><a href=#>หน้าแรก</a></li>
           <li><a href="#section1">ดูห้อง</a></li>
 
-      
+
 
           <li><a href="#" data-toggle="modal" data-target="#fam">ข้อปฏิบัติ</a></li>
           <li><a href="#section2">ติดต่อเรา</a></li>
@@ -84,7 +84,7 @@
             <div class="col-md-12 columButton" style="text-align: center;padding-top: 1vw">
 
               <button id="button-menu" data-toggle="modal" data-target="#login-modal"><font id="textButton">จอง</font></button>
-              <button id="button-menu1" data-toggle="modal" data-target="#login-modal"><font id="textButton">ดูห้อง</font></button>
+              <a href="/room/view?txtroom=<?php echo "$Room->roomName" ?>" target='_parent'><button id="button-menu1" data-toggle="modal" ><font id="textButton">ดูห้อง</font></button></a>
 
     </div>
         </div>
@@ -194,7 +194,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  
+
 
 </body>
 </html>
