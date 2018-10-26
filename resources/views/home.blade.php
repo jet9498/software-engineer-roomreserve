@@ -26,7 +26,7 @@
 
 </head>
 
-<body  bgcolor="#8B8B83">
+<body  style="background-color:#E0E3E4">
 
 <main role="main" style="margin-top:50px">
 
@@ -71,13 +71,14 @@
   </div>
 
   <div class="container" id="section1" style="padding-top: 50px">
-    <br>
+    
     <font id="room">ROOM</font>
+    <font id="share">Reservation</font>
     <hr/>
     <br>
      @foreach($Rooms as $Room)
       <div class="col-md-3 col-sm-4 col-xs-12">
-        <div class="card">
+        <div class="card" style="text-align:center">
           <img src="img/demo/{{$Room->remember_token}}" alt="Avatar" style="width:100%">
             <h4><b>{{ $Room->roomName }}</b></h4>
             <p>{{ $Room->roomDescription}}</p>

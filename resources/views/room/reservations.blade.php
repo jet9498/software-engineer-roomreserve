@@ -300,7 +300,7 @@
             <font id="roomnametext" size="5" color="#828282">ห้องศึกษากลุ่มขนาดเล็ก ชั้น 2</font>
           </h2>
                     <div class="ui clearing divider"></div>
-          <iframe src="http://localhost:8000/room/table" style="width:100%; height:370px;"></iframe>
+          <iframe src="http://127.0.0.1:8000/room/table" style="width:100%; height:370px;"></iframe>
           <br>
 
                 <br>
