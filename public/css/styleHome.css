@@ -7,6 +7,10 @@ body {
 #right-Menu{
 	float:right;
 }
+
+
+
+
 .navbar{
 	border:0!important;
 	margin-bottom:0!important;
@@ -36,6 +40,7 @@ body {
 
 .container {
     padding: 2px 16px;
+
 }
 #allTextWelcome{
 	padding-top:10vw;
@@ -148,9 +153,7 @@ body {
 }
 
 
-.container-fluid{
-	
-}
+
 .container-fluid a{
 	color:white;
 }
@@ -241,13 +244,15 @@ body {
 
 
 
-hr {
+.hr {
     display: block;
     height: 1px;
     border: 0;
-    border-top: 1px solid #ccc;
+    border-top: 1px solid #F74443;
     margin: 1em 0;
-    padding: 0;
+    padding: 0; 
+   
+
 }
 
 

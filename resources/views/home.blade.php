@@ -74,7 +74,7 @@
 
     <font id="room">ROOM</font>
     <font id="share">Reservation</font>
-    <hr/>
+   <div class="hr"></div>
     <br>
      @foreach($Rooms as $Room)
       <div class="col-md-3 col-sm-4 col-xs-12">
