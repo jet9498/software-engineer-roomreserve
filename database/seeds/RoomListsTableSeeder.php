@@ -13,32 +13,32 @@ class RoomListsTableSeeder extends Seeder
     {
         DB::table('roomlists')->insert([
             'roomName' => '310',
-            'roomDescription' => 'ห้องโปรเจคเตอร์เล็กในตึก 3',
+            'roomDescription' => 'ห้องเรียนขนาดกลาง',
             'remember_token' => 'box1.jpg',
         ]);
         DB::table('roomlists')->insert([
             'roomName' => '15034',
-            'roomDescription' => 'ห้องโปรเจคเตอร์ใหญ่ในตึก 15',
+            'roomDescription' => 'ห้องเรียนขนาดกลาง',
             'remember_token' => 'box1.jpg',
         ]);
         DB::table('roomlists')->insert([
             'roomName' => '150311',
-            'roomDescription' => 'ห้องประชุมใหญ่ในตึก 15',
+            'roomDescription' => 'ห้องเรียนขนาดกลาง',
             'remember_token' => 'box1.jpg',
         ]);
         DB::table('roomlists')->insert([
             'roomName' => '150404',
-            'roomDescription' => 'ห้องประชุมเล็กในตึก 15',
+            'roomDescription' => 'ห้องเรียนขนาดกลาง',
             'remember_token' => 'box1.jpg',
         ]);
         DB::table('roomlists')->insert([
             'roomName' => '150405',
-            'roomDescription' => 'ห้องโปรเจคเตอร์เล็กในตึก 15',
+            'roomDescription' => 'ห้องเรียนขนาดกลาง',
             'remember_token' => 'box1.jpg',
         ]);
         DB::table('roomlists')->insert([
             'roomName' => '150208',
-            'roomDescription' => 'ห้องเรียนเล็กตึก 15',
+            'roomDescription' => 'ห้องเรียนขนาดกลาง',
             'remember_token' => 'box1.jpg',
         ]);
     }
