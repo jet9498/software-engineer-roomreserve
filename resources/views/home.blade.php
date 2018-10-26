@@ -138,7 +138,7 @@
           <div class="login-help">
             <a href="#">Forgot Password</a>
           </div>
-          <button type="button" class="btn btn-primary btn-xs">ADMIN</button>
+          <button type="button" class="admin-btn">ADMIN</button>
       </div>
   </div>
 </div>
