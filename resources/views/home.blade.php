@@ -72,7 +72,7 @@
 
   <div class="container" id="section1" style="padding-top: 50px">
 
-    <font id="room">ROOM</font>
+    <font id="room">Room</font>
     <font id="share">Reservation</font>
    <div class="hr"></div>
     <br>

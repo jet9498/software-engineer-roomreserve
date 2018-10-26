@@ -12,7 +12,7 @@
     <link rel="stylesheet" type="text/css" href="http://libapp.src.ku.ac.th/semantic/semantic.min.css">
     <!-- Styles -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
-
+    <link rel="stylesheet" href="{{ asset('/css/styleHome.css') }}">
     <link href="http://libapp.src.ku.ac.th/css/app.css" rel="stylesheet">
     <script src="http://libapp.src.ku.ac.th/js/app.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
@@ -284,6 +284,72 @@
     </style>
     </head>
 <body id="bodycolor">
+
+
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+
+      <div class="collapse navbar-collapse" id="myNavbar"style="width: -webkit-fill-available">
+        <ul class="nav navbar-nav navbar-left" id="left-Menu">
+
+          <li class="active"><a href="/">หน้าแรก</a></li>
+          <li><a href="#section1">ดูห้อง</a></li>
+
+
+
+          <li><a href="#" data-toggle="modal" data-target="#fam">ข้อปฏิบัติ</a></li>
+          <li><a href="#section2">ติดต่อเรา</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="#" data-toggle="modal" data-target="#login-modal"><span class="glyphicon glyphicon-log-in" ></span> Login</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+<div class="modal fade " id="fam" role="dialog" style="z-index: 9999">
+    <div class="modal-dialog">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">ข้อปฏิบัติในการใช้งานการจองห้อง</h4>
+        </div>
+        <div class="modal-body">
+          <p>
+        <b>
+          <span>1) เวลาการจองห้องต้องอยู่ในช่วง 45 นาที - 3 ชั่วโมง และสามารถจองล่วงหน้าได้ 1 เดือนเท่านั้น</span>
+          <br>
+          <span>2) ระบบจะส่งอีเมลแจ้งเตือนเมื่อถึงเวลาใช้งาน และยกเลิกการใข้งานกรณีไม่ได้ยืนยันสิทธิ์</span>
+          <br>
+          <span>3) ท่านสามารถยกเลิก / แก้ไข การจองของตนเองได้ที่หน้าการจองของท่านได้ทันที</span>
+          <br>
+          <span>4) เปิดให้บริการ วันจันทร์ - อาทิตย์ เวลา 9.00 - 23.00 น.</span>
+        <br>
+        <br>
+        <span class ="pull-right" ><font color ="#711400">ROOM RESERVATION </font></span>
+        </b>
+      </p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+
+
     <div id="loading">
     </div>
     <div id="app">
@@ -296,8 +362,9 @@
           <br>
           <br>
           <br>
-          <h2 class="ui left floated header"><font id="statustext" size="6" color="#B92000">STATUS</font><br>
+          <h2 class="ui left floated header"style="width:100%"><font id="statustext" size="6" color="#B92000">STATUS</font><br>
             <font id="roomnametext" size="5" color="#828282">ห้องศึกษากลุ่มขนาดเล็ก ชั้น 2</font>
+            <div class="hr"></div>
           </h2>
                     <div class="ui clearing divider"></div>
           <iframe src="http://127.0.0.1:8000/room/table" style="width:100%; height:370px;"></iframe>
@@ -391,7 +458,7 @@
     <center>
     <div class="navbar-fixed-bottom" id="para2" style="display: block;">
         <i class="wizard icon"></i>
-        <font size="2"> Powered by CPE-KUSRC © 2017</font>
+        <font size="2"> Powered by CPE-KUSRC © 2018</font>
     </div>
     </center>
     <!-- Scripts -->

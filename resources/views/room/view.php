@@ -8,11 +8,11 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="CG07Q6CxQFBmUXetWruibRxDBe6jXXQ4ZM67Mg6J">
     <link rel="shortcut icon" href="images/bs.png">
-    <link rel="stylesheet" href="{{ asset('/css/styleHome.css') }}">
+    
     <link rel="stylesheet" type="text/css" href="http://libapp.src.ku.ac.th/semantic/semantic.min.css">
     <!-- Styles -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
-
+<link rel="stylesheet" href="{{ asset('/css/styleHome.css') }}">
     <link href="http://libapp.src.ku.ac.th/css/app.css" rel="stylesheet">
     <script src="http://libapp.src.ku.ac.th/js/app.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
@@ -358,8 +358,9 @@
           <br>
           <br>
           <?php $txtroom = $_GET["txtroom"]; ?>
-          <h2 class="ui left floated header"><font id="statustext" size="6" color="#B92000">STATUS</font><br>
+          <h2 class="ui left floated header"style="width:100%"><font id="statustext" size="6" color="#B92000">STATUS</font><br>
             <font id="roomnametext" size="5" color="#828282"><?php echo "$txtroom" ?></font>
+            <div class="hr"></div>
           </h2>
                     <div class="ui clearing divider"></div>
           <iframe src="http://127.0.0.1:8000/room/table" style="width:100%; height:370px;"></iframe>
