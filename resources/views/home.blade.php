@@ -85,7 +85,7 @@
             <div class="col-md-12 columButton" style="text-align: center;padding-top: 1vw">
 
               <button id="button-menu" data-toggle="modal" data-target="#login-modal"><font id="textButton">จอง</font></button>
-              <button id="button-menu1" data-toggle="modal" data-target="#login-modal"><font id="textButton">ดูห้อง</font></button>
+              <button id="button-menu1" href="#http://127.0.0.1:8000/resources/room/table"><font id="textButton">ดูห้อง</font></button>
 
     </div>
         </div>
