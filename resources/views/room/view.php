@@ -398,7 +398,7 @@
     <center>
     <div class="navbar-fixed-bottom" id="para2" style="display: block;">
         <i class="wizard icon"></i>
-        <font size="2"> Powered by CPE-KUSRC © 2017</font>
+        <font size="2"> Powered by CPE-KUSRC © 2018</font>
     </div>
     </center>
     <!-- Scripts -->
