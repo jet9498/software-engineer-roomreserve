@@ -299,7 +299,11 @@
       <div class="collapse navbar-collapse" id="myNavbar"style="width: -webkit-fill-available">
         <ul class="nav navbar-nav navbar-left" id="left-Menu">
 
+<<<<<<< HEAD
           <li class="active"><a href=#>หน้าแรก</a></li>
+=======
+          <li style="border-bottom:2px solid red;"><a href="/">หน้าแรก</a></li>
+>>>>>>> 4e6eacf59d70e98f6e5bb59e13ec9f5fa4267834
           <li><a href="#section1">ดูห้อง</a></li>
 
 
