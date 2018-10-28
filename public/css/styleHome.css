@@ -167,7 +167,7 @@ body {
 }
 
 #left-Menu > .active {
-	border-bottom:2px solid white;
+	border-bottom:2px solid red;
 	padding-bottom:0px;
 }
 #left-Menu > .active a {
