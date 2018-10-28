@@ -286,7 +286,7 @@
 <body id="bodycolor">
 
 
-<nav class="navbar navbar-inverse navbar-fixed-top">
+  <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container-fluid">
       <div class="navbar-header">
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -299,7 +299,7 @@
       <div class="collapse navbar-collapse" id="myNavbar"style="width: -webkit-fill-available">
         <ul class="nav navbar-nav navbar-left" id="left-Menu">
 
-          <li class="active"><a href="/">หน้าแรก</a></li>
+          <li class="active"><a href=#>หน้าแรก</a></li>
           <li><a href="#section1">ดูห้อง</a></li>
 
 
@@ -308,7 +308,13 @@
           <li><a href="#section2">ติดต่อเรา</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
-          <li><a href="#" data-toggle="modal" data-target="#login-modal"><span class="glyphicon glyphicon-log-in" ></span> Login</a></li>
+        @if (Auth::guest())
+            <li><a href="{{ url('/login') }}"><span class="glyphicon glyphicon-log-in" ></span> Login</a></li>
+        @else
+            <li id="Login"><a href="{{ url('/logout') }}">Logout</a></li>
+        @endif
+
+
         </ul>
       </div>
     </div>
@@ -364,15 +370,15 @@
           <br>
           <br>
           <br>
+          <?php $RsroomName = $_GET["txtroom"]; ?>
           <h2 class="ui left floated header"style="width:100%"><font id="statustext" size="6" color="#B92000">STATUS</font><br>
-            <font id="roomnametext" size="5" color="#828282">ห้องศึกษากลุ่มขนาดเล็ก ชั้น 2</font>
+            <font name="RsroomName" id="roomnametext" size="5" color="#828282"><?php echo "$RsroomName" ?></font>
             <div class="hr"></div>
           </h2>
                     <div class="ui clearing divider"></div>
           <iframe src="http://127.0.0.1:8000/room/table" style="width:100%; height:370px;"></iframe>
           <br>
-
-                <br>
+          <br>
                 <div class="table-responsive table-inverse transition visible" id="table" style="display: block !important;">
                     <table class="table table-bordered" id="border">
                       <tbody><tr>
@@ -411,33 +417,31 @@
             <div class="ui clearing divider"></div>
                 <div class="ui raised segment">
                   <br>
-                  <form class="form-horizontal transition visible" action="http://libapp.src.ku.ac.th/reservation/add/8" enctype="multipart/form-data" method="post" onsubmit="return confirm('ก่อนดำเนินการใดๆ ควรอ่านกฏการจองห้องในหน้าแรกก่อน คุณพร้อมแล้วใช่ไหม?')" id="reservationform" style="display: block !important;">
-                      <input type="hidden" name="_token" value="CG07Q6CxQFBmUXetWruibRxDBe6jXXQ4ZM67Mg6J">
-                      <input type="hidden" name="_method" value="PUT">
+                  <form class="form-horizontal transition visible" action="{{ url('/room/reservations')}}" enctype="multipart/form-data" method="post"  id="reservationform" style="display: block !important;">
+                      <input type="hidden" name="_token" value="{{ csrf_token() }}">
                           <font size="3">
-                            <div class="form-group" id="studentForm">
-                                                                            <input type="hidden" id="studentID" name="StudentID" value="5830301032" class="form-control">
-
-                                                                  </div>
+                            <!-- <div class="form-group" id="studentForm">
+                              <input type="hidden" id="studentID" name="StudentID" value="5830301032" class="form-control">
+                            </div> -->
                             <div class="form-group">
                                 <label class="col-md-5 control-label">Date<font color="red">**</font></label>
 
                                 <div class="col-md-3">
-                                      <input type="t3ext" name="date" class="form-control" id="datetimepicker1" placeholder="วันที่" required="">
+                                      <input type="text" name="RsDate" class="form-control" id="datetimepicker1" placeholder="วันที่" required="">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-md-5 control-label">Time Start<font color="red">**</font></label>
 
                                 <div class="col-md-3">
-                                      <input type="text" name="timestart" class="form-control" id="datetimepicker2" placeholder="เวลาเริ่มต้น" required="">
+                                      <input type="text" name="RsStart" class="form-control" id="datetimepicker2" placeholder="เวลาเริ่มต้น" required="">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-md-5 control-label">Time End<font color="red">**</font></label>
 
                                 <div class="col-md-3">
-                                      <input type="text" name="timeend" class="form-control" id="datetimepicker3" placeholder="เวลาสิ้นสุด" required="">
+                                      <input type="text" name="RsEnd" class="form-control" id="datetimepicker3" placeholder="เวลาสิ้นสุด" required="">
                                 </div>
                             </div>
 

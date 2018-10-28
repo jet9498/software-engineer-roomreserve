@@ -3,28 +3,24 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Room;
+use App\Rsroom;
 
 class RoomController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    // public function __construct()
-    // {
-    //     $this->middleware('auth');
-    // }
-
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
       return view('room.reservations');
+    }
+    public function create(Request $request)
+    {
+      $create = new Rsroom;
+      $create->RsroomName = $request->input('RsroomName');
+      $create->RsDate = $request->input('RsDate');
+      $create->RsStart = $request->input('RsStart');
+      $create->RsEnd = $request->input('RsEnd');
+      $create->save();
+
+      return redirect()->to('/room/reservations');
     }
     public function view()
     {
