@@ -53,12 +53,15 @@
           
         </ul>
         <ul class="nav navbar-nav navbar-right">
+
           @if (Auth::guest())
             <li><a href="{{ url('/login') }}"><span class="glyphicon glyphicon-log-in" ></span> เข้าสู่ระบบ</a></li>
+
+        
         @else
             <li><a href="{{ url('/logout') }}"><span class="glyphicon glyphicon-log-in" ></span> ออกจากระบบ</a></li>
         @endif
-          
+
 
         </ul>
       </div>
@@ -91,7 +94,7 @@
             <p>{{ $Room->roomDescription}}</p>
             <div class="col-md-12 columButton" style="text-align: center;padding-top: 1vw">
 
-              <button id="button-menu" data-toggle="modal" data-target="#login-modal"><font id="textButton">จอง</font></button>
+              <a href="room/reservations?txtroom=<?php echo "$Room->roomName" ?>" target='_parent'><button id="button-menu" data-toggle="modal" data-target="#login-modal"><font id="textButton">จอง</font></button></a>
               <a href="room/view?txtroom=<?php echo "$Room->roomName" ?>" target='_parent'><button id="button-menu1" data-toggle="modal" ><font id="textButton">ดูห้อง</font></button></a>
 
     </div>
@@ -148,8 +151,8 @@
           <button type="button" class="btn btn-secondary btn-sm"><span class="glyphicon glyphicon-user"></span> ADMIN</button>
       </div>
   </div>-->
-  
-        
+
+
       </ul>
 </div>
 

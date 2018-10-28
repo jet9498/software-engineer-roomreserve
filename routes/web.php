@@ -12,7 +12,8 @@
 */
 
 Route::get('/', 'HomeController@index');
-Route::get('/room', 'RoomController@index');
+Route::get('/room/reservations', 'RoomController@index');
+Route::post('/room/reservations', 'RoomController@create');
 Route::get('/room/table', 'RoomController@table');
 Route::get('/room/view', 'RoomController@view');
 
