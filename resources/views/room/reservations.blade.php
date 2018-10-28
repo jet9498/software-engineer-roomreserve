@@ -299,23 +299,22 @@
       <div class="collapse navbar-collapse" id="myNavbar"style="width: -webkit-fill-available">
         <ul class="nav navbar-nav navbar-left" id="left-Menu">
 
-<<<<<<< HEAD
-          <li class="active"><a href=#>หน้าแรก</a></li>
-=======
-          <li style="border-bottom:2px solid red;"><a href="/">หน้าแรก</a></li>
->>>>>>> 4e6eacf59d70e98f6e5bb59e13ec9f5fa4267834
-          <li><a href="#section1">ดูห้อง</a></li>
+
+          <li style="border-bottom:2px solid red;"><a href="/">หน้าหลัก</a></li>
+
+         
 
 
 
           <li><a href="#" data-toggle="modal" data-target="#fam">ข้อปฏิบัติ</a></li>
-          <li><a href="#section2">ติดต่อเรา</a></li>
+          <li><a href="#"data-toggle="modal" data-target="#contact">ติดต่อเรา</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
         @if (Auth::guest())
-            <li><a href="{{ url('/login') }}"><span class="glyphicon glyphicon-log-in" ></span> Login</a></li>
+            <li><a href="{{ url('/login') }}"><span class="glyphicon glyphicon-log-in" ></span> เข้าสู่ระบบ</a></li>
+
         @else
-            <li id="Login"><a href="{{ url('/logout') }}">Logout</a></li>
+            <li><a href="{{ url('/logout') }}"><span class="glyphicon glyphicon-log-in" ></span> ออกจากระบบ</a></li>
         @endif
 
 
@@ -357,6 +356,41 @@
     </div>
   </div>
 
+
+<!-- ติดต่อเรา-->
+  <div class="modal fade " id="contact" role="dialog" style="z-index: 9999">
+    <div class="modal-dialog">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">ติดต่อเรา</h4>
+        </div>
+        <div class="modal-body">
+          <p>
+        <b>
+          <span>Room Kasetsart University Sriracha Campus</span>
+          <br>
+          <span>เว็บไซต์ : -</span>
+          <br>
+          <span>อีเมลล์ : -</span>
+          <br>
+          <span>โทรศัพท์ : -</span>
+          
+        <br>
+        <br>
+        <span class ="pull-right" ><font color ="#711400">ROOM RESERVATION </font></span>
+        </b>
+      </p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
 
 
 
