@@ -298,13 +298,13 @@
       <div class="collapse navbar-collapse" id="myNavbar"style="width: -webkit-fill-available">
         <ul class="nav navbar-nav navbar-left" id="left-Menu">
 
-          <li style="border-bottom:2px solid red;"><a href="/">หน้าแรก</a></li>
-          <li><a href="#section1">ดูห้อง</a></li>
+          <li style="border-bottom:2px solid red;"><a href="/">หน้าหลัก</a></li>
+         
 
 
 
           <li><a href="#" data-toggle="modal" data-target="#fam">ข้อปฏิบัติ</a></li>
-          <li><a href="#section2">ติดต่อเรา</a></li>
+          <li><a href="#" data-toggle="modal" data-target="#contact">ติดต่อเรา</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
           <li><a href="#" data-toggle="modal" data-target="#login-modal"><span class="glyphicon glyphicon-log-in" ></span> Login</a></li>
@@ -333,6 +333,43 @@
           <span>4) เปิดให้บริการ วันจันทร์ - อาทิตย์ เวลา 9.00 - 23.00 น.</span>
           <br>
           <span>5) หากท่านลืมรหัสผ่านท่านสามารถติดต่อ Admin เพื่อทำการขอรหัสผ่านใหม่ได้</span>
+        <br>
+        <br>
+        <span class ="pull-right" ><font color ="#711400">ROOM RESERVATION </font></span>
+        </b>
+      </p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+
+<!-- ติดต่อเรา-->
+  <div class="modal fade " id="contact" role="dialog" style="z-index: 9999">
+    <div class="modal-dialog">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">ติดต่อเรา</h4>
+        </div>
+        <div class="modal-body">
+          <p>
+        <b>
+          <span>Room Kasetsart University Sriracha Campus</span>
+          <br>
+          <span>เว็บไซต์ : -</span>
+          <br>
+          <span>อีเมลล์ : -</span>
+          <br>
+          <span>โทรศัพท์ : -</span>
+          
         <br>
         <br>
         <span class ="pull-right" ><font color ="#711400">ROOM RESERVATION </font></span>
