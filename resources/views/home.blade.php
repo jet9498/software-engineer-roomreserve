@@ -52,7 +52,13 @@
           <li><a href="#section2">ติดต่อเรา</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
-          <li><a href="#" data-toggle="modal" data-target="#login-modal"><span class="glyphicon glyphicon-log-in" ></span> Login</a></li>
+          @if (Auth::guest())
+            <li><a href="{{ url('/login') }}"><span class="glyphicon glyphicon-log-in" ></span> Login</a></li>
+        @else
+            <li id="Login"><a href="{{ url('/logout') }}">Logout</a></li>
+        @endif
+          
+
         </ul>
       </div>
     </div>
@@ -126,7 +132,7 @@
 
 </main>
 <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="z-index: 9999">
-  <div class="modal-dialog">
+  <!--<div class="modal-dialog">
       <div class="loginmodal-container">
            <h1>Login to Your Account</h1><br>
           <form>
@@ -140,7 +146,10 @@
           </div>
           <button type="button" class="btn btn-secondary btn-sm"><span class="glyphicon glyphicon-user"></span> ADMIN</button>
       </div>
-  </div>
+  </div>-->
+  
+        
+      </ul>
 </div>
 
 
