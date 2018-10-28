@@ -54,9 +54,9 @@
         </ul>
         <ul class="nav navbar-nav navbar-right">
           @if (Auth::guest())
-            <li><a href="{{ url('/login') }}"><span class="glyphicon glyphicon-log-in" ></span> Login</a></li>
+            <li><a href="{{ url('/login') }}"><span class="glyphicon glyphicon-log-in" ></span> เข้าสู่ระบบ</a></li>
         @else
-            <li id="Login"><a href="{{ url('/logout') }}">Logout</a></li>
+            <li><a href="{{ url('/logout') }}"><span class="glyphicon glyphicon-log-in" ></span> ออกจากระบบ</a></li>
         @endif
           
 
@@ -170,13 +170,11 @@
         <b>
           <span>1) เวลาการจองห้องต้องอยู่ในช่วง 45 นาที - 3 ชั่วโมง และสามารถจองล่วงหน้าได้ 1 เดือนเท่านั้น</span>
           <br>
-          <span>2) ระบบจะส่งอีเมลแจ้งเตือนเมื่อถึงเวลาใช้งาน และยกเลิกการใข้งานกรณีไม่ได้ยืนยันสิทธิ์</span>
+          <span>2) ท่านสามารถยกเลิก / แก้ไข การจองของตนเองได้ที่หน้าการจองของท่านได้ทันที</span>
           <br>
-          <span>3) ท่านสามารถยกเลิก / แก้ไข การจองของตนเองได้ที่หน้าการจองของท่านได้ทันที</span>
+          <span>3) เปิดให้บริการ วันจันทร์ - อาทิตย์ เวลา 9.00 - 23.00 น.</span>
           <br>
-          <span>4) เปิดให้บริการ วันจันทร์ - อาทิตย์ เวลา 9.00 - 23.00 น.</span>
-          <br>
-          <span>5) หากท่านลืมรหัสผ่านท่านสามารถติดต่อ Admin เพื่อทำการขอรหัสผ่านใหม่ได้</span>
+          <span>4) หากท่านลืมรหัสผ่านท่านสามารถติดต่อ Admin เพื่อทำการขอรหัสผ่านใหม่ได้</span>
         <br>
         <br>
         <span class ="pull-right" ><font color ="#711400">ROOM RESERVATION </font></span>
