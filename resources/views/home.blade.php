@@ -43,7 +43,7 @@
       <div class="collapse navbar-collapse" id="myNavbar"style="width: -webkit-fill-available">
         <ul class="nav navbar-nav navbar-left" id="left-Menu">
 
-          <li class="active"><a href=#>หน้าหลัก</a></li>
+          <li class="active"><a href="#section3">หน้าหลัก</a></li>
           <li><a href="#section1">ดูห้อง</a></li>
 
 
@@ -67,7 +67,7 @@
       </div>
     </div>
   </nav>
-
+  <div id="section3">
   <div id="background">
     <div class="col-md-12 col-sm-12 col-xs-12" id="allTextWelcome">
     <div class="col-md-12" style="text-align: center;">
@@ -79,6 +79,7 @@
     </div>
     </div>
   </div>
+</div>
 
   <div class="container" id="section1" style="padding-top: 50px">
 
