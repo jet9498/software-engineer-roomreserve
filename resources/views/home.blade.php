@@ -108,9 +108,9 @@
       <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 rightfooter" style="padding-left:10vw"style="height:auto;">
         <button id="borderButton" style="margin-bottom:40px;font-size:17px !important;">ติดต่อห้องช่าง</button>
         <font style="color:white;display:block;">Room Kasetsart University Sriracha Campus</font>
-        <font style="color:white;display:block;margin-top:40px;">เว็บไซต์ : http://lib.vit.src.ku.ac.th/</font>
-        <font style="color:white;display:block;">อีเมลล์ : libraryreservsrc@gmail.com</font>
-        <font style="color:white;display:block;">โทรศัพท์ : 038-354580-4 ต่อ 2730</font>
+        <font style="color:white;display:block;margin-top:40px;">เว็บไซต์ : -</font>
+        <font style="color:white;display:block;">อีเมลล์ : -</font>
+        <font style="color:white;display:block;">โทรศัพท์ : -</font>
 
 
 
