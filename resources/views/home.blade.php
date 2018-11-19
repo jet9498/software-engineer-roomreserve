@@ -44,7 +44,7 @@
         <ul class="nav navbar-nav navbar-left" id="left-Menu">
 
           <li class="active"><a href="#section3">หน้าหลัก</a></li>
-          <li><a href="#section1">เรายการห้อง</a></li>
+          <li><a href="#section1">รายการห้อง</a></li>
 
 
 
