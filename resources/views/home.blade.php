@@ -44,7 +44,7 @@
         <ul class="nav navbar-nav navbar-left" id="left-Menu">
 
           <li class="active"><a href="#section3">หน้าหลัก</a></li>
-          <li><a href="#section1">ดูห้อง</a></li>
+          <li><a href="#section1">เรายการห้อง</a></li>
 
 
 
@@ -96,7 +96,7 @@
             <div class="col-md-12 columButton" style="text-align: center;padding-top: 1vw">
 
               <a href="room/reservations?txtroom=<?php echo "$Room->roomName" ?>" target='_parent'><button id="button-menu" data-toggle="modal" data-target="#login-modal"><font id="textButton">จอง</font></button></a>
-              <a href="room/view?txtroom=<?php echo "$Room->roomName" ?>" target='_parent'><button id="button-menu1" data-toggle="modal" ><font id="textButton">ดูห้อง</font></button></a>
+              <a href="room/view?txtroom=<?php echo "$Room->roomName" ?>" target='_parent'><button id="button-menu1" data-toggle="modal" ><font id="textButton">ตารางเวลา</font></button></a>
 
     </div>
         </div>
@@ -120,8 +120,8 @@
         <button id="borderButton" style="margin-bottom:40px;font-size:17px !important;">ติดต่อห้องช่าง</button>
         <font style="color:white;display:block;">Room Kasetsart University Sriracha Campus</font>
         <font style="color:white;display:block;margin-top:40px;">เว็บไซต์ : -</font>
-        <font style="color:white;display:block;">อีเมลล์ : -</font>
-        <font style="color:white;display:block;">โทรศัพท์ : -</font>
+        <font style="color:white;display:block;">อีเมลล์ : Niwes@eng.src.ku.ac.th</font>
+        <font style="color:white;display:block;">โทรศัพท์ : 038-354-581-4 #2822</font>
 
 
 
