@@ -12,10 +12,10 @@
 */
 
 Route::get('/', 'HomeController@index');
-Route::get('/room/reservations', 'RoomController@index');
-Route::post('/room/reservations', 'RoomController@create');
+Route::get('/room/reservations/{id}', 'RoomController@index');
+Route::post('/room/reservations/{id}', 'RoomController@create');
 Route::get('/room/table', 'RoomController@table');
-Route::get('/room/view', 'RoomController@view');
+Route::get('/room/view/{id}', 'RoomController@view');
 
 // 7 Routes = Restful API
 Route::get('/movies','MovieController@index');

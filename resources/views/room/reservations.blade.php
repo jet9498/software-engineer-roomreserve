@@ -302,7 +302,7 @@
 
           <li style="border-bottom:2px solid red;"><a href="/">หน้าหลัก</a></li>
 
-         
+
 
 
 
@@ -377,7 +377,7 @@
           <span>อีเมลล์ : -</span>
           <br>
           <span>โทรศัพท์ : -</span>
-          
+
         <br>
         <br>
         <span class ="pull-right" ><font color ="#711400">ROOM RESERVATION </font></span>
@@ -406,15 +406,15 @@
           <br>
           <br>
           <br>
-          <?php $RsroomName = $_GET["txtroom"]; ?>
           <h2 class="ui left floated header"style="width:100%"><font id="statustext" size="6" color="#B92000">STATUS</font><br>
-            <font name="RsroomName" id="roomnametext" size="5" color="#828282"><?php echo "$RsroomName" ?></font>
+            <font id="roomnametext" size="5" color="#828282">{{$Room->roomName}}</font>
             <div class="hr"></div>
           </h2>
                     <div class="ui clearing divider"></div>
           <iframe src="http://127.0.0.1:8000/room/table" style="width:100%; height:370px;"></iframe>
           <br>
           <br>
+
                 <div class="table-responsive table-inverse transition visible" id="table" style="display: block !important;">
                     <table class="table table-bordered" id="border">
                       <tbody><tr>
@@ -436,6 +436,7 @@
                           </tbody>
                           </table>
                   </div>
+                   
                   <span class="pull-right"> </span>
 
                                   <font color="#5B5B5B" id="phonetext"><b>Tips : </b>สามารถเลื่อนตาราง ซ้าย-ขวา ได้ </font>
@@ -453,7 +454,7 @@
             <div class="ui clearing divider"></div>
                 <div class="ui raised segment">
                   <br>
-                  <form class="form-horizontal transition visible" action="{{ url('/room/reservations')}}" enctype="multipart/form-data" method="post"  id="reservationform" style="display: block !important;">
+                  <form class="form-horizontal transition visible" action="{{ url('/room/reservations/'.$Room->roomID) }}" enctype="multipart/form-data" method="post"  id="reservationform" style="display: block !important;">
                       <input type="hidden" name="_token" value="{{ csrf_token() }}">
                           <font size="3">
                             <!-- <div class="form-group" id="studentForm">

@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="CG07Q6CxQFBmUXetWruibRxDBe6jXXQ4ZM67Mg6J">
     <link rel="shortcut icon" href="images/bs.png">
-    
+
     <link rel="stylesheet" type="text/css" href="http://libapp.src.ku.ac.th/semantic/semantic.min.css">
     <!-- Styles -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
@@ -363,7 +363,7 @@
           <span>อีเมลล์ : -</span>
           <br>
           <span>โทรศัพท์ : -</span>
-          
+
         <br>
         <br>
         <span class ="pull-right" ><font color ="#711400">ROOM RESERVATION </font></span>
@@ -390,9 +390,8 @@
           <br>
           <br>
           <br>
-          <?php $txtroom = $_GET["txtroom"]; ?>
           <h2 class="ui left floated header"style="width:100%"><font id="statustext" size="6" color="#B92000">STATUS</font><br>
-            <font id="roomnametext" size="5" color="#828282"><?php echo "$txtroom" ?></font>
+            <font id="roomnametext" size="5" color="#828282">{{$Room->roomName}}</font>
             <div class="hr"></div>
           </h2>
                     <div class="ui clearing divider"></div>

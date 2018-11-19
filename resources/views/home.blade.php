@@ -50,14 +50,14 @@
 
           <li><a href="#" data-toggle="modal" data-target="#fam">ข้อปฏิบัติ</a></li>
           <li><a href="#section2">ติดต่อเรา</a></li>
-          
+
         </ul>
         <ul class="nav navbar-nav navbar-right">
 
           @if (Auth::guest())
             <li><a href="{{ url('/login') }}"><span class="glyphicon glyphicon-log-in" ></span> เข้าสู่ระบบ</a></li>
 
-        
+
         @else
             <li><a href="{{ url('/logout') }}"><span class="glyphicon glyphicon-log-in" ></span> ออกจากระบบ</a></li>
         @endif
@@ -95,8 +95,8 @@
             <p>{{ $Room->roomDescription}}</p>
             <div class="col-md-12 columButton" style="text-align: center;padding-top: 1vw">
 
-              <a href="room/reservations?txtroom=<?php echo "$Room->roomName" ?>" target='_parent'><button id="button-menu" data-toggle="modal" data-target="#login-modal"><font id="textButton">จอง</font></button></a>
-              <a href="room/view?txtroom=<?php echo "$Room->roomName" ?>" target='_parent'><button id="button-menu1" data-toggle="modal" ><font id="textButton">ตารางเวลา</font></button></a>
+              <a href="{{ url('/room/reservations/'.$Room->roomID.'') }}" target='_parent'><button id="button-menu" data-toggle="modal" data-target="#login-modal"><font id="textButton">จอง</font></button></a>
+              <a href="{{ url('/room/view/'.$Room->roomID.'') }}" target='_parent'><button id="button-menu1" data-toggle="modal" ><font id="textButton">ตารางเวลา</font></button></a>
 
     </div>
         </div>
@@ -222,7 +222,7 @@ $(document).ready(function(){
       $('html, body').animate({
         scrollTop: $(hash).offset().top
       }, 800, function(){
-   
+
         // Add hash (#) to URL when done scrolling (default click behavior)
         window.location.hash = hash;
       });
