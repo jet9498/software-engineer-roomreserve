@@ -410,6 +410,9 @@
             <font id="roomnametext" size="5" color="#828282">{{$Room->roomName}}</font>
             <div class="hr"></div>
           </h2>
+
+          <form class="form-horizontal transition visible" action="{{ url('/room/addtable/add/'.$Room->roomID) }}" enctype="multipart/form-data" method="post" style="display: block !important;">
+              <input type="hidden" name="_token" value="{{ csrf_token() }}">
                     <!-- ////////////////////// ส่วนของตาราง //////////////// -->
                     <?php
                     // ส่วนของตัวแปรสำหรับกำหนด
@@ -450,12 +453,12 @@
                         </td>
                     <?php
                     for($i_time=0;$i_time<$sc_numCol-1;$i_time++){
-                        $colspan="";
-                        $css_use="";
-                        $dataShowIN="";
+
                     ?>
-                        <td <?=$css_use?> <?=$colspan?> align="center" valign="middle" height="50">
-                          <input type="checkbox" name="<?=$thai_day_arr[$i_day]?>" value="<?=$sc_timeStep[$i_time]?>:00">
+                        <td align="center" valign="middle" height="50">
+                          <input type="checkbox" name="Day[]" value="<?=$thai_day_arr[$i_day]?>">
+                          <input type="hidden" name="Day[]" value="<?=$sc_timeStep[$i_time]?>:00">
+                          <input type="hidden" name="Day[]" value="<?=$sc_timeStep[$i_time+1]?>:00">
                         </td>
                     <?php  }?>
                       </tr>
@@ -465,10 +468,10 @@
                 <!-- ////////////////////// ส่วนของตาราง //////////////// -->
           <br>
           <br>
-          <form class="form-horizontal transition visible" action="{{ url('/room/reservations/'.$Room->roomID) }}" enctype="multipart/form-data" method="post"  id="reservationform" style="display: block !important;">
+
                 <div class="form-group">
                         <div class="col-md-5 col-md-offset-5">
-                            <button type="submit" class="btn btn-primary">
+                            <button type="submit" name="submit" class="btn btn-primary">
                             <i class="write icon"></i>Submit</button>
                         </div>
                 </div>

@@ -15,10 +15,10 @@ class CreateRsroomTable extends Migration
     {
         Schema::create('rsrooms', function (Blueprint $table) {
             $table->increments('RsroomID');
-            $table->string('RsroomName');
-            $table->text('RsDate');
-            $table->text('RsStart');
-            $table->text('RsEnd');
+            $table->integer('roomID');
+            $table->integer('userID');
+            $table->datetime('RsStart');
+            $table->datetime('RsEnd');
             $table->timestamps();
         });
     }

@@ -314,7 +314,7 @@
             <li><a href="{{ url('/login') }}"><span class="glyphicon glyphicon-log-in" ></span> เข้าสู่ระบบ</a></li>
 
         @else
-            <li><a href="{{ url('/logout') }}"><span class="glyphicon glyphicon-log-in" ></span> ออกจากระบบ</a></li>
+            <li><a href="{{ url('/logout') }}"><span class="glyphicon glyphicon-log-in" ></span> {{Auth::user()->name}}</a></li>
         @endif
 
 
@@ -411,6 +411,7 @@
             <div class="hr"></div>
           </h2>
                     <div class="ui clearing divider"></div>
+<<<<<<< HEAD
                     <!-- ////////////////////// ส่วนของตาราง //////////////// -->
                     <?php
                     // ส่วนของตัวแปรสำหรับกำหนด
@@ -491,6 +492,38 @@
                     </div>
                 @endif
                 @endforeach
+=======
+          
+          <br>
+          <br>
+                @foreach($Rsroom as $Rsrooms)
+                @if($Room->roomID == $Rsrooms->roomID)
+                <div class="table-responsive table-inverse transition visible" id="table" style="display: block !important;">
+                    <table class="table table-bordered" id="border">
+                      <tbody><tr>
+                      </tr></tbody><thead>
+                        <tr><th class="bg-primary">Date</th>
+                        <th class="bg-primary">Use Time</th>
+                        <th class="bg-primary">Status</th>
+                      </tr>
+                      </thead>
+
+                            <tbody>
+                            <tr>
+                                 <td class="bg-warning"><font size="3"><?php echo $Rsrooms->RsStart; ?><font color="red">** </font> </font></td>
+                                 <td class="bg-warning"><font size="3">{{$Rsrooms->RsStart}} - {{$Rsrooms->RsEnd}}</font></td>
+                                 <td class="bg-warning">
+                                <img width="12" height="12" src="http://libapp.src.ku.ac.th/seimg/circlewaiting.png">&nbsp;<font size="3" color="red">รอใช้งาน</font>
+                           </td>
+
+                            </tr>
+                          </tbody>
+                          </table>
+                  </div>
+                  @endif
+                  @endforeach
+
+>>>>>>> 8536364beb016257f999437e589e39b2f5aa19d0
                   <span class="pull-right"> </span>
 
                                   <font color="#5B5B5B" id="phonetext"><b>Tips : </b>สามารถเลื่อนตาราง ซ้าย-ขวา ได้ </font>
