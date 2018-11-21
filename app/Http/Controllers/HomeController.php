@@ -27,4 +27,8 @@ class HomeController extends Controller
         $rooms = Room::get();
         return view('home')->with('Rooms',$rooms);
     }
+    public function checklogin()
+    {
+        return view('checklogin');
+    }
 }

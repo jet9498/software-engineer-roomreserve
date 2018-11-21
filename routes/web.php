@@ -12,8 +12,8 @@
 */
 
 Route::get('/', 'HomeController@index');
-Route::get('/room/reservations/{id}', 'RoomController@index');
-Route::post('/room/reservations/{id}', 'RoomController@create');
+Route::get('/room/reservations/{id}', 'ReservationsController@index');
+Route::post('/room/reservations/{id}', 'ReservationsController@create');
 Route::get('/room/table', 'RoomController@table');
 Route::get('/room/view/{id}', 'RoomController@view');
 
@@ -27,5 +27,6 @@ Route::put('/movies/{id}','MovieController@update');
 Route::delete('/movies/{id}','MovieController@destroy');
 
 Route::get('/logout', 'Auth\LoginController@logout');
+Route::get('/checklogin', 'HomeController@checklogin');
 
 Auth::routes();

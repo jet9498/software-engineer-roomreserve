@@ -303,7 +303,13 @@
           <li><a href="#" data-toggle="modal" data-target="#contact">ติดต่อเรา</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
-          <li><a href="#" data-toggle="modal" data-target="#login-modal"><span class="glyphicon glyphicon-log-in" ></span> Login</a></li>
+          @if (Auth::guest())
+            <li><a href="{{ url('/login') }}"><span class="glyphicon glyphicon-log-in" ></span> เข้าสู่ระบบ</a></li>
+
+
+        @else
+            <li><a href="{{ url('/logout') }}"><span class="glyphicon glyphicon-log-in" ></span> {{Auth::user()->name}}</a></li>
+        @endif
         </ul>
       </div>
     </div>

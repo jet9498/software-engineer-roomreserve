@@ -314,7 +314,7 @@
             <li><a href="{{ url('/login') }}"><span class="glyphicon glyphicon-log-in" ></span> เข้าสู่ระบบ</a></li>
 
         @else
-            <li><a href="{{ url('/logout') }}"><span class="glyphicon glyphicon-log-in" ></span> ออกจากระบบ</a></li>
+            <li><a href="{{ url('/logout') }}"><span class="glyphicon glyphicon-log-in" ></span> {{Auth::user()->name}}</a></li>
         @endif
 
 
@@ -414,7 +414,8 @@
           <iframe src="http://127.0.0.1:8000/room/table" style="width:100%; height:370px;"></iframe>
           <br>
           <br>
-
+                @foreach($Rsroom as $Rsrooms)
+                @if($Room->roomID == $Rsrooms->roomID)
                 <div class="table-responsive table-inverse transition visible" id="table" style="display: block !important;">
                     <table class="table table-bordered" id="border">
                       <tbody><tr>
@@ -424,10 +425,11 @@
                         <th class="bg-primary">Status</th>
                       </tr>
                       </thead>
+
                             <tbody>
                             <tr>
-                                 <td class="bg-warning"><font size="3">25/10/2018 <font color="red">** </font> </font></td>
-                                 <td class="bg-warning"><font size="3">13 : 00 - 15 : 00</font></td>
+                                 <td class="bg-warning"><font size="3"><?php echo $Rsrooms->RsStart; ?><font color="red">** </font> </font></td>
+                                 <td class="bg-warning"><font size="3">{{$Rsrooms->RsStart}} - {{$Rsrooms->RsEnd}}</font></td>
                                  <td class="bg-warning">
                                 <img width="12" height="12" src="http://libapp.src.ku.ac.th/seimg/circlewaiting.png">&nbsp;<font size="3" color="red">รอใช้งาน</font>
                            </td>
@@ -436,6 +438,8 @@
                           </tbody>
                           </table>
                   </div>
+                  @endif
+                  @endforeach
                    
                   <span class="pull-right"> </span>
 
