@@ -410,7 +410,6 @@
             <font id="roomnametext" size="5" color="#828282">{{$Room->roomName}}</font>
             <div class="hr"></div>
           </h2>
-                    <div class="ui clearing divider"></div>
                     <!-- ////////////////////// ส่วนของตาราง //////////////// -->
                     <?php
                     // ส่วนของตัวแปรสำหรับกำหนด
@@ -432,7 +431,7 @@
                     ?>
                         <td align="center" valign="middle" height="50" bgcolor="#101010">
                         <div class="time_schedule_text" >
-                            <font color="#DCDCDC"><?=$sc_timeStep[$i_time]?> - <?=$sc_timeStep[$i_time+1]?></font>
+                            <font color="#DCDCDC" size="3"><?=$sc_timeStep[$i_time]?> - <?=$sc_timeStep[$i_time+1]?></font>
                         </div>
                         </td>
                     <?php }?>
@@ -444,7 +443,7 @@
                       <tr>
                         <td align="center" valign="middle" height="50" class="day_schedule" bgcolor="#101010">
                         <div class="day_schedule_text">
-                            <font color="#DCDCDC"><?=$thai_day_arr[$i_day]?></font>
+                            <font color="#DCDCDC" size="3"><?=$thai_day_arr[$i_day]?></font>
                             <br>
 
                         </div>
@@ -456,7 +455,7 @@
                         $dataShowIN="";
                     ?>
                         <td <?=$css_use?> <?=$colspan?> align="center" valign="middle" height="50">
-
+                          <input type="checkbox" name="<?=$thai_day_arr[$i_day]?>" value="<?=$sc_timeStep[$i_time]?>:00">
                         </td>
                     <?php  }?>
                       </tr>
@@ -466,88 +465,16 @@
                 <!-- ////////////////////// ส่วนของตาราง //////////////// -->
           <br>
           <br>
-                @foreach($Rsroom as $Rsrooms)
-                @if($Rsrooms->RsroomName == $Room->roomName)
-                  <div class="table-responsive table-inverse transition visible" id="table" style="display: block !important;">
-                      <table class="table table-bordered" id="border">
-                        <tbody><tr>
-                        </tr></tbody><thead>
-                          <tr><th class="bg-primary">Date</th>
-                          <th class="bg-primary">Use Time</th>
-                          <th class="bg-primary">Status</th>
-                        </tr>
-                        </thead>
-                              <tbody>
-                              <tr>
-                                   <td class="bg-warning"><font size="3">{{$Rsrooms->RsDate}}<font color="red">** </font> </font></td>
-                                   <td class="bg-warning"><font size="3">{{$Rsrooms->RsStart}} - {{$Rsrooms->RsEnd}}</font></td>
-                                   <td class="bg-warning">
-                                  <img width="12" height="12" src="http://libapp.src.ku.ac.th/seimg/circlewaiting.png">&nbsp;<font size="3" color="red">รอใช้งาน</font>
-                             </td>
-
-                              </tr>
-                            </tbody>
-                            </table>
-                    </div>
-                @endif
-                @endforeach
-                  <span class="pull-right"> </span>
-
-                                  <font color="#5B5B5B" id="phonetext"><b>Tips : </b>สามารถเลื่อนตาราง ซ้าย-ขวา ได้ </font>
-                          </div>
-        </div>
-      </div>
-      <div class="container transition visible" id="form" style="display: block !important;">
-        <div class="row">
-            <div class="col-md-12 col-md-offset-0">
-                        <br>
-                        <br>
-                        <h2 class="ui left floated header">
-                        <font id="formtext" size="6" color="#B92000">FORM</font><br> <font id="reservetext" size="5" color="#828282">RESERVATION</font>
-                        </h2>
-            <div class="ui clearing divider"></div>
-                <div class="ui raised segment">
-                  <br>
-                  <form class="form-horizontal transition visible" action="{{ url('/room/reservations/'.$Room->roomID) }}" enctype="multipart/form-data" method="post"  id="reservationform" style="display: block !important;">
-                      <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                          <font size="3">
-                            <div class="form-group">
-                                <label class="col-md-5 control-label">Date<font color="red">**</font></label>
-
-                                <div class="col-md-3">
-                                      <input type="text" name="RsDate" class="form-control" id="datetimepicker1" placeholder="วันที่" required="">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-md-5 control-label">Time Start<font color="red">**</font></label>
-
-                                <div class="col-md-3">
-                                      <input type="text" name="RsStart" class="form-control" id="datetimepicker2" placeholder="เวลาเริ่มต้น" required="">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-md-5 control-label">Time End<font color="red">**</font></label>
-
-                                <div class="col-md-3">
-                                      <input type="text" name="RsEnd" class="form-control" id="datetimepicker3" placeholder="เวลาสิ้นสุด" required="">
-                                </div>
-                            </div>
-
-                          </font>
-                        <div class="form-group">
-                                <div class="col-md-5 col-md-offset-5">
-                                    <button type="submit" class="btn btn-primary">
-                                    <i class="write icon"></i>Submit</button>
-                                </div>
+          <form class="form-horizontal transition visible" action="{{ url('/room/reservations/'.$Room->roomID) }}" enctype="multipart/form-data" method="post"  id="reservationform" style="display: block !important;">
+                <div class="form-group">
+                        <div class="col-md-5 col-md-offset-5">
+                            <button type="submit" class="btn btn-primary">
+                            <i class="write icon"></i>Submit</button>
                         </div>
-                  </form>
-                  <br>
-              </div>
-                    <br>
-                    <br>
-          </div>
-      </div>
-    </div>
+                </div>
+          </form>
+            </div>
+        </div>
     <br>
     <center>
     <div class="navbar-fixed-bottom" id="para2" style="display: block;">
@@ -563,7 +490,7 @@
         }
     </script>
 
-    <script type="text/javascript">
+  <script type="text/javascript">
           var date = new Date();
   date.setHours(0,0,0,0);
   $(function () {
@@ -583,72 +510,6 @@
                 useCurrent: 'day'
             });
         });
-
-
-  //       $(document).ready( function() {
-  //           $('#allmenu').transition('scale');
-  //           $('#table')
-  //             .transition({
-  //               animation  : 'fade down in',
-  //               duration   : '0.4s',
-  //             })
-  //           ;
-  //           $('#form')
-  //             .transition({
-  //               animation  : 'fly up',
-  //               duration   : '1s',
-  //             })
-  //           ;
-  //           $('#bar')
-  //             .transition({
-  //               animation  : 'scale',
-  //               duration   : '0.6s',
-  //             })
-  //           ;
-  //
-  //        });
-  //       function playSound() {
-  //         var sound = document.getElementById("audio");
-  //         sound.play();
-  //       }
-  //       $(".navbar-fixed-bottom").fadeToggle();
-  //
-  //         $('#shownisit').hide();
-  // $('#shownadmin').hide();
-  // $('#textadmin').hide();
-  // $('#textnisit').hide();
-  //
-  // $('#reservationform').hide();
-  // $('#jong').on('click', function(){
-  //   $('#textrule').hide();
-  //   $('#message').hide();
-  //   $('#message2').hide();
-  //   $('#message3').hide();
-  //   $('#reservationform').transition('scale');
-  //   $('#showadmin').fadeIn();
-  //   $('#textadmin').fadeIn();
-  // });
-  // $('#showadmin').on('click', function(){
-  //   $('#shownisit').fadeIn();
-  //   $('#showadmin').hide();
-  //   $('#textadmin').hide();
-  //   $('#textnisit').fadeIn();
-  //   $('#studentForm').fadeOut("fast");
-  //   $("#studentID").val("myself");
-  // });
-  // $('#shownisit').on('click', function(){
-  //   $('#showadmin').fadeIn();
-  //   $('#shownisit').hide();
-  //   $('#textadmin').fadeIn();
-  //   $('#textnisit').hide();
-  //   $('#studentForm').fadeIn();
-  //   $("#studentID").val("");
-  // });
-  //
-  // $('.ui.accordion')
-  //   .accordion()
-  // ;
-
     </script>
 
 
