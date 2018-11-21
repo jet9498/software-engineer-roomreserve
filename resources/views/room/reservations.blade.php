@@ -335,7 +335,7 @@
         <div class="modal-body">
           <p>
         <b>
-          <span>1) เวลาการจองห้องต้องอยู่ในช่วง 45 นาที - 3 ชั่วโมง และสามารถจองล่วงหน้าได้ 1 เดือนเท่านั้น</span>
+          <span>1) ในการจองห้องจะต้องจอง 1 ชั่วโมงขึ้นไป</span>
           <br>
           <span>2) ท่านสามารถยกเลิก / แก้ไข การจองของตนเองได้ที่หน้าการจองของท่านได้ทันที</span>
           <br>
@@ -406,12 +406,18 @@
           <br>
           <br>
           <br>
+
+          @if(Session::has('flash_message'))
+            <!-- alert({!! session('flash_message') !!}); -->
+            <div class="alert alert-danger"><em> <center><li>{!! session('flash_message') !!}</li></center></em></div>
+          @endif
+
           <h2 class="ui left floated header"style="width:100%"><font id="statustext" size="6" color="#B92000">STATUS</font><br>
             <font id="roomnametext" size="5" color="#828282">{{$Room->roomName}}</font>
             <div class="hr"></div>
           </h2>
                     <div class="ui clearing divider"></div>
-<<<<<<< HEAD
+
                     <!-- ////////////////////// ส่วนของตาราง //////////////// -->
                     <?php
                     // ส่วนของตัวแปรสำหรับกำหนด
@@ -492,38 +498,36 @@
                     </div>
                 @endif
                 @endforeach
-=======
-          
+
           <br>
           <br>
-                @foreach($Rsroom as $Rsrooms)
-                @if($Room->roomID == $Rsrooms->roomID)
-                <div class="table-responsive table-inverse transition visible" id="table" style="display: block !important;">
-                    <table class="table table-bordered" id="border">
-                      <tbody><tr>
-                      </tr></tbody><thead>
-                        <tr><th class="bg-primary">Date</th>
-                        <th class="bg-primary">Use Time</th>
-                        <th class="bg-primary">Status</th>
-                      </tr>
-                      </thead>
 
-                            <tbody>
-                            <tr>
-                                 <td class="bg-warning"><font size="3"><?php echo $Rsrooms->RsStart; ?><font color="red">** </font> </font></td>
-                                 <td class="bg-warning"><font size="3">{{$Rsrooms->RsStart}} - {{$Rsrooms->RsEnd}}</font></td>
-                                 <td class="bg-warning">
-                                <img width="12" height="12" src="http://libapp.src.ku.ac.th/seimg/circlewaiting.png">&nbsp;<font size="3" color="red">รอใช้งาน</font>
-                           </td>
+          <div class="table-responsive table-inverse transition visible" id="table" style="display: block !important;">
+              <table class="table table-bordered" id="border">
+                <tbody><tr>
+                </tr></tbody><thead>
+                  <tr><th class="bg-primary">Date</th>
+                  <th class="bg-primary">Use Time</th>
+                  <th class="bg-primary">Status</th>
+                </tr>
+                </thead>
+          @foreach($Rsroom as $Rsrooms)
+          @if($Room->roomID == $Rsrooms->roomID)
+                  <tbody>
+                  <tr>
+                   <td class="bg-warning"><font size="3"><?php echo substr($Rsrooms->RsStart, 0 ,10); ?><font color="red">** </font> </font></td>
+                   <td class="bg-warning"><font size="3"><?php echo substr($Rsrooms->RsStart, 11 ,9); ?> - <?php echo substr($Rsrooms->RsEnd, 11 ,9); ?></font></td>
+                   <td class="bg-warning">
+                  <img width="12" height="12" src="http://libapp.src.ku.ac.th/seimg/circlewaiting.png">&nbsp;<font size="3" color="red">รอใช้งาน</font>
+                  </td>
+                  </tr>
+                  </tbody>
+          @endif
+          @endforeach
+                    </table>
+            </div>
 
-                            </tr>
-                          </tbody>
-                          </table>
-                  </div>
-                  @endif
-                  @endforeach
 
->>>>>>> 8536364beb016257f999437e589e39b2f5aa19d0
                   <span class="pull-right"> </span>
 
                                   <font color="#5B5B5B" id="phonetext"><b>Tips : </b>สามารถเลื่อนตาราง ซ้าย-ขวา ได้ </font>
@@ -531,6 +535,7 @@
         </div>
       </div>
       <div class="container transition visible" id="form" style="display: block !important;">
+
         <div class="row">
             <div class="col-md-12 col-md-offset-0">
                         <br>
