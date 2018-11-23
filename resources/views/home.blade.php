@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="{{ asset('/css/styleHome.css') }}">
@@ -68,31 +68,42 @@
     </div>
   </nav>
   <div class="modal fade " id="id01" role="dialog" style="z-index: 9999">
+    <!--ล็อคอินของ laravel -->
   <div class="container">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
                 <div class="panel-heading">Login</div>
                 <div class="panel-body">
-                    <form class="form-horizontal" role="form" method="POST" action="http://127.0.0.1:8000/login">
-                        <input type="hidden" name="_token" value="">
+                    <form class="form-horizontal" role="form" method="POST" action="{{ url('/login') }}">
+                        {{ csrf_field() }}
 
-                        <div class="form-group">
+                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
                             <label for="email" class="col-md-4 control-label">E-Mail Address</label>
 
                             <div class="col-md-6">
-                                <input id="email" type="email" class="form-control" name="email" value="" required="" autofocus="">
+                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required autofocus>
 
-                                                            </div>
+                                @if ($errors->has('email'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('email') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
                         </div>
 
-                        <div class="form-group">
+                        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
                             <label for="password" class="col-md-4 control-label">Password</label>
 
                             <div class="col-md-6">
-                                <input id="password" type="password" class="form-control" name="password" required="">
+                                <input id="password" type="password" class="form-control" name="password" required>
 
-                                                            </div>
+                                @if ($errors->has('password'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('password') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
                         </div>
 
                         <div class="form-group">
@@ -111,7 +122,7 @@
                                     Login
                                 </button>
 
-                                <a class="btn btn-link" href="http://127.0.0.1:8000/password/reset">
+                                <a class="btn btn-link" href="{{ url('/password/reset') }}">
                                     Forgot Your Password?
                                 </a>
                             </div>
@@ -151,8 +162,13 @@
             <h4><b>{{ $Room->roomName }}</b></h4>
             <p>{{ $Room->roomDescription}}</p>
             <div class="col-md-12 columButton" style="text-align: center;padding-top: 1vw">
+              @if (Auth::guest())
 
+              <a href="#" target='_parent'data-toggle="modal" data-target="#id01"><button id="button-menu" data-toggle="modal" data-target="#login-modal"><font id="textButton">จอง</font></button></a>
+              @else
               <a href="{{ url('/room/reservations/'.$Room->roomID.'') }}" target='_parent'><button id="button-menu" data-toggle="modal" data-target="#login-modal"><font id="textButton">จอง</font></button></a>
+                @endif
+
               <a href="{{ url('/room/view/'.$Room->roomID.'') }}" target='_parent'><button id="button-menu1" data-toggle="modal" ><font id="textButton">ตารางเวลา</font></button></a>
 
     </div>
@@ -166,36 +182,6 @@
   <br>
   <br>
   <br>
-  <div id="id0" class="modal" role="dialog" style="z-index: 9999">
-  
-  <form class="modal-content animate" action="/action_page.php">
-    <div class="imgcontainer">
-      <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
-      <img src="img_avatar2.png" alt="Avatar" class="avatar">
-    </div>
-
-    <div class="container">
-      <label for="uname"><b>Username</b></label>
-      <input type="text" placeholder="Enter Username" name="uname" required>
-
-      <label for="psw"><b>Password</b></label>
-      <input type="password" placeholder="Enter Password" name="psw" required>
-        
-      <button type="submit">Login</button>
-      <label>
-        <input type="checkbox" checked="checked" name="remember"> Remember me
-      </label>
-    </div>
-
-    <div class="container" style="background-color:#f1f1f1">
-      <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
-      <span class="psw">Forgot <a href="#">password?</a></span>
-    </div>
-  </form>
-</div>
-
-
-
 
   <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 footer" id="section2">
       <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 leftfooter" style="padding-left:10vw"style="height:auto;">
@@ -222,29 +208,6 @@
 
 
 </main>
-<div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="z-index: 9999">
-  <!--<div class="modal-dialog">
-      <div class="loginmodal-container">
-           <h1>Login to Your Account</h1><br>
-          <form>
-              <input type="text" name="user" placeholder="Email">
-              <input type="password" name="pass" placeholder="Password">
-              <input type="submit" name="login" class="login loginmodal-submit" value="Login">
-          </form>
-
-          <div class="login-help">
-            <a href="#">Forgot Password</a>
-          </div>
-          <button type="button" class="btn btn-secondary btn-sm"><span class="glyphicon glyphicon-user"></span> ADMIN</button>
-      </div>
-  </div>-->
-
-
-      </ul>
-</div>
-
-
-
 
   <div class="modal fade " id="fam" role="dialog" style="z-index: 9999">
     <div class="modal-dialog">
@@ -278,10 +241,6 @@
 
     </div>
   </div>
-
-
-
-
  @yield('content')
     </div>
 
