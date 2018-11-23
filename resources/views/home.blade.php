@@ -163,19 +163,17 @@
             <p>{{ $Room->roomDescription}}</p>
             <div class="col-md-12 columButton" style="text-align: center;padding-top: 1vw">
               @if (Auth::guest())
-
+              <!-- เพิ่มเงื่อนไขการจองห้องถ้าไม่ล็อคอินจะต้องล็อคอินก่อน -->
               <a href="#" target='_parent'data-toggle="modal" data-target="#id01"><button id="button-menu" data-toggle="modal" data-target="#login-modal"><font id="textButton">จอง</font></button></a>
               @else
               <a href="{{ url('/room/reservations/'.$Room->roomID.'') }}" target='_parent'><button id="button-menu" data-toggle="modal" data-target="#login-modal"><font id="textButton">จอง</font></button></a>
-                @endif
+              @endif
 
               <a href="{{ url('/room/view/'.$Room->roomID.'') }}" target='_parent'><button id="button-menu1" data-toggle="modal" ><font id="textButton">ตารางเวลา</font></button></a>
 
     </div>
         </div>
       </div>
-     
-      
      @endforeach
    </div>
 
