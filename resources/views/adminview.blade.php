@@ -166,10 +166,10 @@
             <div class="col-md-12 columButton" style="text-align: center;padding-top: 1vw">
               @if (Auth::guest())
               <!-- เพิ่มเงื่อนไขการจองห้องถ้าไม่ล็อคอินจะต้องล็อคอินก่อน -->
-                <a href="#" target='_parent'data-toggle="modal" data-target="#id01"><button id="button-menu" data-toggle="modal" data-target="#login-modal"><font id="textButton">จองห้องตลอดทั้งเทอม</font></button></a>
+                <a href="#" target='_parent'data-toggle="modal" data-target="#id01"><button id="button-menu" data-toggle="modal" data-target="#login-modal"><font id="textButton">จองห้องทั้งเทอม</font></button></a>
               <!-- <a href="{{ url('/room/reservations/'.$Room->roomID.'') }}" target='_parent'data-toggle="modal" ><button id="button-menu" data-toggle="modal" data-target="#login-modal"><font id="textButton">จองห้องตลอดทั้งเทอม</font></button></a> -->
               @else
-                <a href="{{ url('/room/reservations/'.$Room->roomID.'') }}" target='_parent'data-toggle="modal" ><button id="button-menu" data-toggle="modal" data-target="#login-modal"><font id="textButton">จองห้องตลอดทั้งเทอม</font></button></a>
+                <a href="{{ url('/room/reservations/'.$Room->roomID.'') }}" target='_parent'data-toggle="modal" ><button id="button-menu" data-toggle="modal" data-target="#login-modal"><font id="textButton">จองห้องทั้งเทอม</font></button></a>
               <!-- <a href="{{ url('/room/reservations/'.$Room->roomID.'') }}" target='_parent'><button id="button-menu" data-toggle="modal" ><font id="textButton">จองห้องตลอดทั้งเทอม</font></button></a> -->
               @endif
 
