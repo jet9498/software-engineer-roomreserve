@@ -43,20 +43,14 @@
       <div class="collapse navbar-collapse" id="myNavbar"style="width: -webkit-fill-available">
         <ul class="nav navbar-nav navbar-left" id="left-Menu">
 
-          <li class="active"><a href="#section3">หน้าหลัก</a></li>
+          <li><a href="{{ url('/') }}">หน้าหลัก</a></li>
           <li><a href="#section1">รายการห้อง</a></li>
 
 
 
           <li><a href="#" data-toggle="modal" data-target="#fam">ข้อปฏิบัติ</a></li>
           <li><a href="#section2">ติดต่อเรา</a></li>
-          <!-- เงื่อนไขเวลา จะเข้าหน้า Admin -->
-          @if (Auth::guest())
-            <li><a href="#" data-toggle="modal" data-target="#id01"><span class="glyphicon glyphicon-log-in" ></span> Admin Page</a></li>
-          @else
-            <li><a href="{{ url('/admin') }}"> Admin Page</a></li>
-          @endif
-
+          <li class="active"><a href="{{ url('/admin') }}">Admin Page</a></li>
 
         </ul>
         <ul class="nav navbar-nav navbar-right">
@@ -66,7 +60,8 @@
 
 
         @else
-            <li><a href="{{ url('/logout') }}"><span class="glyphicon glyphicon-log-in" ></span> {{Auth::user()->name}}</a></li>
+          <li><a href="{{ url('/logout') }}"data-toggle="modal" > Admin <span class="glyphicon glyphicon-log-out" ></span> Logout</a></li>
+            <!-- <li><a href="{{ url('/logout') }}"><span class="glyphicon glyphicon-log-in" ></span> {{Auth::user()->name}}</a></li> -->
         @endif
 
 
@@ -75,7 +70,7 @@
     </div>
   </nav>
   <div class="modal fade " id="id01" role="dialog" style="z-index: 9999">
-    <!--ล็อคอินของ laravel -->
+    <!-- ล็อคอินของ laravel -->
   <div class="container">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
@@ -171,12 +166,14 @@
             <div class="col-md-12 columButton" style="text-align: center;padding-top: 1vw">
               @if (Auth::guest())
               <!-- เพิ่มเงื่อนไขการจองห้องถ้าไม่ล็อคอินจะต้องล็อคอินก่อน -->
-              <a href="#" target='_parent'data-toggle="modal" data-target="#id01"><button id="button-menu" data-toggle="modal" data-target="#login-modal"><font id="textButton">จอง</font></button></a>
+                <a href="#" target='_parent'data-toggle="modal" data-target="#id01"><button id="button-menu" data-toggle="modal" data-target="#login-modal"><font id="textButton">จองห้องตลอดทั้งเทอม</font></button></a>
+              <!-- <a href="{{ url('/room/reservations/'.$Room->roomID.'') }}" target='_parent'data-toggle="modal" ><button id="button-menu" data-toggle="modal" data-target="#login-modal"><font id="textButton">จองห้องตลอดทั้งเทอม</font></button></a> -->
               @else
-              <a href="{{ url('/room/reservations/'.$Room->roomID.'') }}" target='_parent'><button id="button-menu" data-toggle="modal" data-target="#login-modal"><font id="textButton">จอง</font></button></a>
+                <a href="{{ url('/room/reservations/'.$Room->roomID.'') }}" target='_parent'data-toggle="modal" ><button id="button-menu" data-toggle="modal" data-target="#login-modal"><font id="textButton">จองห้องตลอดทั้งเทอม</font></button></a>
+              <!-- <a href="{{ url('/room/reservations/'.$Room->roomID.'') }}" target='_parent'><button id="button-menu" data-toggle="modal" ><font id="textButton">จองห้องตลอดทั้งเทอม</font></button></a> -->
               @endif
 
-              <a href="{{ url('/room/view/'.$Room->roomID.'') }}" target='_parent'><button id="button-menu1" data-toggle="modal" ><font id="textButton">ตารางเวลา</font></button></a>
+              <a href="{{ url('/room/view/'.$Room->roomID.'') }}" target='_parent'><button id="button-menu1" data-toggle="modal" ><font id="textButton">แก้ไขการจองห้อง</font></button></a>
 
     </div>
         </div>

@@ -17,6 +17,7 @@ Route::post('/room/reservations/{id}', 'ReservationsController@create');
 Route::get('/room/addtable/{id}', 'TableController@table');
 Route::post('/room/addtable/add/{id}', 'TableController@addtable');
 Route::get('/room/view/{id}', 'RoomController@view');
+Route::any('/admin','AdminController@index') ;
 
 // 7 Routes = Restful API
 Route::get('/movies','MovieController@index');
