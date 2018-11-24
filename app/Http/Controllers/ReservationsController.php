@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Rsroom;
 use App\Room;
 use App\User;
+use App\Table;
 use Carbon\Carbon;
 
 class ReservationsController extends Controller
@@ -40,6 +41,9 @@ class ReservationsController extends Controller
             $timeEnd = '23:59:59';
         }
 
+        $create->RsStart = $RsDate." ".$RsStart;
+        $create->RsEnd = $RsDate." ".$RsEnd;
+
         //จอง1ชม.ขึ้นไป
         $timeStart1Hour = Carbon::parse($RsStart);
         $timeEnd1Hour = Carbon::parse($RsEnd);
@@ -55,12 +59,12 @@ class ReservationsController extends Controller
         $datenow = $datenow->toDateString();
 
         if($dateRentStart < $datenow){
-                \Session::flash('flash_message','ไม่สามารถจองวัน/เวลาที่ผ่านไปแล้ว');
+                \Session::flash('flash_message','ไม่สามารถจองวันที่ผ่านไปแล้ว');
                 return redirect()->back();
         }
         if($dateRentStart == $datenow){
             if($timeStart < $timenow ){
-                \Session::flash('flash_message','ไม่สามารถจองวัน/เวลาที่ผ่านไปแล้ว');
+                \Session::flash('flash_message','ไม่สามารถจองเวลาที่ผ่านไปแล้ว');
                 return redirect()->back();
             }
         }
@@ -81,8 +85,12 @@ class ReservationsController extends Controller
                  return redirect()->back();
         }
 
-      $create->RsStart = $RsDate." ".$RsStart;
-      $create->RsEnd = $RsDate." ".$RsEnd;
+        //overlap
+        // $table = Table::find($id);
+
+
+
+
       $create->save();
 
       return redirect()->to('/room/reservations/'.$room->roomID);
