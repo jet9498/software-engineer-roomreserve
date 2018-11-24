@@ -394,7 +394,7 @@
   <h2 class="ui left floated header" style="margin: 0px 3%;">
   	<font id="yourtext" size="6" color="#828282">My </font>
 
-  	<font id="reservetext" size="6" color="#B92000">RESERVED</font></h2>
+  	<font id="reservetext" size="6" color="#01610E">RESERVED</font></h2>
   	<br>
   <div class="ui clearing divider"></div>
 
@@ -405,10 +405,10 @@
                   </tbody>
                       <thead>
 	                      <tr>
-	                      	<th style="background-color:'#00C71B'!important">Room</th>
-	                        <th style="background-color:'#00C71B'!important">Date</th>
-	                        <th style="background-color:'#00C71B'!important">Use Time</th>
-	                        <th style="background-color:'#00C71B'!important">Manage</th>
+	                      	<th style="background-color:#1D892B ;color:#FFFFFF !important">Room</th>
+	                        <th style="background-color:#1D892B ;color:#FFFFFF !important">Date</th>
+	                        <th style="background-color:#1D892B ;color:#FFFFFF !important">Use Time</th>
+	                        <th style="background-color:#1D892B ;color:#FFFFFF !important">Manage</th>
 	                      </tr>
                       </thead>                 
                     
