@@ -23,4 +23,9 @@ class RoomController extends Controller
       $Rooms = Room::find($id);
       return view('room.table')->with('Room',$Rooms);
     }
+    public function myreservation()
+    {
+      
+      return view('room.myreservation');
+    }
 }
