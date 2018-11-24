@@ -50,14 +50,7 @@
 
           <li><a href="#" data-toggle="modal" data-target="#fam">ข้อปฏิบัติ</a></li>
           <li><a href="#section2">ติดต่อเรา</a></li>
-          <!-- เงื่อนไขเวลา จะเข้าหน้า Admin -->
-          @if (Auth::guest())
-            <li><a href="#" data-toggle="modal" data-target="#id01"><span class="glyphicon glyphicon-log-in" ></span> Admin Page</a></li>
-          @else
-            <li><a href="{{ url('/admin') }}"> Admin Page</a></li>
-          @endif
-
-
+          
         </ul>
         <ul class="nav navbar-nav navbar-right">
 
@@ -75,7 +68,7 @@
     </div>
   </nav>
   <div class="modal fade " id="id01" role="dialog" style="z-index: 9999">
-    <!--ล็อคอินของ laravel -->
+    <!--ล็อคอินของ laravel user-->
   <div class="container">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
@@ -128,6 +121,12 @@
                                 <button type="submit" class="btn btn-primary">
                                     Login
                                 </button>
+                                <!-- เงื่อนไขเวลา จะเข้าหน้า Admin -->
+                                
+                                <button class="btn btn-primary"href="#" data-toggle="modal" data-target="#id02">
+                                    Admin
+                                </button>
+                                
 
                                 <a class="btn btn-link" href="{{ url('/password/reset') }}">
                                     Forgot Your Password?
@@ -141,6 +140,78 @@
     </div>
 </div>
 </div>
+
+<div class="modal fade " id="id02" role="dialog" style="z-index: 9999">
+  <!--ล็อคอินของ laravel Admin-->
+  <div class="container">
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <div class="panel panel-default">
+                <div class="panel-heading">Admin Login</div>
+                <div class="panel-body">
+                    <form class="form-horizontal" role="form" method="POST" action="{{ url('/login') }}">
+                        {{ csrf_field() }}
+
+                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+                            <label for="email" class="col-md-4 control-label">E-Mail Address</label>
+
+                            <div class="col-md-6">
+                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required autofocus>
+
+                                @if ($errors->has('email'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('email') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
+                            <label for="password" class="col-md-4 control-label">Password</label>
+
+                            <div class="col-md-6">
+                                <input id="password" type="password" class="form-control" name="password" required>
+
+                                @if ($errors->has('password'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('password') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-6 col-md-offset-4">
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" name="remember"> Remember Me
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-8 col-md-offset-4">
+                                <!-- เงื่อนไขเวลา จะเข้าหน้า Admin -->
+                                @if (Auth::guest())
+                                <button  type = "submit" class="btn btn-primary"href="#" data-toggle="modal" data-target="#id02">
+                                    Login
+                                </button>
+
+                                @else
+                                  <li><a href="{{ url('/logout') }}"><span class="glyphicon glyphicon-log-in" ></span> {{Auth::user()->name}}</a></li>
+                                @endif
+                     
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
   <div id="section3">
   <div id="background">
     <div class="col-md-12 col-sm-12 col-xs-12" id="allTextWelcome">
