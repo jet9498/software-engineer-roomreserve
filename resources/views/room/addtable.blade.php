@@ -198,7 +198,7 @@
                       <?php $check=false ?>
                       <?php foreach ($Table as $Tables): sleep(0.1);?>
                         <?php if ($Tables->roomID == $Room->roomID && $Tables->Day == $eng_day_arr[$i_day] && $Tables->TableStart == "$sc_timeStep[$i_time]:00"): ?>
-                          <td align="center" valign="middle" height="50" bgcolor="#ff6700">
+                          <td align="center" valign="middle" height="50" bgcolor="#B92000">
                             <input type="checkbox" name="Day[]" value="<?=$eng_day_arr[$i_day]?>" checked>
                             <input type="hidden" name="Day[]" value="<?=$sc_timeStep[$i_time]?>:00">
                             <input type="hidden" name="Day[]" value="<?=$sc_timeStep[$i_time+1]?>:00">
@@ -239,36 +239,14 @@
     </div>
     </center>
     <!-- Scripts -->
-    <script src="http://libapp.src.ku.ac.th/semantic/semantic.min.js"></script>
+    
     <script>
         function goBack() {
             window.history.back();
         }
     </script>
 
-  <script type="text/javascript">
-          var date = new Date();
-  date.setHours(0,0,0,0);
-  $(function () {
-             $('#datetimepicker1').datetimepicker({
-                format: 'DD-MM-YYYY'
-            });
-        });
-        $(function () {
-             $('#datetimepicker2').datetimepicker({
-                format: 'HH:mm',
-                useCurrent: 'day'
-            });
-        });
-        $(function () {
-             $('#datetimepicker3').datetimepicker({
-                format: 'HH:mm',
-                useCurrent: 'day'
-            });
-        });
-    </script>
-
-
+  
 </div>
 
 
