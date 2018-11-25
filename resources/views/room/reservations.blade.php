@@ -206,7 +206,7 @@
                         <?php endif; ?>
                       <?php endforeach; ?>
                       <?php if (!$check): ?>
-                        <td align="center" valign="middle" height="50"bgcolor="#FFFFFF"></td>
+                        <td align="center" valign="middle" height="50" bgcolor="#FFFFFF"></td>
                       <?php endif; ?>
                     <?php  }?>
                       </tr>
@@ -240,7 +240,7 @@
                             </div>
                         @endif
                 @endforeach
-
+                <font>สีแดงคือเวลาที่ไม่สามารถจองได้</font>
           <br>
           <br>
 
