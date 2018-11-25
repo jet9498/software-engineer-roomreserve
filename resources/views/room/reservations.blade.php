@@ -7,22 +7,24 @@
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="CG07Q6CxQFBmUXetWruibRxDBe6jXXQ4ZM67Mg6J">
-    <link rel="shortcut icon" href="images/bs.png">
+    
 
-    <link rel="stylesheet" type="text/css" href="http://libapp.src.ku.ac.th/semantic/semantic.min.css">
+  
     <!-- Styles -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('/css/styleHome.css') }}">
     <link rel="stylesheet" href="{{ asset('/css/styleReservation.css') }}">
-    <link href="http://libapp.src.ku.ac.th/css/app.css" rel="stylesheet">
-    <script src="http://libapp.src.ku.ac.th/js/app.js"></script>
+    <link rel="stylesheet" href="{{ asset('/css/stylesemantic.css') }}">
+     <link rel="stylesheet" href="{{ asset('/css/styleapp.css') }}">
+   
+    <script src="{{ asset('/js/styleapp.js') }}"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.min.js"></script>
 
-  <link href="http://libapp.src.ku.ac.th/datetime/build/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="{{ asset('/css/Datetimepicker.css') }}">
 
-  <script src="http://libapp.src.ku.ac.th/datetime/build/js/bootstrap-datetimepicker.min.js"></script>
+  <script src="{{ asset('/js/datetimepicker.min.js') }}"></script>
 
   
     </head>
@@ -199,12 +201,12 @@
                       <?php $check=false ?>
                       <?php foreach ($Table as $Tables): sleep(0.1);?>
                         <?php if ($Tables->roomID == $Room->roomID && $Tables->Day == $eng_day_arr[$i_day] && $Tables->TableStart == "$sc_timeStep[$i_time]:00"): ?>
-                          <td align="center" valign="middle" height="50" bgcolor="#ff6700"></td>
+                          <td align="center" valign="middle" height="50" bgcolor="#B92000"></td>
                           <?php $check=true; break;?>
                         <?php endif; ?>
                       <?php endforeach; ?>
                       <?php if (!$check): ?>
-                        <td align="center" valign="middle" height="50"></td>
+                        <td align="center" valign="middle" height="50"bgcolor="#FFFFFF"></td>
                       <?php endif; ?>
                     <?php  }?>
                       </tr>
@@ -229,7 +231,7 @@
                                            <td class="bg-warning"><font size="3">{{$Rsrooms->RsDate}}<font color="red">** </font> </font></td>
                                            <td class="bg-warning"><font size="3">{{$Rsrooms->RsStart}} - {{$Rsrooms->RsEnd}}</font></td>
                                            <td class="bg-warning">
-                                          <img width="12" height="12" src="http://libapp.src.ku.ac.th/seimg/circlewaiting.png">&nbsp;<font size="3" color="red">รอใช้งาน</font>
+                                          <img width="12" height="12" src="{{ asset('/img/demo/circlewaiting.png') }">&nbsp;<font size="3" color="red">รอใช้งาน</font>
                                      </td>
 
                                       </tr>
@@ -258,7 +260,7 @@
                    <td class="bg-warning"><font size="3"><?php echo substr($Rsrooms->RsStart, 0 ,10); ?><font color="red">** </font> </font></td>
                    <td class="bg-warning"><font size="3"><?php echo substr($Rsrooms->RsStart, 11 ,9); ?> - <?php echo substr($Rsrooms->RsEnd, 11 ,9); ?></font></td>
                    <td class="bg-warning">
-                  <img width="12" height="12" src="http://libapp.src.ku.ac.th/seimg/circlewaiting.png">&nbsp;<font size="3" color="red">รอใช้งาน</font>
+                  <img width="12" height="12" src="{{ asset('/img/demo/circlewaiting.png') }}">&nbsp;<font size="3" color="red">รอใช้งาน</font>
                   </td>
                   </tr>
                   </tbody>
@@ -328,7 +330,7 @@
     </div>
     </center>
     <!-- Scripts -->
-    <script src="http://libapp.src.ku.ac.th/semantic/semantic.min.js"></script>
+    <script src="{{ asset('/js/semantic.min.js') }}"></script>
     <script>
         function goBack() {
             window.history.back();
