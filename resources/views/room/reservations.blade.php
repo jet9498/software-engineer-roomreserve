@@ -169,7 +169,7 @@
                     ////////////////////// ส่วนของการจัดการตารางเวลา /////////////////////
                     ?>
                     <br>
-                    <div class="wrap_schedule">
+                    <div class="wrap_schedule" style="overflow-x:auto;">
                     <table  align="center" border="1" cellspacing="2" cellpadding="2"style="border-collapse:collapse;" >
                       <tr class="time_schedule">
                         <td align="center" valign="middle" height="50" bgcolor="#101010">
@@ -205,7 +205,7 @@
                         <?php endif; ?>
                       <?php endforeach; ?>
                       <?php if (!$check): ?>
-                        <td align="center" valign="middle" height="50"bgcolor="#FFFFFF"></td>
+                        <td align="center" valign="middle" height="50" bgcolor="#FFFFFF"></td>
                       <?php endif; ?>
                     <?php  }?>
                       </tr>
@@ -239,7 +239,7 @@
                             </div>
                         @endif
                 @endforeach
-
+                <font>สีแดงคือเวลาที่ไม่สามารถจองได้</font>
           <br>
           <br>
 
