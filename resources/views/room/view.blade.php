@@ -285,12 +285,12 @@
                       <?php $check=false ?>
                       <?php foreach ($Table as $Tables): sleep(0.1);?>
                         <?php if ($Tables->roomID == $Room->roomID && $Tables->Day == $eng_day_arr[$i_day] && $Tables->TableStart == "$sc_timeStep[$i_time]:00"): ?>
-                          <td align="center" valign="middle" height="50" bgcolor="#ff6700"></td>
+                          <td align="center" valign="middle" height="50" bgcolor="#B92000"></td>
                           <?php $check=true; break;?>
                         <?php endif; ?>
                       <?php endforeach; ?>
                       <?php if (!$check): ?>
-                        <td align="center" valign="middle" height="50"></td>
+                        <td align="center" valign="middle" height="50" bgcolor="#FFFFFF"></td>
                       <?php endif; ?>
                     <?php  }?>
                       </tr>
@@ -324,10 +324,11 @@
                             </div>
                         @endif
                 @endforeach
-
+          <font>สีแดงคือเวลาที่ไม่สามารถจองได้</font>
+          <br>
+          
           <br>
           <br>
-
           <div class="table-responsive table-inverse transition visible" id="table" style="display: block !important;">
               <table class="table table-bordered" id="border">
                 <tbody><tr>
