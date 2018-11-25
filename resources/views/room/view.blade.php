@@ -7,28 +7,32 @@
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="CG07Q6CxQFBmUXetWruibRxDBe6jXXQ4ZM67Mg6J">
-    <link rel="shortcut icon" href="images/bs.png">
+    
 
-    <link rel="stylesheet" type="text/css" href="http://libapp.src.ku.ac.th/semantic/semantic.min.css">
+  
     <!-- Styles -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('/css/styleHome.css') }}">
-    <link rel="stylesheet" href="{{ asset('/css/styleview.css') }}">
-    <link href="http://libapp.src.ku.ac.th/css/app.css" rel="stylesheet">
-    <script src="http://libapp.src.ku.ac.th/js/app.js"></script>
+    <link rel="stylesheet" href="{{ asset('/css/styleReservation.css') }}">
+    <link rel="stylesheet" href="{{ asset('/css/stylesemantic.css') }}">
+     <link rel="stylesheet" href="{{ asset('/css/styleapp.css') }}">
+   
+    <script src="{{ asset('/js/styleapp.js') }}"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.min.js"></script>
 
-  <link href="http://libapp.src.ku.ac.th/datetime/build/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="{{ asset('/css/Datetimepicker.css') }}">
 
-  <script src="http://libapp.src.ku.ac.th/datetime/build/js/bootstrap-datetimepicker.min.js"></script>
+  <script src="{{ asset('/js/datetimepicker.min.js') }}"></script>
 
+  
     </head>
 <body id="bodycolor">
 
+
   <nav class="navbar navbar-inverse navbar-fixed-top">
-    <div class="container-fluid">
+    <div class="container-fluid"style="background-color:#2E2E2E">
       <div class="navbar-header">
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
           <span class="icon-bar"></span>
@@ -40,15 +44,21 @@
       <div class="collapse navbar-collapse" id="myNavbar"style="width: -webkit-fill-available">
         <ul class="nav navbar-nav navbar-left" id="left-Menu">
 
+
           <li style="border-bottom:2px solid red;"><a href="/">หน้าหลัก</a></li>
+
+
+
+
+
           <li><a href="#" data-toggle="modal" data-target="#fam">ข้อปฏิบัติ</a></li>
-          <li><a href="#" data-toggle="modal" data-target="#contact">ติดต่อเรา</a></li>
+          <li><a href="#"data-toggle="modal" data-target="#contact">ติดต่อเรา</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
-          @if (Auth::guest())
-            <li><a  href="#"data-toggle="modal" data-target="#id01"><span class="glyphicon glyphicon-log-in" ></span> เข้าสู่ระบบ</a></li>
+            @if (Auth::guest())
+            <li><a href="#"data-toggle="modal" data-target="#id01"><span class="glyphicon glyphicon-log-in" ></span> เข้าสู่ระบบ</a></li>
 
-
+ 
         @else
             <li><a href="{{ url('/logout') }}"><span class="glyphicon glyphicon-log-in" ></span> {{Auth::user()->name}}</a></li>
         @endif
@@ -56,6 +66,75 @@
       </div>
     </div>
   </nav>
+
+<div class="modal fade " id="fam" role="dialog" style="z-index: 9999">
+    <div class="modal-dialog">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">ข้อปฏิบัติในการใช้งานการจองห้อง</h4>
+        </div>
+        <div class="modal-body">
+          <p>
+        <b>
+          <span>1) ในการจองห้องจะต้องจอง 1 ชั่วโมงขึ้นไป</span>
+          <br>
+          <span>2) ท่านสามารถยกเลิก / แก้ไข การจองของตนเองได้ที่หน้าการจองของท่านได้ทันที</span>
+          <br>
+          <span>3) เปิดให้บริการ วันจันทร์ - อาทิตย์ เวลา 9.00 - 23.00 น.</span>
+          <br>
+          <span>4) หากท่านลืมรหัสผ่านท่านสามารถติดต่อ Admin เพื่อทำการขอรหัสผ่านใหม่ได้</span>
+        <br>
+        <br>
+        <span class ="pull-right" ><font color ="#711400">ROOM RESERVATION </font></span>
+        </b>
+      </p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+<!-- ติดต่อเรา-->
+  <div class="modal fade " id="contact" role="dialog" style="z-index: 9999">
+    <div class="modal-dialog">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">ติดต่อเรา</h4>
+        </div>
+        <div class="modal-body">
+          <p>
+        <b>
+          <span>Room Kasetsart University Sriracha Campus</span>
+          <br>
+          <span>เว็บไซต์ : -</span>
+          <br>
+          <span>อีเมลล์ : Niwes@eng.src.ku.ac.th</span>
+          <br>
+          <span>โทรศัพท์ : 038-354-581-4 #2822</span>
+
+        <br>
+        <br>
+        <span class ="pull-right" ><font color ="#711400">ROOM RESERVATION </font></span>
+        </b>
+      </p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
 
   <div class="modal fade " id="id01" role="dialog" style="z-index: 9999">
     <!--ล็อคอินของ laravel user-->
@@ -133,80 +212,14 @@
 
 
 
-  <div class="modal fade " id="fam" role="dialog" style="z-index: 9999">
-    <div class="modal-dialog">
-
-      <!-- Modal content-->
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">ข้อปฏิบัติในการใช้งานการจองห้อง</h4>
-        </div>
-        <div class="modal-body">
-          <p>
-        <b>
-          <span>1) ในการจองห้องจะต้องจอง 1 ชั่วโมงขึ้นไป </span>
-          <br>
-          <span>2) ท่านสามารถยกเลิก / แก้ไข การจองของตนเองได้ที่หน้าการจองของท่านได้ทันที</span>
-          <br>
-          <span>3) เปิดให้บริการ วันจันทร์ - อาทิตย์ เวลา 9.00 - 23.00 น.</span>
-          <br>
-          <span>4) หากท่านลืมรหัสผ่านท่านสามารถติดต่อ Admin เพื่อทำการขอรหัสผ่านใหม่ได้</span>
-        <br>
-        <br>
-        <span class ="pull-right" ><font color ="#711400">ROOM RESERVATION </font></span>
-        </b>
-      </p>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        </div>
-      </div>
-
-    </div>
-  </div>
 
 
 
-<!-- ติดต่อเรา-->
-  <div class="modal fade " id="contact" role="dialog" style="z-index: 9999">
-    <div class="modal-dialog">
-
-      <!-- Modal content-->
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">ติดต่อเรา</h4>
-        </div>
-        <div class="modal-body">
-          <p>
-        <b>
-          <span>Room Kasetsart University Sriracha Campus</span>
-          <br>
-          <span>เว็บไซต์ : -</span>
-          <br>
-          <span>อีเมลล์ : Niwes@eng.src.ku.ac.th</span>
-          <br>
-          <span>โทรศัพท์ :  038-354-581-4 #2822</span>
-
-        <br>
-        <br>
-        <span class ="pull-right" ><font color ="#711400">ROOM RESERVATION </font></span>
-        </b>
-      </p>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        </div>
-      </div>
-
-    </div>
-  </div>
 
     <div id="loading">
     </div>
     <div id="app">
-        <audio id="audio" src="http://libapp.src.ku.ac.th/sound/noti.mp3" autostart="false"></audio>
+        
 
         <div class="container transition visible" id="allmenu" style="display: block !important;">
     <div class="row">
@@ -215,14 +228,20 @@
           <br>
           <br>
           <br>
+
+          @if(Session::has('flash_message'))
+            <div class="alert alert-danger"><em> <center><li>{!! session('flash_message') !!}</li></center></em></div>
+          @endif
+          @if(Session::has('flash_message2'))
+            <div class="alert alert-success"><em> <center><li>{!! session('flash_message2') !!}</li></center></em></div>
+          @endif
+
           <h2 class="ui left floated header"style="width:100%"><font id="statustext" size="6" color="#B92000">STATUS</font><br>
             <font id="roomnametext" size="5" color="#828282">{{$Room->roomName}}</font>
             <div class="hr"></div>
-
-          </h2>              
-
           </h2>
                     <div class="ui clearing divider"></div>
+
                     <!-- ////////////////////// ส่วนของตาราง //////////////// -->
                     <?php
                     // ส่วนของตัวแปรสำหรับกำหนด
@@ -266,12 +285,12 @@
                       <?php $check=false ?>
                       <?php foreach ($Table as $Tables): sleep(0.1);?>
                         <?php if ($Tables->roomID == $Room->roomID && $Tables->Day == $eng_day_arr[$i_day] && $Tables->TableStart == "$sc_timeStep[$i_time]:00"): ?>
-                          <td align="center" valign="middle" height="50" bgcolor="#ff6700"></td>
+                          <td align="center" valign="middle" height="50" bgcolor="#B92000"></td>
                           <?php $check=true; break;?>
                         <?php endif; ?>
                       <?php endforeach; ?>
                       <?php if (!$check): ?>
-                        <td align="center" valign="middle" height="50"></td>
+                        <td align="center" valign="middle" height="50" bgcolor="#FFFFFF"></td>
                       <?php endif; ?>
                     <?php  }?>
                       </tr>
@@ -280,42 +299,63 @@
                 </div>
                 <!-- ////////////////////// ส่วนของตาราง //////////////// -->
           <br>
-
-                <br>
                 @foreach($Rsroom as $Rsrooms)
-                @if($Rsrooms->RsroomName == $Room->roomName)
-                  <div class="table-responsive table-inverse transition visible" id="table" style="display: block !important;">
-                      <table class="table table-bordered" id="border">
-                        <tbody><tr>
-                        </tr></tbody><thead>
-                          <tr><th class="bg-primary">Date</th>
-                          <th class="bg-primary">Use Time</th>
-                          <th class="bg-primary">Status</th>
-                        </tr>
-                        </thead>
-                              <tbody>
-                              <tr>
-                                   <td class="bg-warning"><font size="3">{{$Rsrooms->RsDate}}<font color="red">** </font> </font></td>
-                                   <td class="bg-warning"><font size="3">{{$Rsrooms->RsStart}} - {{$Rsrooms->RsEnd}}</font></td>
-                                   <td class="bg-warning">
-                                  <img width="12" height="12" src="http://libapp.src.ku.ac.th/seimg/circlewaiting.png">&nbsp;<font size="3" color="red">รอใช้งาน</font>
-                             </td>
+                        @if($Rsrooms->RsroomName == $Room->roomName)
+                          <div class="table-responsive table-inverse transition visible" id="table" style="display: block !important;">
+                              <table class="table table-bordered" id="border">
+                                <tbody><tr>
+                                </tr></tbody><thead>
+                                  <tr><th class="bg-primary">Date</th>
+                                  <th class="bg-primary">Use Time</th>
+                                  <th class="bg-primary">Status</th>
+                                </tr>
+                                </thead>
+                                      <tbody>
+                                      <tr>
+                                           <td class="bg-warning"><font size="3">{{$Rsrooms->RsDate}}<font color="red">** </font> </font></td>
+                                           <td class="bg-warning"><font size="3">{{$Rsrooms->RsStart}} - {{$Rsrooms->RsEnd}}</font></td>
+                                           <td class="bg-warning">
+                                          <img width="12" height="12" src="{{ asset('/img/demo/circlewaiting.png') }">&nbsp;<font size="3" color="red">รอใช้งาน</font>
+                                     </td>
 
-                              </tr>
-                            </tbody>
-                            </table>
-                    </div>
-                @endif
+                                      </tr>
+                                    </tbody>
+                                    </table>
+                            </div>
+                        @endif
                 @endforeach
-                  <span class="pull-right"> </span>
-
-                                  <font color="#5B5B5B" id="phonetext"><b>Tips : </b>สามารถเลื่อนตาราง ซ้าย-ขวา ได้ </font>
-                          </div>
+          <font>สีแดงคือเวลาที่ไม่สามารถจองได้</font>
+          <br>
+          
+          <br>
+          <br>
+          <div class="table-responsive table-inverse transition visible" id="table" style="display: block !important;">
+              <table class="table table-bordered" id="border">
+                <tbody><tr>
+                </tr></tbody><thead>
+                  <tr><th class="bg-primary">Date</th>
+                  <th class="bg-primary">Use Time</th>
+                  <th class="bg-primary">Status</th>
+                </tr>
+                </thead>
+          @foreach($Rsroom as $Rsrooms)
+          @if($Room->roomID == $Rsrooms->roomID)
+                  <tbody>
+                  <tr>
+                   <td class="bg-warning"><font size="3"><?php echo substr($Rsrooms->RsStart, 0 ,10); ?><font color="red">** </font> </font></td>
+                   <td class="bg-warning"><font size="3"><?php echo substr($Rsrooms->RsStart, 11 ,9); ?> - <?php echo substr($Rsrooms->RsEnd, 11 ,9); ?></font></td>
+                   <td class="bg-warning">
+                  <img width="12" height="12" src="{{ asset('/img/demo/circlewaiting.png') }}">&nbsp;<font size="3" color="red">รอใช้งาน</font>
+                  </td>
+                  </tr>
+                  </tbody>
+          @endif
+          @endforeach
+                    </table>
+            </div>        
         </div>
       </div>
-
-
-    <br>
+      
     <center>
     <div class="navbar-fixed-bottom" id="para2" style="display: block;">
         <i class="wizard icon"></i>
@@ -323,13 +363,12 @@
     </div>
     </center>
     <!-- Scripts -->
-    <script src="http://libapp.src.ku.ac.th/semantic/semantic.min.js"></script>
+    <script src="{{ asset('/js/semantic.min.js') }}"></script>
     <script>
         function goBack() {
             window.history.back();
         }
     </script>
-
 </div>
 </body>
 </html>
