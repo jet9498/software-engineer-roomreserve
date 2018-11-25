@@ -39,6 +39,7 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest', ['except' => 'logout']);
+
     }
     // public function login()
     // {
@@ -55,6 +56,12 @@ class LoginController extends Controller
         Auth::logout();
         Session::flush();
         return redirect('/');
+    }
+    public function Admin()
+    {
+        Auth::logout();
+        Session::flush();
+        return redirect('/adminindex.blade.php');
     }
 
 
