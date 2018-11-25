@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Rsroom;
 use App\Room;
 use App\Table;
+use \Auth;
 
 class RoomController extends Controller
 {
@@ -27,7 +28,18 @@ class RoomController extends Controller
       return view('room.table')->with('Room',$Rooms);
     }
     public function myreservation()
+    { $Rooms = array();
+      $user_id= Auth::user()->id;
+      $Rsrooms = Rsroom::where('userID',$user_id)->get();
+      foreach ($Rsrooms as $Rsroom) {
+        $Room = Room::find($Rsroom->roomID);
+        array_push($Rooms,$Room -> roomName);
+      }
+      return view('room.myreservation')->with('Rsrooms',$Rsrooms)->with('Rooms',$Rooms);
+    }
+    public function destroyMyreservation($id)
     {
-      return view('room.myreservation');
+      $destroy = Rsroom::where('RsroomID',$id)->delete();
+      return redirect()->back();
     }
 }
