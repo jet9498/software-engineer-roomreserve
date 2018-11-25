@@ -157,6 +157,7 @@ class ReservationsController extends Controller
     {
       $Rooms = Room::find($id);
       $Rsroom = Rsroom::get();
-      return view('room.reservations')->with('Room',$Rooms)->with('Rsroom',$Rsroom);
+      $Table = Table::get();
+      return view('room.reservations')->with('Room',$Rooms)->with('Rsroom',$Rsroom)->with('Table',$Table);
     }
 }
