@@ -144,8 +144,10 @@
           <br>
 
           @if(Session::has('flash_message'))
-            <!-- alert({!! session('flash_message') !!}); -->
             <div class="alert alert-danger"><em> <center><li>{!! session('flash_message') !!}</li></center></em></div>
+          @endif
+          @if(Session::has('flash_message2'))
+            <div class="alert alert-success"><em> <center><li>{!! session('flash_message2') !!}</li></center></em></div>
           @endif
 
           <h2 class="ui left floated header"style="width:100%"><font id="statustext" size="6" color="#B92000">STATUS</font><br>
@@ -211,31 +213,30 @@
                 </div>
                 <!-- ////////////////////// ส่วนของตาราง //////////////// -->
           <br>
-          <br>
                 @foreach($Rsroom as $Rsrooms)
-                @if($Rsrooms->RsroomName == $Room->roomName)
-                  <div class="table-responsive table-inverse transition visible" id="table" style="display: block !important;">
-                      <table class="table table-bordered" id="border">
-                        <tbody><tr>
-                        </tr></tbody><thead>
-                          <tr><th class="bg-primary">Date</th>
-                          <th class="bg-primary">Use Time</th>
-                          <th class="bg-primary">Status</th>
-                        </tr>
-                        </thead>
-                              <tbody>
-                              <tr>
-                                   <td class="bg-warning"><font size="3">{{$Rsrooms->RsDate}}<font color="red">** </font> </font></td>
-                                   <td class="bg-warning"><font size="3">{{$Rsrooms->RsStart}} - {{$Rsrooms->RsEnd}}</font></td>
-                                   <td class="bg-warning">
-                                  <img width="12" height="12" src="http://libapp.src.ku.ac.th/seimg/circlewaiting.png">&nbsp;<font size="3" color="red">รอใช้งาน</font>
-                             </td>
+                        @if($Rsrooms->RsroomName == $Room->roomName)
+                          <div class="table-responsive table-inverse transition visible" id="table" style="display: block !important;">
+                              <table class="table table-bordered" id="border">
+                                <tbody><tr>
+                                </tr></tbody><thead>
+                                  <tr><th class="bg-primary">Date</th>
+                                  <th class="bg-primary">Use Time</th>
+                                  <th class="bg-primary">Status</th>
+                                </tr>
+                                </thead>
+                                      <tbody>
+                                      <tr>
+                                           <td class="bg-warning"><font size="3">{{$Rsrooms->RsDate}}<font color="red">** </font> </font></td>
+                                           <td class="bg-warning"><font size="3">{{$Rsrooms->RsStart}} - {{$Rsrooms->RsEnd}}</font></td>
+                                           <td class="bg-warning">
+                                          <img width="12" height="12" src="http://libapp.src.ku.ac.th/seimg/circlewaiting.png">&nbsp;<font size="3" color="red">รอใช้งาน</font>
+                                     </td>
 
-                              </tr>
-                            </tbody>
-                            </table>
-                    </div>
-                @endif
+                                      </tr>
+                                    </tbody>
+                                    </table>
+                            </div>
+                        @endif
                 @endforeach
 
           <br>
