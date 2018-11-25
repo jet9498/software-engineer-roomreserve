@@ -25,7 +25,6 @@ class RoomController extends Controller
     }
     public function myreservation()
     {
-      
       return view('room.myreservation');
     }
 }
