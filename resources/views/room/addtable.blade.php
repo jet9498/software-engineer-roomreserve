@@ -456,19 +456,19 @@
                       <?php $check=false ?>
                       <?php foreach ($Table as $Tables): sleep(0.1);?>
                         <?php if ($Tables->roomID == $Room->roomID && $Tables->Day == $eng_day_arr[$i_day] && $Tables->TableStart == "$sc_timeStep[$i_time]:00"): ?>
-                          <td align="center" valign="middle" height="50" bgcolor="#ff6700">
-                            <input type="checkbox" name="Day[]" value="<?=$eng_day_arr[$i_day]?>" checked>
-                            <input type="hidden" name="Day[]" value="<?=$sc_timeStep[$i_time]?>:00">
-                            <input type="hidden" name="Day[]" value="<?=$sc_timeStep[$i_time+1]?>:00">
+                          <td align="center"  height="50" bgcolor="#ff6700">
+                            <input type="checkbox" name="Day[]" value="<?=$eng_day_arr[$i_day]?>" checked><?php sleep(0.1);?>
+                            <input type="hidden" name="Day[]" value="<?=$sc_timeStep[$i_time]?>:00"><?php sleep(0.1);?>
+                            <input type="hidden" name="Day[]" value="<?=$sc_timeStep[$i_time+1]?>:00"><?php sleep(0.1);?>
                           </td>
                           <?php $check=true; break;?>
                         <?php endif; ?>
                       <?php endforeach; ?>
                       <?php if (!$check): ?>
-                        <td align="center" valign="middle" height="50">
-                          <input type="checkbox" name="Day[]" value="<?=$eng_day_arr[$i_day]?>">
-                          <input type="hidden" name="Day[]" value="<?=$sc_timeStep[$i_time]?>:00">
-                          <input type="hidden" name="Day[]" value="<?=$sc_timeStep[$i_time+1]?>:00">
+                        <td align="center"  height="50">
+                          <input type="checkbox" name="Day[]" value="<?=$eng_day_arr[$i_day]?>"><?php sleep(0.1);?>
+                          <input type="hidden" name="Day[]" value="<?=$sc_timeStep[$i_time]?>:00"><?php sleep(0.1);?>
+                          <input type="hidden" name="Day[]" value="<?=$sc_timeStep[$i_time+1]?>:00"><?php sleep(0.1);?>
                         </td>
                       <?php endif; ?>
                     <?php  }?>
