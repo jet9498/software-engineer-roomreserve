@@ -14,10 +14,8 @@ class ReservationsController extends Controller
 {
     public function create($id,Request $request)
     {
-        $room = Room::find($id);
-        $create = new Rsroom;
-        $create->userID = $request->input('userID',Auth::user()->id);
-        $create->roomID = $request->input('roomID',$room->roomID);
+        $rooms = Room::find($id);
+
 
         $RsDate = $request->input('RsDate');
         $RsDate=date('Y-m-d', strtotime($RsDate));
@@ -30,19 +28,12 @@ class ReservationsController extends Controller
 
         $timeStart = Carbon::parse($RsStart);
         $timeStart = $timeStart->toTimeString();
-        if($timeStart == '00:00:00'){
-            $timeStart = '00:00:10';
-        }
 
         $RsEnd = $request->input('RsEnd');
         $timeEnd = Carbon::parse($RsEnd);
         $timeEnd = $timeEnd->toTimeString();
-        if($timeEnd == '00:00:00'){
-            $timeEnd = '23:59:59';
-        }
 
-        $create->RsStart = $RsDate." ".$RsStart;
-        $create->RsEnd = $RsDate." ".$RsEnd;
+
 
         //จอง1ชม.ขึ้นไป
         $timeStart1Hour = Carbon::parse($RsStart);
@@ -86,14 +77,81 @@ class ReservationsController extends Controller
         }
 
         //overlap
-        // $table = Table::find($id);
+        $tables = Table::get();
+        $rsrooms = Rsroom::get();
+        $RsDate = $request->input('RsDate');
+        $Date = Carbon::parse($RsDate);
+        $dateRentStart = $Date->toDateString();
+        $day = strtoupper(substr($Date->format('l'), 0, 2));
+
+        $timeStart = $request->input('RsStart');
+        $timeStart = date('H:i', strtotime($timeStart));
+        $timeStart .=':00';
+        $timeStartinput = Carbon::parse($timeStart);
+        $timeStartinput = $timeStartinput->toTimeString();
+
+        $timeEnd = $request->input('RsEnd');
+        $timeEnd = date('H:i', strtotime($timeEnd));
+        $timeEnd .=':00';
+        $timeEndinput = Carbon::parse($timeEnd);
+        $timeEndinput = $timeEndinput->toTimeString();
 
 
+        //เช็คoverlapกับตารางเรียนทั้งเทอม
+        foreach ($tables as $table) {
+                if($table->roomID == $rooms->roomID){ //เช็คว่าห้องตรงกันมั้ย
+                        if($dateRentStart == $table->Day){
+                                if($timeStartinput == $table->TableStart){
+                                        \Session::flash('flash_message','เวลานี้ไม่สามารถจองได้');
+                                        return redirect()->back();
+                                }
+                                if($timeStartinput < $table->TableStart && $timeEndinput > $table->TableStart){
+                                        \Session::flash('flash_message','เวลานี้ไม่สามารถจองได้');
+                                        return redirect()->back();
+                                }
+                                if($timeStartinput > $table->TableStart && $timeStartinput < $table->TableEnd){
+                                        \Session::flash('flash_message','เวลานี้ไม่สามารถจองได้');
+                                        return redirect()->back();
+                                }
+                        }
+                }
+        }
 
+        //เช็คoverlapกับคนที่จองก่อน
+        foreach ($rsrooms as $rsroom) {
+                if($rooms->roomID == $rsroom->roomID){
+                        $datecheck = Carbon::parse($rsroom->RsStart);
+                        $dateend = Carbon::parse($rsroom->RsEnd);
+                        $datecheckStart = $datecheck->toDateString();
+                        $timecheckStart = $datecheck->toTimeString();
+                        $timecheckEnd = $dateend->toTimeString();
 
-      $create->save();
+                        if($dateRentStart == $datecheckStart){
+                                // dd("hi".$datecheckStart);
+                                if($timeStartinput == $timecheckStart){
+                                        \Session::flash('flash_message','เวลานี้มีคนจองแล้ว');
+                                        return redirect()->back();
+                                }
+                                if($timeStartinput < $timecheckStart && $timeEndinput > $timecheckStart){
+                                        \Session::flash('flash_message','เวลานี้มีคนจองแล้ว');
+                                        return redirect()->back();
+                                }
+                                if($timeStartinput > $timecheckStart && $timeStartinput < $timecheckEnd){
+                                        \Session::flash('flash_message','เวลานี้มีคนจองแล้ว');
+                                        return redirect()->back();
+                                }
+                        }
+                }
+        }
 
-      return redirect()->to('/room/reservations/'.$room->roomID);
+        $create = new Rsroom;
+        $create->userID = $request->input('userID',Auth::user()->id);
+        $create->roomID = $request->input('roomID',$rooms->roomID);
+        $create->RsStart = $RsDate." ".$RsStart;
+        $create->RsEnd = $RsDate." ".$RsEnd;
+        $create->save();
+        \Session::flash('flash_message2','จองเวลาสำเร็จ!');
+        return redirect()->to('/room/reservations/'.$room->roomID);
     }
      public function index($id)
     {

@@ -410,6 +410,9 @@
           @if(Session::has('flash_message'))
             <div class="alert alert-danger"><em> <center><li>{!! session('flash_message') !!}</li></center></em></div>
           @endif
+          @if(Session::has('flash_message2'))
+            <div class="alert alert-success"><em> <center><li>{!! session('flash_message2') !!}</li></center></em></div>
+          @endif
 
           <h2 class="ui left floated header"style="width:100%"><font id="statustext" size="6" color="#B92000">STATUS</font><br>
             <font id="roomnametext" size="5" color="#828282">{{$Room->roomName}}</font>
