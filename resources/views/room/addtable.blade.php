@@ -417,6 +417,7 @@
                     <?php
                     // ส่วนของตัวแปรสำหรับกำหนด
                     $thai_day_arr=array("จันทร์","อังคาร","พุธ","พฤหัสบดี","ศุกร์","เสาร์","อาทิตย์");
+                    $eng_day_arr=array("MO","TU","WE","TH","FR","SA","SU");
                     ////////////////////// ส่วนของการจัดการตารางเวลา /////////////////////
                     $num_dayShow=7;  // จำนวนวันที่โชว์ 1 - 7
                     $sc_timeStep=array("09:00","10:00","11:00","12:00","13:00","14:00","15:00","16:00","17:00","18:00","19:00","20:00","21:00","22:00");
@@ -427,7 +428,7 @@
                     <div class="wrap_schedule">
                     <table  align="center" border="1" cellspacing="2" cellpadding="2"style="border-collapse:collapse;" >
                       <tr class="time_schedule">
-                        <td align="center" valign="middle" height="50" bgcolor="#2F4F4F">
+                        <td align="center" valign="middle" height="50" bgcolor="#101010">
                         &nbsp;</td>
                     <?php
                     for($i_time=0;$i_time<$sc_numCol-1;$i_time++){
@@ -451,15 +452,25 @@
 
                         </div>
                         </td>
-                    <?php
-                    for($i_time=0;$i_time<$sc_numCol-1;$i_time++){
-
-                    ?>
+                    <?php for($i_time=0;$i_time<$sc_numCol-1;$i_time++){sleep(0.1);?>
+                      <?php $check=false ?>
+                      <?php foreach ($Table as $Tables): sleep(0.1);?>
+                        <?php if ($Tables->roomID == $Room->roomID && $Tables->Day == $eng_day_arr[$i_day] && $Tables->TableStart == "$sc_timeStep[$i_time]:00"): ?>
+                          <td align="center" valign="middle" height="50" bgcolor="#ff6700">
+                            <input type="checkbox" name="Day[]" value="<?=$eng_day_arr[$i_day]?>" checked>
+                            <input type="hidden" name="Day[]" value="<?=$sc_timeStep[$i_time]?>:00">
+                            <input type="hidden" name="Day[]" value="<?=$sc_timeStep[$i_time+1]?>:00">
+                          </td>
+                          <?php $check=true; break;?>
+                        <?php endif; ?>
+                      <?php endforeach; ?>
+                      <?php if (!$check): ?>
                         <td align="center" valign="middle" height="50">
-                          <input type="checkbox" name="Day[]" value="<?=$thai_day_arr[$i_day]?>">
+                          <input type="checkbox" name="Day[]" value="<?=$eng_day_arr[$i_day]?>">
                           <input type="hidden" name="Day[]" value="<?=$sc_timeStep[$i_time]?>:00">
                           <input type="hidden" name="Day[]" value="<?=$sc_timeStep[$i_time+1]?>:00">
                         </td>
+                      <?php endif; ?>
                     <?php  }?>
                       </tr>
                     <?php }?>

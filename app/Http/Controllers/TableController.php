@@ -13,14 +13,19 @@ class TableController extends Controller
     {
       $Rooms = Room::find($id);
       $Tables = Table::get();
-      return view('room.addtable')->with('Room',$Rooms)->with('Table',$Rooms);
+      return view('room.addtable')->with('Room',$Rooms)->with('Table',$Tables);
     }
     public function addtable($id,Request $request)
     {
       $room = Room::find($id);
+      $Tables = Table::get();
+      foreach ($Tables as $Table){
+        if($Table->roomID == $room->roomID){
+            $delete=Table::where('TableID',$Table->TableID)->delete();
+        }
+      }
 
-      $Day = explode(" ",implode(" ",$request->input('Day')));
-
+      $Day = $request->input('Day');
       for($i=0;$i<count($Day);$i++){
         if($Day[$i]=="จันทร์"){
           $create = new Table;
