@@ -413,16 +413,22 @@
                       </thead>                 
                     
                    <tbody>
+                    <?php   $i=0?>
+                    @foreach($Rsrooms as $Rsroom)
                           <tr>
-                               <td id="tablecolor"><font size="3">ห้องมินิเธียเตอร์</font></td>
-                               <td id="tablecolor"><font size="3">25/11/2018 </font></td>
-                               <td id="tablecolor"><font size="3">11 : 00 - 12 : 00</font></td>
-                               <td id="tablecolor"><form action="http://libapp.src.ku.ac.th/reservation/892/myreserve" method="post" onsubmit="return confirm('ก่อนดำเนินการใดๆ ควรอ่านกฏการจองห้องในหน้าแรกก่อน คุณพร้อมแล้วใช่ไหม?')">
-                                  <input type="hidden" name="_token" value="r4xHH6521orB4ZSho6deBxe7ytjdfOghhnPCIbZR">
+                               <td id="tablecolor"><font size="3">{{$Rooms[$i] }}</font></td>
+                               <td id="tablecolor"><font size="3">{{date('d-m-Y', strtotime($Rsroom->RsStart))}}</font></td>
+                               <td id="tablecolor"><font size="3">{{date('H:i', strtotime($Rsroom->RsStart))}}-{{date('H:i', strtotime($Rsroom->RsEnd))}}</font></td>
+                               <td id="tablecolor">
+                                <form action="{{ url('/myreservation/'.$Rsroom->RsroomID) }}" method="post" onsubmit="return confirm('ก่อนดำเนินการใดๆ ควรอ่านกฏการจองห้องในหน้าแรกก่อน คุณพร้อมแล้วใช่ไหม?')">
+                                  <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                   <input type="hidden" name="_method" value="DELETE">
                                   <center><input type="image" src="http://libapp.src.ku.ac.th/seimg/delete.ico" width="35" height="30"></center>
-                                </form></td>
+                                </form>
+                              </td>
                           </tr>
+                    <?php   $i++?>      
+                    @endforeach
                         </tbody>
                                      </table>               
               </div>

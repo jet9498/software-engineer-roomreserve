@@ -7,16 +7,15 @@
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="CG07Q6CxQFBmUXetWruibRxDBe6jXXQ4ZM67Mg6J">
-    
 
-  
+
+
     <!-- Styles -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('/css/styleHome.css') }}">
     <link rel="stylesheet" href="{{ asset('/css/styleReservation.css') }}">
     <link rel="stylesheet" href="{{ asset('/css/stylesemantic.css') }}">
      <link rel="stylesheet" href="{{ asset('/css/styleapp.css') }}">
-   
     <script src="{{ asset('/js/styleapp.js') }}"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 
@@ -26,7 +25,7 @@
 
   <script src="{{ asset('/js/datetimepicker.min.js') }}"></script>
 
-  
+
     </head>
 <body id="bodycolor">
 
@@ -135,7 +134,7 @@
     <div id="loading">
     </div>
     <div id="app">
-        
+
 
         <div class="container transition visible" id="allmenu" style="display: block !important;">
     <div class="row">
@@ -170,7 +169,7 @@
                     ////////////////////// ส่วนของการจัดการตารางเวลา /////////////////////
                     ?>
                     <br>
-                    <div class="wrap_schedule">
+                    <div class="wrap_schedule" style="overflow-x:auto;">
                     <table  align="center" border="1" cellspacing="2" cellpadding="2"style="border-collapse:collapse;" >
                       <tr class="time_schedule">
                         <td align="center" valign="middle" height="50" bgcolor="#101010">
@@ -271,7 +270,7 @@
           @endif
           @endforeach
                     </table>
-            </div>        
+            </div>
         </div>
       </div>
       <div class="container transition visible" id="form" style="display: block !important;">
@@ -363,7 +362,7 @@
         });
 
 
-  
+
     </script>
 
 
