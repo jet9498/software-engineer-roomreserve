@@ -9,7 +9,7 @@
 
     public function index(){
       $rooms = Room::get();
-      return view('adminview')->with('Rooms',$rooms);
+      return view('room/adminview')->with('Rooms',$rooms);
     }
   }
 
