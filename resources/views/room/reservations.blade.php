@@ -170,7 +170,7 @@
                     ////////////////////// ส่วนของการจัดการตารางเวลา /////////////////////
                     ?>
                     <br>
-                    <div class="wrap_schedule">
+                    <div class="wrap_schedule" style="overflow-x:auto;">
                     <table  align="center" border="1" cellspacing="2" cellpadding="2"style="border-collapse:collapse;" >
                       <tr class="time_schedule">
                         <td align="center" valign="middle" height="50" bgcolor="#101010">

@@ -10,19 +10,20 @@
     <meta name="csrf-token" content="CG07Q6CxQFBmUXetWruibRxDBe6jXXQ4ZM67Mg6J">
     <link rel="shortcut icon" href="images/bs.png">
 
-    <link rel="stylesheet" type="text/css" href="http://libapp.src.ku.ac.th/semantic/semantic.min.css">
+     <link rel="stylesheet" href="{{ asset('/css/stylesemantic.css') }}">
     <!-- Styles -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="http://localhost:8000/css/styleHome.css">
-    <link href="http://libapp.src.ku.ac.th/css/app.css" rel="stylesheet">
-    <script src="http://libapp.src.ku.ac.th/js/app.js"></script>
+   <link rel="stylesheet" href="{{ asset('/css/styleapp.css') }}">
+     <script src="{{ asset('/js/styleapp.js') }}"></script>
   	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
   	
   	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.min.js"></script>
 
-  	<link href="http://libapp.src.ku.ac.th/datetime/build/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+  	 <link rel="stylesheet" href="{{ asset('/css/Datetimepicker.css') }}">
 
-  	<script src="http://libapp.src.ku.ac.th/datetime/build/js/bootstrap-datetimepicker.min.js"></script>
+  <script src="{{ asset('/js/datetimepicker.min.js') }}"></script>
+
 
   	<style type="text/css">
         @import    url('https://fonts.googleapis.com/css?family=Kanit');
@@ -413,16 +414,22 @@
                       </thead>                 
                     
                    <tbody>
+                    <?php   $i=0?>
+                    @foreach($Rsrooms as $Rsroom)
                           <tr>
-                               <td id="tablecolor"><font size="3">ห้องมินิเธียเตอร์</font></td>
-                               <td id="tablecolor"><font size="3">25/11/2018 </font></td>
-                               <td id="tablecolor"><font size="3">11 : 00 - 12 : 00</font></td>
-                               <td id="tablecolor"><form action="http://libapp.src.ku.ac.th/reservation/892/myreserve" method="post" onsubmit="return confirm('ก่อนดำเนินการใดๆ ควรอ่านกฏการจองห้องในหน้าแรกก่อน คุณพร้อมแล้วใช่ไหม?')">
-                                  <input type="hidden" name="_token" value="r4xHH6521orB4ZSho6deBxe7ytjdfOghhnPCIbZR">
+                               <td id="tablecolor"><font size="3">{{$Rooms[$i] }}</font></td>
+                               <td id="tablecolor"><font size="3">{{date('d-m-Y', strtotime($Rsroom->RsStart))}}</font></td>
+                               <td id="tablecolor"><font size="3">{{date('H:i', strtotime($Rsroom->RsStart))}}-{{date('H:i', strtotime($Rsroom->RsEnd))}}</font></td>
+                               <td id="tablecolor">
+                                <form action="{{ url('/myreservation/'.$Rsroom->RsroomID) }}" method="post" onsubmit="return confirm('ก่อนดำเนินการใดๆ ควรอ่านกฏการจองห้องในหน้าแรกก่อน คุณพร้อมแล้วใช่ไหม?')">
+                                  <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                   <input type="hidden" name="_method" value="DELETE">
-                                  <center><input type="image" src="http://libapp.src.ku.ac.th/seimg/delete.ico" width="35" height="30"></center>
-                                </form></td>
+                                  <center><input type="image" src="{{ asset('/img/demo/delete.ico') }}" width="35" height="30"></center>
+                                </form>
+                              </td>
                           </tr>
+                    <?php   $i++?>      
+                    @endforeach
                         </tbody>
                                      </table>               
               </div>

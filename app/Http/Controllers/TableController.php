@@ -19,9 +19,15 @@ class TableController extends Controller
     {
       $room = Room::find($id);
       $Tables = Table::get();
+      $Rsrooms = Rsroom::get();
       foreach ($Tables as $Table){
         if($Table->roomID == $room->roomID){
             $delete=Table::where('TableID',$Table->TableID)->delete();
+        }
+      }
+      foreach ($Rsrooms as $Rsroom){
+        if($Rsroom->roomID == $room->roomID){
+            $delete=Rsroom::where('RsroomID',$Rsroom->RsroomID)->delete();
         }
       }
 

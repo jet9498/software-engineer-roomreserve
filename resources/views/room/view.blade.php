@@ -79,7 +79,7 @@
         <div class="modal-body">
           <p>
         <b>
-          <span>1) ในการจองห้องจะต้องจอง 1 ชั่วโมงขึ้นไป</span>
+          <span>1) ในการจองห้องจะต้องจอง 1 ชั่วโมงขึ้นไป </span>
           <br>
           <span>2) ท่านสามารถยกเลิก / แก้ไข การจองของตนเองได้ที่หน้าการจองของท่านได้ทันที</span>
           <br>
@@ -239,6 +239,9 @@
           <h2 class="ui left floated header"style="width:100%"><font id="statustext" size="6" color="#B92000">STATUS</font><br>
             <font id="roomnametext" size="5" color="#828282">{{$Room->roomName}}</font>
             <div class="hr"></div>
+
+          </h2>
+
           </h2>
                     <div class="ui clearing divider"></div>
 
@@ -254,7 +257,7 @@
                     ////////////////////// ส่วนของการจัดการตารางเวลา /////////////////////
                     ?>
                     <br>
-                    <div class="wrap_schedule">
+                    <div class="wrap_schedule"  style="overflow-x:auto;">
                     <table  align="center" border="1" cellspacing="2" cellpadding="2"style="border-collapse:collapse;" >
                       <tr class="time_schedule">
                         <td align="center" valign="middle" height="50" bgcolor="#101010">
@@ -352,8 +355,6 @@
           @endif
           @endforeach
                     </table>
-                    <br>
-                    <br>
             </div>
         </div>
       </div>

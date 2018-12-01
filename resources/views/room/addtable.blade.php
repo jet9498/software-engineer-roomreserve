@@ -7,16 +7,16 @@
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="CG07Q6CxQFBmUXetWruibRxDBe6jXXQ4ZM67Mg6J">
-    
 
-  
+
+
     <!-- Styles -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('/css/styleHome.css') }}">
     <link rel="stylesheet" href="{{ asset('/css/styleaddtable.css') }}">
     <link rel="stylesheet" href="{{ asset('/css/stylesemantic.css') }}">
      <link rel="stylesheet" href="{{ asset('/css/styleapp.css') }}">
-   
+
     <script src="{{ asset('/js/styleapp.js') }}"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 
@@ -198,7 +198,7 @@
                       <?php $check=false ?>
                       <?php foreach ($Table as $Tables): sleep(0.1);?>
                         <?php if ($Tables->roomID == $Room->roomID && $Tables->Day == $eng_day_arr[$i_day] && $Tables->TableStart == "$sc_timeStep[$i_time]:00"): ?>
-                          <td align="center" valign="middle" height="50" bgcolor="#ff6700">
+                          <td align="center" valign="middle" height="50" bgcolor="#B92000">
                             <input type="checkbox" name="Day[]" value="<?=$eng_day_arr[$i_day]?>" checked>
                             <input type="hidden" name="Day[]" value="<?=$sc_timeStep[$i_time]?>:00">
                             <input type="hidden" name="Day[]" value="<?=$sc_timeStep[$i_time+1]?>:00">
@@ -207,10 +207,10 @@
                         <?php endif; ?>
                       <?php endforeach; ?>
                       <?php if (!$check): ?>
-                        <td align="center" valign="middle" height="50">
-                          <input type="checkbox" name="Day[]" value="<?=$eng_day_arr[$i_day]?>">
-                          <input type="hidden" name="Day[]" value="<?=$sc_timeStep[$i_time]?>:00">
-                          <input type="hidden" name="Day[]" value="<?=$sc_timeStep[$i_time+1]?>:00">
+                        <td align="center"  height="50">
+                          <input type="checkbox" name="Day[]" value="<?=$eng_day_arr[$i_day]?>"><?php sleep(0.1);?>
+                          <input type="hidden" name="Day[]" value="<?=$sc_timeStep[$i_time]?>:00"><?php sleep(0.1);?>
+                          <input type="hidden" name="Day[]" value="<?=$sc_timeStep[$i_time+1]?>:00"><?php sleep(0.1);?>
                         </td>
                       <?php endif; ?>
                     <?php  }?>
@@ -239,33 +239,11 @@
     </div>
     </center>
     <!-- Scripts -->
-    <script src="http://libapp.src.ku.ac.th/semantic/semantic.min.js"></script>
+
     <script>
         function goBack() {
             window.history.back();
         }
-    </script>
-
-  <script type="text/javascript">
-          var date = new Date();
-  date.setHours(0,0,0,0);
-  $(function () {
-             $('#datetimepicker1').datetimepicker({
-                format: 'DD-MM-YYYY'
-            });
-        });
-        $(function () {
-             $('#datetimepicker2').datetimepicker({
-                format: 'HH:mm',
-                useCurrent: 'day'
-            });
-        });
-        $(function () {
-             $('#datetimepicker3').datetimepicker({
-                format: 'HH:mm',
-                useCurrent: 'day'
-            });
-        });
     </script>
 
 

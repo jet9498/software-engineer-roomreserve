@@ -21,9 +21,6 @@
     <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
 
     <!-- Styles -->
-
-
-
 </head>
 
 <body  style="background-color:#E0E3E4">
@@ -43,34 +40,23 @@
       <div class="collapse navbar-collapse" id="myNavbar"style="width: -webkit-fill-available">
         <ul class="nav navbar-nav navbar-left" id="left-Menu">
 
-          <li><a href="{{ url('/') }}">หน้าหลัก</a></li>
-          <li><a href="#section1">รายการห้อง</a></li>
 
-
-
-          <li><a href="#" data-toggle="modal" data-target="#fam">ข้อปฏิบัติ</a></li>
-          <li><a href="#section2">ติดต่อเรา</a></li>
           <li class="active"><a href="{{ url('/admin') }}">Admin Page</a></li>
 
         </ul>
         <ul class="nav navbar-nav navbar-right">
-
           @if (Auth::guest())
-            <li><a href="#"data-toggle="modal" data-target="#id01"><span class="glyphicon glyphicon-log-in" ></span> เข้าสู่ระบบ</a></li>
+              <li><a href="#"data-toggle="modal" data-target="#id02"><span class="glyphicon glyphicon-log-in" ></span> เข้าสู่ระบบ</a></li>
+          @else
+            <li><a href="{{ url('/logout') }}"data-toggle="modal" > Admin <span class="glyphicon glyphicon-log-out" ></span> Logout</a></li>
 
-
-        @else
-          <li><a href="{{ url('/logout') }}"data-toggle="modal" > Admin <span class="glyphicon glyphicon-log-out" ></span> Logout</a></li>
-            <!-- <li><a href="{{ url('/logout') }}"><span class="glyphicon glyphicon-log-in" ></span> {{Auth::user()->name}}</a></li> -->
-        @endif
-
-
+          @endif
         </ul>
       </div>
     </div>
   </nav>
   <div class="modal fade " id="id01" role="dialog" style="z-index: 9999">
-    <!-- ล็อคอินของ laravel -->
+  <!-- ล็อคอินของ laravel -->
   <div class="container">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
@@ -134,58 +120,69 @@
             </div>
         </div>
     </div>
-</div>
-</div>
-  <div id="section3">
-  <div id="background">
-    <div class="col-md-12 col-sm-12 col-xs-12" id="allTextWelcome">
-    <div class="col-md-12" style="text-align: center;">
-
-        <font id="welcometext">ระบบจองห้องเรียนออนไลน์</font>
-    </div>
-    <div class="col-md-12 columDes" style="text-align: center;">
-        <font id="destext" >สะดวก มีประสิทธิภาพ ใช้งานง่าย</font>
-    </div>
-    </div>
   </div>
 </div>
 
-  <div class="container" id="section1" style="padding-top: 50px">
 
-    <font id="room">Room</font>
-    <font id="share">Reservation</font>
+  <div class="container" id="section1" style="padding-top: 10px">
+    <font id="room">Edit</font>
+    <font id="share">by Admin</font>
    <div class="hr"></div>
     <br>
-     @foreach($Rooms as $Room)
+    <div class="container text-center">
+      <div class="row content">
+        <font id="room">ลงตารางเวลา</font>
+          <div class="row content">
+            @foreach($Rooms as $Room)
+              <div class="col-sm-3 ">
+                <ul  class="nav nav-pills nav-stacked">
+                  <h4><b>{{ $Room->roomName }}</b></h4>
+                  <!-- <a href="{{ url('/room/reservations/'.$Room->roomID.'') }}" target='_parent'><button id="button-menu" data-toggle="modal" ><font id="textButton"><span class="glyphicon glyphicon-pencil"></span> ลงตารางเวลา</font></button></a> -->
+                  <li ><a href="{{ url('/myreservation') }}" id="button-menu"><font id="textButton"><span class="glyphicon glyphicon-pencil"></span> ลงตารางเวลา</font></a></li>
+            <!-- <a href="{{ url('/myreservation') }}" target='_parent'><button id="button-menu1" data-toggle="modal" ><font id="textButton"><span class="glyphicon">&#xe065;</span> แก้ไขการจองห้อง</font></button></a> -->
+                </ul>
+              </div>
+            @endforeach
+          </div>
+      </div>
+      <br>
+    </div>
+    <div class="hr"></div>
 
-      <div class="col-md-3 col-sm-4 col-xs-12">
+    <div class="container text-center">
+      <font id="room">แก้ไข</font>
+      <div class="row content">
+        <div class="col-sm-9  " style="padding-left: 270px">
+          <ul class="nav nav-pills nav-stacked">
+
+            <li class="active"><a href="{{ url('/myreservation') }}"><span class="glyphicon">&#xe065;</span> แก้ไขการจองห้องทั้งหมด</a></li>
+            <!-- <a href="{{ url('/myreservation') }}" target='_parent'><button id="button-menu1" data-toggle="modal" ><font id="textButton"><span class="glyphicon">&#xe065;</span> แก้ไขการจองห้อง</font></button></a> -->
+          </ul>
+        </div>
+      </div>
+    </div>
+    <br>
+
+
+      <!-- <div class="col-md-3 col-sm-4 col-xs-12">
         <div class="card" style="text-align:center">
           <img src="img/demo/{{$Room->remember_token}}" alt="Avatar" style="width:100%">
             <h4><b>{{ $Room->roomName }}</b></h4>
-            <p>{{ $Room->roomDescription}}</p>
-            <div class="col-md-12 columButton" style="text-align: center;padding-top: 1vw">
-              @if (Auth::guest())
-              <!-- เพิ่มเงื่อนไขการจองห้องถ้าไม่ล็อคอินจะต้องล็อคอินก่อน -->
-                <a href="#" target='_parent'data-toggle="modal" data-target="#id01"><button id="button-menu" data-toggle="modal" data-target="#login-modal"><font id="textButton">จองห้องทั้งเทอม</font></button></a>
-              <!-- <a href="{{ url('/room/reservations/'.$Room->roomID.'') }}" target='_parent'data-toggle="modal" ><button id="button-menu" data-toggle="modal" data-target="#login-modal"><font id="textButton">จองห้องตลอดทั้งเทอม</font></button></a> -->
-              @else
-                <a href="{{ url('/room/reservations/'.$Room->roomID.'') }}" target='_parent'data-toggle="modal" ><button id="button-menu" data-toggle="modal" data-target="#login-modal"><font id="textButton">จองห้องทั้งเทอม</font></button></a>
-              <!-- <a href="{{ url('/room/reservations/'.$Room->roomID.'') }}" target='_parent'><button id="button-menu" data-toggle="modal" ><font id="textButton">จองห้องตลอดทั้งเทอม</font></button></a> -->
-              @endif
 
-              <a href="{{ url('/room/view/'.$Room->roomID.'') }}" target='_parent'><button id="button-menu1" data-toggle="modal" ><font id="textButton">แก้ไขการจองห้อง</font></button></a>
+            <div class="col-md-13 columButton" style="text-align: center">
 
-    </div>
+              <a href="{{ url('/room/reservations/'.$Room->roomID.'') }}" target='_parent'><button id="button-menu" data-toggle="modal" ><font id="textButton"><span class="glyphicon glyphicon-pencil"></span> จองห้องทั้งเทอม</font></button></a>
+
+
+            </div>
         </div>
-      </div>
-     @endforeach
+      </div> -->
+
    </div>
-
   <br>
   <br>
   <br>
-
-  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 footer" id="section2">
+  <!-- <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 footer" id="section2">
       <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 leftfooter" style="padding-left:10vw"style="height:auto;">
         <button id="borderButton" style="margin-bottom:40px;font-size:17px !important;">วันทำการจองห้อง</button>
         <p style="color:white;">เปิดให้บริการทุกวัน วันจันทร์ - อาทิตย์ เวลา 9.00–23.00 น.</p>
@@ -197,8 +194,6 @@
         <font style="color:white;display:block;">อีเมลล์ : Niwes@eng.src.ku.ac.th</font>
         <font style="color:white;display:block;">โทรศัพท์ : 038-354-581-4 #2822</font>
 
-
-
       </div>
       <div id="desktopfooter">
         <font  style="margin-bottom:20px;width:100%;left:0;text-align:center;position:absolute;bottom:0;display:block;color:#DE2714;font-size:14px;">Copyright @ 2018, Room Reservation Powered By <font style="color:white;">Computer Engineering-KUSRC</font></font>
@@ -206,14 +201,12 @@
       <div id="mobilefooter">
         <font style="margin-bottom:20px;width:100%;left:0;text-align:center;position:absolute;bottom:0;display:block;color:#DE2714;font-size:14px;">Powered By <font style="color:white;">CPE-KUSRC @ 2018</font></font>
       </div>
-    </div>
+    </div> -->
 
 
 </main>
-
   <div class="modal fade " id="fam" role="dialog" style="z-index: 9999">
     <div class="modal-dialog">
-
       <!-- Modal content-->
       <div class="modal-content">
         <div class="modal-header">
@@ -240,9 +233,10 @@
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
         </div>
       </div>
-
     </div>
   </div>
+
+
  @yield('content')
     </div>
 
