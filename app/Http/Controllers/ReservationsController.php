@@ -34,8 +34,6 @@ class ReservationsController extends Controller
         $timeEnd = $timeEnd->toTimeString();
 
 
-
->>>>>>> fada23e28254ed4df2bb90e6287f932c8753490f
         //จอง1ชม.ขึ้นไป
         $timeStart1Hour = Carbon::parse($timeStartinput);
         $timeEnd1Hour = Carbon::parse($timeEndinput);
