@@ -35,8 +35,8 @@ class ReservationsController extends Controller
 
 
         //จอง1ชม.ขึ้นไป
-        $timeStart1Hour = Carbon::parse($timeStartinput);
-        $timeEnd1Hour = Carbon::parse($timeEndinput);
+        $timeStart1Hour = Carbon::parse($timeStart);
+        $timeEnd1Hour = Carbon::parse($timeEnd);
         if($timeStart1Hour->diffInMinutes($timeEnd1Hour) < 60 ){
             \Session::flash('flash_message','กรุณาจองห้องอย่างน้อย 1 ชั่วโมง');
             return redirect()->back();
@@ -60,17 +60,17 @@ class ReservationsController extends Controller
         }
 
         //จองได้9โมงเป็นต้นไป
-        if($timeStartinput < '09:00:00'){
+        if($timeStart < '09:00:00'){
                 \Session::flash('flash_message','เวลาในการจองห้องต้องอยู่ในช่วง 9.00 - 23.00');
                 return redirect()->back();
         }
 
         //จองไม่เกิน5ทุ่ม
-        if($timeEndinput > '23:00:00'){
+        if($timeEnd > '23:00:00'){
                 \Session::flash('flash_message','เวลาในการจองห้องต้องอยู่ในช่วง 9.00 - 23.00');
                 return redirect()->back();
         }
-        if($timeEndinput < $timeStartinput){
+        if($timeEnd < $timeStart){
                 \Session::flash('flash_message','เวลาในการจองไม่ถูกต้อง');
                  return redirect()->back();
         }
@@ -159,23 +159,23 @@ class ReservationsController extends Controller
       $Rsrooms = Rsroom::get();
       $Table = Table::get();
 
-      // $timenow = Carbon::now();
-      // $timenow = $timenow->toTimeString();
-      // $datenow = Carbon::today();
-      // $datenow = $datenow->toDateString();
-      //
-      // foreach ($Rsrooms as $Rsroom) {
-      //         $datestart = Carbon::parse($Rsroom->RsStart);
-      //         $dateend = Carbon::parse($Rsroom->RsEnd);
-      //         $datecheckStart = $datestart->toDateString();
-      //         $timecheckStart = $datestart->toTimeString();
-      //         $timecheckEnd = $dateend->toTimeString();
-      //         if($datecheckStart == $datenow){
-      //                 if($timecheckEnd < $timenow){
-      //                         $delete=Rsroom::where('RsroomID',$Rsroom->RsroomID)->delete();
-      //                 }
-      //         }
-      // }
+      $timenow = Carbon::now();
+      $timenow = $timenow->toTimeString();
+      $datenow = Carbon::today();
+      $datenow = $datenow->toDateString();
+
+      foreach ($Rsrooms as $Rsroom) {
+              $datestart = Carbon::parse($Rsroom->RsStart);
+              $dateend = Carbon::parse($Rsroom->RsEnd);
+              $datecheckStart = $datestart->toDateString();
+              $timecheckStart = $datestart->toTimeString();
+              $timecheckEnd = $dateend->toTimeString();
+              if($datecheckStart == $datenow){
+                      if($timecheckEnd < $timenow){
+                              $delete=Rsroom::where('RsroomID',$Rsroom->RsroomID)->delete();
+                      }
+              }
+      }
 
       return view('room.reservations')->with('Room',$Rooms)->with('Rsroom',$Rsrooms)->with('Table',$Table);
     }
