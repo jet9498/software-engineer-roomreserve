@@ -141,6 +141,60 @@
 </div>
 </div>
 
+
+<div class="modal fade " id="createRoom" role="dialog" style="z-index: 9999">
+    <!--ล็อคอินของ laravel user-->
+  <div class="container">
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <div class="panel panel-default">
+                <div class="panel-heading">สร้างห้อง</div>
+                <div class="panel-body">
+                    <form class="form-horizontal" role="form" method="POST" action="{{ url('/room/create') }}">
+                        {{ csrf_field() }}
+
+                        <div class="form-group">
+                            <label class="col-md-4 control-label">ชื่อห้อง</label>
+
+                            <div class="col-md-6">
+                                <input id="roomName" class="form-control" name="roomName" value="{{ old('roomName') }}" required autofocus>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-md-4 control-label">รายละเอียดห้อง</label>
+
+                            <div class="col-md-6">
+                                <textarea id="roomDescription" class="form-control" name="roomDescription" value="{{ old('roomDescription') }}" required autofocus></textarea>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-md-4 control-label">ลิงค์รูปภาพ</label>
+
+                            <div class="col-md-6">
+                                <input id="imgUrk" class="form-control" name="imgUrl" value="{{ old('imgUrl') }}" required autofocus>
+                            </div>
+                        </div>
+
+                        
+
+                        <div class="form-group">
+                            <div class="col-md-8 col-md-offset-4">
+                                <button type="submit" class="btn btn-primary">
+                                    สร้างห้อง
+                                </button>
+                                
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
 <div class="modal fade " id="id02" role="dialog" style="z-index: 9999">
   <!--ล็อคอินของ laravel Admin-->
   <div class="container">
@@ -230,13 +284,22 @@
 
     <font id="room">Room</font>
     <font id="share">Reservation</font>
-   <div class="hr"></div>
+    @if (Auth::guest())
+        <!--do nothing -->
+    @elseif(Auth::user()->status == 1)
+        <button style="float:right" type="button" data-toggle="modal" data-target="#createRoom">สร้างห้อง</button>
+    @endif
+  <div class="hr"></div>
     <br>
      @foreach($Rooms as $Room)
 
       <div class="col-md-3 col-sm-4 col-xs-12">
         <div class="card" style="text-align:center">
-          <img src="img/demo/{{$Room->remember_token}}" alt="Avatar" style="width:100%">
+          @if($Room->imgUrl == null)
+            <img src="img/demo/{{$Room->remember_token}}" alt="Avatar" style="width:100%">
+          @else
+            <img src="{{$Room->imgUrl}}" alt="Avatar" style="width:100%">
+          @endif
             <h4><b>{{ $Room->roomName }}</b></h4>
             <p>{{ $Room->roomDescription}}</p>
             <div class="col-md-12 columButton" style="text-align: center;padding-top: 1vw">

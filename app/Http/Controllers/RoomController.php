@@ -42,4 +42,15 @@ class RoomController extends Controller
       $destroy = Rsroom::where('RsroomID',$id)->delete();
       return redirect()->back();
     }
+    public function store(Request $request)
+    {
+      $room = new Room;
+      $room->roomName = $request->input('roomName');
+      $room->roomDescription = $request->input('roomDescription');
+      $room->imgUrl = $request->input('imgUrl');
+
+      $room->save();
+
+      return redirect()->back();
+    }
 }

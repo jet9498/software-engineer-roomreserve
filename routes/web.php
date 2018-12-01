@@ -20,6 +20,8 @@ Route::get('/room/view/{id}', 'RoomController@view');
 Route::get('/admin','AdminController@index') ;
 Route::get('/myreservation', 'RoomController@myreservation');
 Route::delete('/myreservation/{id}','RoomController@destroyMyreservation');
+
+Route::post('/room/create', 'RoomController@store');
 // 7 Routes = Restful API
 
 
