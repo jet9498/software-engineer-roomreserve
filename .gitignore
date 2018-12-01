@@ -3,4 +3,5 @@
 composer.lock
 .env
 .env.example
-/config/database.php
+.DS_Store
+database.php
