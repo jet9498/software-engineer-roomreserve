@@ -7,16 +7,16 @@
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="CG07Q6CxQFBmUXetWruibRxDBe6jXXQ4ZM67Mg6J">
-    
 
-  
+
+
     <!-- Styles -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('/css/styleHome.css') }}">
     <link rel="stylesheet" href="{{ asset('/css/styleReservation.css') }}">
     <link rel="stylesheet" href="{{ asset('/css/stylesemantic.css') }}">
      <link rel="stylesheet" href="{{ asset('/css/styleapp.css') }}">
-   
+
     <script src="{{ asset('/js/styleapp.js') }}"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 
@@ -26,7 +26,7 @@
 
   <script src="{{ asset('/js/datetimepicker.min.js') }}"></script>
 
-  
+
     </head>
 <body id="bodycolor">
 
@@ -135,7 +135,7 @@
     <div id="loading">
     </div>
     <div id="app">
-        
+
 
         <div class="container transition visible" id="allmenu" style="display: block !important;">
     <div class="row">
@@ -221,9 +221,9 @@
                               <table class="table table-bordered" id="border">
                                 <tbody><tr>
                                 </tr></tbody><thead>
-                                  <tr><th class="bg-primary">Date</th>
-                                  <th class="bg-primary">Use Time</th>
-                                  <th class="bg-primary">Status</th>
+                                  <tr><th>Date</th>
+                                  <th>Use Time</th>
+                                  <th>Status</th>
                                 </tr>
                                 </thead>
                                       <tbody>
@@ -240,7 +240,7 @@
                             </div>
                         @endif
                 @endforeach
-                <font>สีแดงคือเวลาที่ไม่สามารถจองได้</font>
+                <font color="red">*</font><font>สีแดงคือเวลาที่ไม่สามารถจองได้</font><font color="red">*</font>
           <br>
           <br>
 
@@ -257,7 +257,7 @@
           @if($Room->roomID == $Rsrooms->roomID)
                   <tbody>
                   <tr>
-                   <td class="bg-warning"><font size="3"><?php echo substr($Rsrooms->RsStart, 0 ,10); ?><font color="red">** </font> </font></td>
+                   <td class="bg-warning"><font size="3"><?php echo substr($Rsrooms->RsStart, 8 ,2); ?>-<?php echo substr($Rsrooms->RsStart, 5 ,2); ?>-<?php echo (int)substr($Rsrooms->RsStart, 0 ,4)+543; ?></font></td>
                    <td class="bg-warning"><font size="3"><?php echo substr($Rsrooms->RsStart, 11 ,9); ?> - <?php echo substr($Rsrooms->RsEnd, 11 ,9); ?></font></td>
                    <td class="bg-warning">
                   <img width="12" height="12" src="{{ asset('/img/demo/circlewaiting.png') }}">&nbsp;<font size="3" color="red">รอใช้งาน</font>
@@ -266,8 +266,8 @@
                   </tbody>
           @endif
           @endforeach
-                    </table>
-            </div>        
+             </table>
+         </div>
         </div>
       </div>
       <div class="container transition visible" id="form" style="display: block !important;">
@@ -324,10 +324,6 @@
     </div>
     <br>
     <center>
-    <div class="navbar-fixed-bottom" id="para2" style="display: block;">
-        <i class="wizard icon"></i>
-        <font size="2"> Powered by CPE-KUSRC © 2018</font>
-    </div>
     </center>
     <!-- Scripts -->
     <script src="{{ asset('/js/semantic.min.js') }}"></script>
@@ -357,12 +353,7 @@
                 useCurrent: 'day'
             });
         });
-
-
-  
     </script>
-
-
 </div>
 
 

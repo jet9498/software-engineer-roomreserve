@@ -32,18 +32,6 @@ class ReservationsController extends Controller
         $timeEndinput = Carbon::parse($timeEnd);
         $timeEndinput = $timeEndinput->toTimeString();
 
-        // $RsStart = $request->input('RsStart');
-        // $RsStart = date('H:i', strtotime($RsStart));
-        // $RsStart .=':00';
-        // $timeStart = Carbon::parse($RsStart);
-        // $timeStart = $timeStart->toTimeString();
-
-        // $RsEnd = $request->input('RsEnd');
-        // $timeEnd = Carbon::parse($RsEnd);
-        // $timeEnd = $timeEnd->toTimeString();
-
-
-
         //จอง1ชม.ขึ้นไป
         $timeStart1Hour = Carbon::parse($timeStartinput);
         $timeEnd1Hour = Carbon::parse($timeEndinput);
@@ -70,7 +58,7 @@ class ReservationsController extends Controller
         }
 
         //จองได้9โมงเป็นต้นไป
-        if($timeStartinput<'09:00:00'){
+        if($timeStartinput < '09:00:00'){
                 \Session::flash('flash_message','เวลาในการจองห้องต้องอยู่ในช่วง 9.00 - 23.00');
                 return redirect()->back();
         }
@@ -93,7 +81,7 @@ class ReservationsController extends Controller
         //เช็คoverlapกับตารางเรียนทั้งเทอม
         foreach ($tables as $table) {
                 if($table->roomID == $rooms->roomID){ //เช็คว่าห้องตรงกันมั้ย
-                        if($dateRentStart == $table->Day){
+                        if($day == $table->Day){
                                 if($timeStartinput == $table->TableStart){
                                         \Session::flash('flash_message','เวลานี้ไม่สามารถจองได้');
                                         return redirect()->back();
@@ -110,17 +98,18 @@ class ReservationsController extends Controller
                 }
         }
 
+
         //เช็คoverlapกับคนที่จองก่อน
         foreach ($rsrooms as $rsroom) {
                 if($rooms->roomID == $rsroom->roomID){
+                        //dd("hi");
                         $datecheck = Carbon::parse($rsroom->RsStart);
                         $dateend = Carbon::parse($rsroom->RsEnd);
                         $datecheckStart = $datecheck->toDateString();
                         $timecheckStart = $datecheck->toTimeString();
                         $timecheckEnd = $dateend->toTimeString();
-
                         if($dateRentStart == $datecheckStart){
-                                // dd("hi".$datecheckStart);
+
                                 if($timeStartinput == $timecheckStart){
                                         \Session::flash('flash_message','เวลานี้มีคนจองแล้ว');
                                         return redirect()->back();
@@ -136,7 +125,7 @@ class ReservationsController extends Controller
                         }
                 }
         }
-
+        // dd("hi".$datecheckStart);
         $create = new Rsroom;
         $create->userID = $request->input('userID',Auth::user()->id);
         $create->roomID = $request->input('roomID',$rooms->roomID);
@@ -149,8 +138,27 @@ class ReservationsController extends Controller
      public function index($id)
     {
       $Rooms = Room::find($id);
-      $Rsroom = Rsroom::get();
+      $Rsrooms = Rsroom::get();
       $Table = Table::get();
-      return view('room.reservations')->with('Room',$Rooms)->with('Rsroom',$Rsroom)->with('Table',$Table);
+
+      // $timenow = Carbon::now();
+      // $timenow = $timenow->toTimeString();
+      // $datenow = Carbon::today();
+      // $datenow = $datenow->toDateString();
+      //
+      // foreach ($Rsrooms as $Rsroom) {
+      //         $datestart = Carbon::parse($Rsroom->RsStart);
+      //         $dateend = Carbon::parse($Rsroom->RsEnd);
+      //         $datecheckStart = $datestart->toDateString();
+      //         $timecheckStart = $datestart->toTimeString();
+      //         $timecheckEnd = $dateend->toTimeString();
+      //         if($datecheckStart == $datenow){
+      //                 if($timecheckEnd < $timenow){
+      //                         $delete=Rsroom::where('RsroomID',$Rsroom->RsroomID)->delete();
+      //                 }
+      //         }
+      // }
+
+      return view('room.reservations')->with('Room',$Rooms)->with('Rsroom',$Rsrooms)->with('Table',$Table);
     }
 }

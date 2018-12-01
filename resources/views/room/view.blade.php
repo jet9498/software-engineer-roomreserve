@@ -7,16 +7,16 @@
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="CG07Q6CxQFBmUXetWruibRxDBe6jXXQ4ZM67Mg6J">
-    
 
-  
+
+
     <!-- Styles -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('/css/styleHome.css') }}">
     <link rel="stylesheet" href="{{ asset('/css/styleReservation.css') }}">
     <link rel="stylesheet" href="{{ asset('/css/stylesemantic.css') }}">
      <link rel="stylesheet" href="{{ asset('/css/styleapp.css') }}">
-   
+
     <script src="{{ asset('/js/styleapp.js') }}"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 
@@ -26,7 +26,7 @@
 
   <script src="{{ asset('/js/datetimepicker.min.js') }}"></script>
 
-  
+
     </head>
 <body id="bodycolor">
 
@@ -58,7 +58,7 @@
             @if (Auth::guest())
             <li><a href="#"data-toggle="modal" data-target="#id01"><span class="glyphicon glyphicon-log-in" ></span> เข้าสู่ระบบ</a></li>
 
- 
+
         @else
             <li><a href="{{ url('/logout') }}"><span class="glyphicon glyphicon-log-in" ></span> {{Auth::user()->name}}</a></li>
         @endif
@@ -191,11 +191,11 @@
                                     Login
                                 </button>
                                 <!-- เงื่อนไขเวลา จะเข้าหน้า Admin -->
-                                
+
                                 <button class="btn btn-primary"href="#" data-toggle="modal" data-target="#id02">
                                     Admin
                                 </button>
-                                
+
 
                                 <a class="btn btn-link" href="{{ url('/password/reset') }}">
                                     Forgot Your Password?
@@ -219,7 +219,7 @@
     <div id="loading">
     </div>
     <div id="app">
-        
+
 
         <div class="container transition visible" id="allmenu" style="display: block !important;">
     <div class="row">
@@ -324,9 +324,9 @@
                             </div>
                         @endif
                 @endforeach
-          <font>สีแดงคือเวลาที่ไม่สามารถจองได้</font>
+          <font color="red">*</font><font>สีแดงคือเวลาที่ไม่สามารถจองได้</font><font color="red">*</font>
           <br>
-          
+
           <br>
           <br>
           <div class="table-responsive table-inverse transition visible" id="table" style="display: block !important;">
@@ -352,10 +352,12 @@
           @endif
           @endforeach
                     </table>
-            </div>        
+                    <br>
+                    <br>
+            </div>
         </div>
       </div>
-      
+
     <center>
     <div class="navbar-fixed-bottom" id="para2" style="display: block;">
         <i class="wizard icon"></i>
