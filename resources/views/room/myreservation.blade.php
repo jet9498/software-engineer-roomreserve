@@ -10,19 +10,20 @@
     <meta name="csrf-token" content="CG07Q6CxQFBmUXetWruibRxDBe6jXXQ4ZM67Mg6J">
     <link rel="shortcut icon" href="images/bs.png">
 
-    <link rel="stylesheet" type="text/css" href="http://libapp.src.ku.ac.th/semantic/semantic.min.css">
+     <link rel="stylesheet" href="{{ asset('/css/stylesemantic.css') }}">
     <!-- Styles -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="http://localhost:8000/css/styleHome.css">
-    <link href="http://libapp.src.ku.ac.th/css/app.css" rel="stylesheet">
-    <script src="http://libapp.src.ku.ac.th/js/app.js"></script>
+   <link rel="stylesheet" href="{{ asset('/css/styleapp.css') }}">
+     <script src="{{ asset('/js/styleapp.js') }}"></script>
   	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
   	
   	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.min.js"></script>
 
-  	<link href="http://libapp.src.ku.ac.th/datetime/build/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+  	 <link rel="stylesheet" href="{{ asset('/css/Datetimepicker.css') }}">
 
-  	<script src="http://libapp.src.ku.ac.th/datetime/build/js/bootstrap-datetimepicker.min.js"></script>
+  <script src="{{ asset('/js/datetimepicker.min.js') }}"></script>
+
 
   	<style type="text/css">
         @import    url('https://fonts.googleapis.com/css?family=Kanit');
@@ -423,7 +424,7 @@
                                 <form action="{{ url('/myreservation/'.$Rsroom->RsroomID) }}" method="post" onsubmit="return confirm('ก่อนดำเนินการใดๆ ควรอ่านกฏการจองห้องในหน้าแรกก่อน คุณพร้อมแล้วใช่ไหม?')">
                                   <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                   <input type="hidden" name="_method" value="DELETE">
-                                  <center><input type="image" src="http://libapp.src.ku.ac.th/seimg/delete.ico" width="35" height="30"></center>
+                                  <center><input type="image" src="{{ asset('/img/demo/delete.ico') }}" width="35" height="30"></center>
                                 </form>
                               </td>
                           </tr>
