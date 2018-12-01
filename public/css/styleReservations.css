@@ -22,6 +22,21 @@
             border-radius: 10px; /* Rounded corners */
         }
 
+        .btndanger {
+                background-color: #FF2B2B; /* Blue background */
+                border: none; /* Remove borders */
+                color: white; /* White text */
+                padding: 4px 8px;  /*Some padding*/
+                font-size: 12px; /* Set a font size */
+                cursor: pointer; /* Mouse pointer on hover */
+                border-radius: 15%;
+        }
+
+        /* Darker background on mouse-over */
+        .btndanger:hover {
+            background-color: #CD0000;
+        }
+
         .icon-bar{
             background-color:white !important;
         }

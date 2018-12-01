@@ -151,6 +151,30 @@ class ReservationsController extends Controller
       $Rooms = Room::find($id);
       $Rsroom = Rsroom::get();
       $Table = Table::get();
+
+      foreach ($Rsroom as $Rsrooms) {
+              $timenow = Carbon::now();
+              $timenow = $timenow->toDatetimeString();
+              $timeout = $Rsrooms->RsEnd;
+              // dd($timeout);
+              if($timenow > $timeout){
+                      $delete = Rsroom::where('RsroomID',$Rsrooms->RsroomID)->delete();
+              }
+      }
+
       return view('room.reservations')->with('Room',$Rooms)->with('Rsroom',$Rsroom)->with('Table',$Table);
+    }
+    public function destroyReserve($id){
+            $Rsrooms = Rsroom::find($id);
+            $user = Auth::user()->id;
+            // dd($user);
+            if($Rsrooms->userID == $user){
+                    $delete = Rsroom::where('RsroomID',$Rsrooms->RsroomID)->delete();
+                    \Session::flash('flash_message4','ยกเลิกจองสำเร็จ!');
+            }
+            else{
+                    \Session::flash('flash_message3','ไม่สามารถยกเลิกการจองของผู้อื่นได้');
+            }
+            return redirect()->back();
     }
 }
