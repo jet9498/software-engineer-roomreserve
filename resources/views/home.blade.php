@@ -123,11 +123,6 @@
                                 </button>
                                 <!-- เงื่อนไขเวลา จะเข้าหน้า Admin -->
                                 
-                                <button class="btn btn-primary"href="#" data-toggle="modal" data-target="#id02">
-                                    Admin
-                                </button>
-                                
-
                                 <a class="btn btn-link" href="{{ url('/password/reset') }}">
                                     Forgot Your Password?
                                 </a>
@@ -141,67 +136,50 @@
 </div>
 </div>
 
-<div class="modal fade " id="id02" role="dialog" style="z-index: 9999">
-  <!--ล็อคอินของ laravel Admin-->
+
+<div class="modal fade " id="createRoom" role="dialog" style="z-index: 9999">
+    <!--ล็อคอินของ laravel user-->
   <div class="container">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
-                <div class="panel-heading">Admin Login</div>
+                <div class="panel-heading">สร้างห้อง</div>
                 <div class="panel-body">
-                    <form class="form-horizontal" role="form" method="POST" action="{{ url('/login') }}">
+                    <form class="form-horizontal" role="form" method="POST" action="{{ url('/room/create') }}">
                         {{ csrf_field() }}
 
-                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label for="email" class="col-md-4 control-label">E-Mail Address</label>
+                        <div class="form-group">
+                            <label class="col-md-4 control-label">ชื่อห้อง</label>
 
                             <div class="col-md-6">
-                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required autofocus>
-
-                                @if ($errors->has('email'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                            <label for="password" class="col-md-4 control-label">Password</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control" name="password" required>
-
-                                @if ($errors->has('password'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-                                @endif
+                                <input id="roomName" class="form-control" name="roomName" value="{{ old('roomName') }}" required autofocus>
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" name="remember"> Remember Me
-                                    </label>
-                                </div>
+                            <label class="col-md-4 control-label">รายละเอียดห้อง</label>
+
+                            <div class="col-md-6">
+                                <textarea id="roomDescription" class="form-control" name="roomDescription" value="{{ old('roomDescription') }}" required autofocus></textarea>
                             </div>
                         </div>
+
+                        <div class="form-group">
+                            <label class="col-md-4 control-label">ลิงค์รูปภาพ</label>
+
+                            <div class="col-md-6">
+                                <input id="imgUrk" class="form-control" name="imgUrl" value="{{ old('imgUrl') }}" required autofocus>
+                            </div>
+                        </div>
+
+                        
 
                         <div class="form-group">
                             <div class="col-md-8 col-md-offset-4">
-                                <!-- เงื่อนไขเวลา จะเข้าหน้า Admin -->
-                                @if (Auth::guest())
-                                <button  type = "submit" class="btn btn-primary"href="#" data-toggle="modal" data-target="#id02">
-                                    Login
+                                <button type="submit" class="btn btn-primary">
+                                    สร้างห้อง
                                 </button>
-
-                                @else
-                                  <li><a href="{{ url('/logout') }}"><span class="glyphicon glyphicon-log-in" ></span> {{Auth::user()->name}}</a></li>
-                                @endif
-                     
+                                
                             </div>
                         </div>
                     </form>
@@ -211,6 +189,11 @@
     </div>
 </div>
 </div>
+
+
+
+
+
 
   <div id="section3">
   <div id="background">
@@ -230,24 +213,111 @@
 
     <font id="room">Room</font>
     <font id="share">Reservation</font>
-   <div class="hr"></div>
+    @if (Auth::guest())
+        <!--do nothing -->
+    @elseif(Auth::user()->status == 1)
+        <button style="float:right" type="button" data-toggle="modal" data-target="#createRoom">สร้างห้อง</button>
+       
+    @endif
+  <div class="hr"></div>
     <br>
      @foreach($Rooms as $Room)
 
+     <div class="modal fade " id="{{ $Room->roomID }}" role="dialog" style="z-index: 9999">
+    <!--ล็อคอินของ laravel user-->
+  <div class="container">
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <div class="panel panel-default">
+                <div class="panel-heading">แก้ไขห้อง</div>
+                <div class="panel-body">
+                    <form class="form-horizontal" role="form" method="POST" action="{{ url('/room/edit/'.$Room->roomID.'') }}">
+                        {{ csrf_field() }}
+
+                        <div class="form-group">
+                            <label class="col-md-4 control-label">ชื่อห้อง</label>
+
+                            <div class="col-md-6">
+                                <input id="roomName" class="form-control" name="roomName" value="{{ $Room->roomName }}" required autofocus>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-md-4 control-label">รายละเอียดห้อง</label>
+
+                            <div class="col-md-6">
+                                <textarea id="roomDescription" class="form-control" name="roomDescription"  required autofocus>{{ $Room->roomDescription}}</textarea>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-md-4 control-label">ลิงค์รูปภาพ</label>
+
+                            <div class="col-md-6">
+                                <input id="imgUrl" class="form-control" name="imgUrl" value="{{ $Room->imgUrl }}" required autofocus>
+                            </div>
+                        </div>
+
+                        
+
+                        <div class="form-group">
+                            <div class="col-md-8 col-md-offset-4">
+                                <button type="submit" class="btn btn-primary">
+                                    แก้ไขห้อง
+                                </button>
+                                
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+
+
+
       <div class="col-md-3 col-sm-4 col-xs-12">
         <div class="card" style="text-align:center">
-          <img src="img/demo/{{$Room->remember_token}}" alt="Avatar" style="width:100%">
+
+          @if($Room->imgUrl == null)
+           
+            <img src="{{$Room->imgUrl}}" style="width:100%;height: 150px">
+          @else 
+          
+           @if (Auth::guest())
+        
+          <img src="{{$Room->imgUrl}}" style="width:100%;height: 150px">
+          @elseif(Auth::user()->status == 1)
+        
+          <form class="form-horizontal" role="form" method="POST"  data-toggle="modal" data-target="#{{ $Room->roomID }}">{{ csrf_field() }}
+            <img  src="img/demo/compose.png" style="position:absolute;right:0; margin-top:3px;margin-right:50px; width:25px;height:25px ">
+          </form>
+           <form class="form-horizontal" role="form" method="POST" action="{{ url('/room/delete/'.$Room->roomID.'') }}" onsubmit="return confirm('Are you sure?')">{{ csrf_field() }}
+            <input type="image" src="img/demo/delete.ico" style="position:absolute;right:0; margin-top:3px;margin-right:18px; width:25px;height:25px ">
+          </form>
+            <img src="{{$Room->imgUrl}}" alt="Avatar" style="width:100%;height: 150px">
+            @else
+            <img src="{{$Room->imgUrl}}" style="width:100%;height: 150px">
+            @endif
+          @endif
             <h4><b>{{ $Room->roomName }}</b></h4>
             <p>{{ $Room->roomDescription}}</p>
             <div class="col-md-12 columButton" style="text-align: center;padding-top: 1vw">
               @if (Auth::guest())
               <!-- เพิ่มเงื่อนไขการจองห้องถ้าไม่ล็อคอินจะต้องล็อคอินก่อน -->
               <a href="#" target='_parent'data-toggle="modal" data-target="#id01"><button id="button-menu" data-toggle="modal" data-target="#login-modal"><font id="textButton">จอง</font></button></a>
+              <a href="{{ url('/room/view/'.$Room->roomID.'') }}" target='_parent'><button id="button-menu1" data-toggle="modal" ><font id="textButton">ตารางเวลา</font></button></a>
+              @elseif(Auth::user()->status == 1)
+              <a href="{{ url('/room/addtable/'.$Room->roomID.'') }}" target='_parent'><button id="button-menu" data-toggle="modal" data-target="#login-modal"><font id="textButton">Show</font></button></a>
               @else
               <a href="{{ url('/room/reservations/'.$Room->roomID.'') }}" target='_parent'><button id="button-menu" data-toggle="modal" data-target="#login-modal"><font id="textButton">จอง</font></button></a>
-              @endif
-
               <a href="{{ url('/room/view/'.$Room->roomID.'') }}" target='_parent'><button id="button-menu1" data-toggle="modal" ><font id="textButton">ตารางเวลา</font></button></a>
+              @endif
+              
+
 
     </div>
         </div>
