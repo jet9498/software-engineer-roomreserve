@@ -53,4 +53,21 @@ class RoomController extends Controller
 
       return redirect()->back();
     }
+    public function edit(Request $request,$id)
+    {
+      $room = Room::find($id);
+      $room->roomName = $request->input('roomName');
+      $room->roomDescription = $request->input('roomDescription');
+      $room->imgUrl = $request->input('imgUrl');
+
+      $room->save();
+
+      return redirect()->back();
+    }
+     public function delete($id)
+    {
+      
+     $destroy = Room::where('roomID',$id)->delete();
+      return redirect()->back();
+    }
 }

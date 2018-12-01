@@ -22,6 +22,8 @@ Route::get('/myreservation', 'RoomController@myreservation');
 Route::delete('/myreservation/{id}','RoomController@destroyMyreservation');
 
 Route::post('/room/create', 'RoomController@store');
+Route::post('/room/edit/{id}', 'RoomController@edit');
+Route::post('/room/delete/{id}', 'RoomController@delete');
 // 7 Routes = Restful API
 
 

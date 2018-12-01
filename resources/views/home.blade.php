@@ -195,6 +195,9 @@
 </div>
 </div>
 
+
+
+
 <div class="modal fade " id="id02" role="dialog" style="z-index: 9999">
   <!--ล็อคอินของ laravel Admin-->
   <div class="container">
@@ -288,17 +291,82 @@
         <!--do nothing -->
     @elseif(Auth::user()->status == 1)
         <button style="float:right" type="button" data-toggle="modal" data-target="#createRoom">สร้างห้อง</button>
+       
     @endif
   <div class="hr"></div>
     <br>
      @foreach($Rooms as $Room)
 
+     <div class="modal fade " id="{{ $Room->roomID }}" role="dialog" style="z-index: 9999">
+    <!--ล็อคอินของ laravel user-->
+  <div class="container">
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <div class="panel panel-default">
+                <div class="panel-heading">แก้ไขห้อง</div>
+                <div class="panel-body">
+                    <form class="form-horizontal" role="form" method="POST" action="{{ url('/room/edit/'.$Room->roomID.'') }}">
+                        {{ csrf_field() }}
+
+                        <div class="form-group">
+                            <label class="col-md-4 control-label">ชื่อห้อง</label>
+
+                            <div class="col-md-6">
+                                <input id="roomName" class="form-control" name="roomName" value="{{ $Room->roomName }}" required autofocus>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-md-4 control-label">รายละเอียดห้อง</label>
+
+                            <div class="col-md-6">
+                                <textarea id="roomDescription" class="form-control" name="roomDescription"  required autofocus>{{ $Room->roomDescription}}</textarea>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-md-4 control-label">ลิงค์รูปภาพ</label>
+
+                            <div class="col-md-6">
+                                <input id="imgUrl" class="form-control" name="imgUrl" value="{{ $Room->imgUrl }}" required autofocus>
+                            </div>
+                        </div>
+
+                        
+
+                        <div class="form-group">
+                            <div class="col-md-8 col-md-offset-4">
+                                <button type="submit" class="btn btn-primary">
+                                    แก้ไขห้อง
+                                </button>
+                                
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+
+
+
       <div class="col-md-3 col-sm-4 col-xs-12">
         <div class="card" style="text-align:center">
+          
           @if($Room->imgUrl == null)
-            <img src="img/demo/{{$Room->remember_token}}" alt="Avatar" style="width:100%">
-          @else
-            <img src="{{$Room->imgUrl}}" alt="Avatar" style="width:100%">
+           
+            <img src="{{$Room->imgUrl}}" style="width:100%;height: 150px">
+          @else 
+          <form class="form-horizontal" role="form" method="POST"  data-toggle="modal" data-target="#{{ $Room->roomID }}">{{ csrf_field() }}
+            <img  src="img/demo/compose.png" style="position:absolute;right:0; margin-top:3px;margin-right:50px; width:25px;height:25px ">
+          </form>
+           <form class="form-horizontal" role="form" method="POST" action="{{ url('/room/delete/'.$Room->roomID.'') }}" onsubmit="return confirm('Are you sure?')">{{ csrf_field() }}
+            <input type="image" src="img/demo/delete.ico" style="position:absolute;right:0; margin-top:3px;margin-right:18px; width:25px;height:25px ">
+          </form>
+            <img src="{{$Room->imgUrl}}" alt="Avatar" style="width:100%;height: 150px">
           @endif
             <h4><b>{{ $Room->roomName }}</b></h4>
             <p>{{ $Room->roomDescription}}</p>
@@ -309,7 +377,7 @@
               @else
               <a href="{{ url('/room/reservations/'.$Room->roomID.'') }}" target='_parent'><button id="button-menu" data-toggle="modal" data-target="#login-modal"><font id="textButton">จอง</font></button></a>
               @endif
-
+             
               <a href="{{ url('/room/view/'.$Room->roomID.'') }}" target='_parent'><button id="button-menu1" data-toggle="modal" ><font id="textButton">ตารางเวลา</font></button></a>
 
     </div>
