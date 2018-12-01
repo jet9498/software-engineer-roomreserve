@@ -13,9 +13,10 @@
     <!-- Styles -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('/css/styleHome.css') }}">
-    <link rel="stylesheet" href="{{ asset('/css/styleReservation.css') }}">
+    <link rel="stylesheet" href="{{ asset('/css/styleReservations.css') }}">
     <link rel="stylesheet" href="{{ asset('/css/stylesemantic.css') }}">
      <link rel="stylesheet" href="{{ asset('/css/styleapp.css') }}">
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <script src="{{ asset('/js/styleapp.js') }}"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
@@ -151,6 +152,12 @@
           @if(Session::has('flash_message2'))
             <div class="alert alert-success"><em> <center><li>{!! session('flash_message2') !!}</li></center></em></div>
           @endif
+          @if(Session::has('flash_message3'))
+            <div class="alert alert-danger"><em> <center><li>{!! session('flash_message3') !!}</li></center></em></div>
+          @endif
+          @if(Session::has('flash_message4'))
+            <div class="alert alert-success"><em> <center><li>{!! session('flash_message4') !!}</li></center></em></div>
+          @endif
 
           <h2 class="ui left floated header"style="width:100%"><font id="statustext" size="6" color="#B92000">STATUS</font><br>
             <font id="roomnametext" size="5" color="#828282">{{$Room->roomName}}</font>
@@ -215,31 +222,6 @@
                 </div>
                 <!-- ////////////////////// ส่วนของตาราง //////////////// -->
           <br>
-                @foreach($Rsroom as $Rsrooms)
-                        @if($Rsrooms->RsroomName == $Room->roomName)
-                          <div class="table-responsive table-inverse transition visible" id="table" style="display: block !important;">
-                              <table class="table table-bordered" id="border">
-                                <tbody><tr>
-                                </tr></tbody><thead>
-                                  <tr><th>Date</th>
-                                  <th>Use Time</th>
-                                  <th>Status</th>
-                                </tr>
-                                </thead>
-                                      <tbody>
-                                      <tr>
-                                           <td class="bg-warning"><font size="3">{{$Rsrooms->RsDate}}<font color="red">** </font> </font></td>
-                                           <td class="bg-warning"><font size="3">{{$Rsrooms->RsStart}} - {{$Rsrooms->RsEnd}}</font></td>
-                                           <td class="bg-warning">
-                                          <img width="12" height="12" src="{{ asset('/img/demo/circlewaiting.png') }">&nbsp;<font size="3" color="red">รอใช้งาน</font>
-                                     </td>
-
-                                      </tr>
-                                    </tbody>
-                                    </table>
-                            </div>
-                        @endif
-                @endforeach
                 <font color="red">*</font><font>สีแดงคือเวลาที่ไม่สามารถจองได้</font><font color="red">*</font>
           <br>
           <br>
@@ -251,6 +233,7 @@
                   <tr><th class="bg-primary">Date</th>
                   <th class="bg-primary">Use Time</th>
                   <th class="bg-primary">Status</th>
+                  <th class="bg-primary">Cancle</th>
                 </tr>
                 </thead>
           @foreach($Rsroom as $Rsrooms)
@@ -260,8 +243,12 @@
                    <td class="bg-warning"><font size="3"><?php echo substr($Rsrooms->RsStart, 8 ,2); ?>-<?php echo substr($Rsrooms->RsStart, 5 ,2); ?>-<?php echo (int)substr($Rsrooms->RsStart, 0 ,4)+543; ?></font></td>
                    <td class="bg-warning"><font size="3"><?php echo substr($Rsrooms->RsStart, 11 ,9); ?> - <?php echo substr($Rsrooms->RsEnd, 11 ,9); ?></font></td>
                    <td class="bg-warning">
-                  <img width="12" height="12" src="{{ asset('/img/demo/circlewaiting.png') }}">&nbsp;<font size="3" color="red">รอใช้งาน</font>
-                  </td>
+                  <img width="12" height="12" src="{{ asset('/img/demo/circlewaiting.png') }}">&nbsp;<font size="3" color="red">รอใช้งาน</font></td>
+                  <form action="{{ url('/room/reservations/'.$Rsrooms->RsroomID.'') }}" method="post">
+                           <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                           <input type="hidden" name="_method" value="DELETE">
+                  <td class="bg-warning"><button class="btndanger"><i class="fa fa-close"></i></button></td>
+                  </form>
                   </tr>
                   </tbody>
           @endif
