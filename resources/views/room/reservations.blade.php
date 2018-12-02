@@ -29,7 +29,7 @@
 
 
     </head>
-<body id="bodycolor">
+<body id="bodycolor" onload="startTime()">
 
 
   <nav class="navbar navbar-inverse navbar-fixed-top">
@@ -242,14 +242,21 @@
                   <th class="bg-primary">Cancle</th>
                 </tr>
                 </thead>
+                <?php $i=0 ?>
           @foreach($Rsroom as $Rsrooms)
           @if($Room->roomID == $Rsrooms->roomID)
-                  <tbody>
+                  <tbody >
+                  
                   <tr>
                    <td class="bg-warning"><font size="3"><?php echo substr($Rsrooms->RsStart, 8 ,2); ?>-<?php echo substr($Rsrooms->RsStart, 5 ,2); ?>-<?php echo (int)substr($Rsrooms->RsStart, 0 ,4)+543; ?></font></td>
                    <td class="bg-warning"><font size="3"><?php echo substr($Rsrooms->RsStart, 11 ,9); ?> - <?php echo substr($Rsrooms->RsEnd, 11 ,9); ?></font></td>
                    <td class="bg-warning">
-                  <img width="12" height="12" src="{{ asset('/img/demo/circlewaiting.png') }}">&nbsp;<font size="3" color="red">รอใช้งาน</font></td>
+                  @if($status[$i] == "รอใช้งาน")  
+                        <img width="12" height="12" src="{{ asset('/img/demo/circlewaiting.png') }}">&nbsp;<font size="3" color="red">{{$status[$i]}}</font>
+                  @else
+                        <img width="12" height="12" src="{{ asset('/img/demo/circleready.png') }}">&nbsp;<font size="3" color="red">{{$status[$i]}}</font>
+                  @endif
+                    </td>
                   <form action="{{ url('/room/reservations/'.$Rsrooms->RsroomID.'') }}" method="post">
                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
                            <input type="hidden" name="_method" value="DELETE">
@@ -257,6 +264,7 @@
                   </form>
                   </tr>
                   </tbody>
+                  <?php $i++ ?>
           @endif
           @endforeach
              </table>
@@ -327,9 +335,9 @@
     </script>
 
     <script type="text/javascript">
-          var date = new Date();
-  date.setHours(0,0,0,0);
-  $(function () {
+        var date = new Date();
+        date.setHours(0,0,0,0);
+        $(function () {
              $('#datetimepicker1').datetimepicker({
                 format: 'DD-MM-YYYY'
             });
@@ -347,6 +355,33 @@
             });
         });
     </script>
+
+    <script>
+      function startTime() {
+          var today = new Date();
+          var y = today.getFullYear();
+          var M = today.getMonth()+1;
+          var d = today.getDate();
+          var h = today.getHours();
+          var m = today.getMinutes();
+          var s = today.getSeconds();
+          h = checkTime(h);
+          m = checkTime(m);
+          s = checkTime(s);
+          M = checkTime(M);
+          d = checkTime(d);
+          document.getElementById('txt').innerHTML =
+          y+"-"+M+"-"+d+" "+h + ":" + m + ":" + s;
+          var t = setTimeout(startTime, 500);
+          
+
+      }
+      function checkTime(i) {
+          if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
+          return i;
+      }
+    </script>
+
 </div>
 
 

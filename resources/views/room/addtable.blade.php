@@ -144,10 +144,30 @@
           <br>
           <br>
           <br>
+
+           @if(Session::has('flash_message'))
+            <div class="alert alert-danger"><em> <center><li>{!! session('flash_message') !!}</li></center></em></div>
+          @endif
+          @if(Session::has('flash_message2'))
+            <div class="alert alert-success"><em> <center><li>{!! session('flash_message2') !!}</li></center></em></div>
+          @endif
+          @if(Session::has('flash_message3'))
+            <div class="alert alert-danger"><em> <center><li>{!! session('flash_message3') !!}</li></center></em></div>
+          @endif
+          @if(Session::has('flash_message4'))
+            <div class="alert alert-success"><em> <center><li>{!! session('flash_message4') !!}</li></center></em></div>
+          @endif
           <h2 class="ui left floated header"style="width:100%"><font id="statustext" size="6" color="#B92000">STATUS</font><br>
             <font id="roomnametext" size="5" color="#828282">{{$Room->roomName}}</font>
             <div class="hr"></div>
           </h2>
+
+          @foreach ($Table as $Tables)
+            @if ($Tables->roomID == $Room->roomID)
+              <font color="red">*</font><font>วันสิ้นสุดของเทอมนี้ : <?php echo substr($Tables->Date, 8 ,2); ?>-<?php echo substr($Tables->Date, 5 ,2); ?>-<?php echo (int)substr($Tables->Date, 0 ,4)+543; ?></font>
+              @break
+          @endif
+          @endforeach    
 
           <form class="form-horizontal transition visible" action="{{ url('/room/addtable/add/'.$Room->roomID) }}" enctype="multipart/form-data" method="post" style="display: block !important;">
               <input type="hidden" name="_token" value="{{ csrf_token() }}">
@@ -225,7 +245,7 @@
                        <font size="3">
                             <div class="form-group">
                                 <label class="col-md-5 control-label">วันสิ้นสุดของเทอมนี้<font color="red">**</font></label>
-                                <div class="col-md-3" style="display: inline"><input type="text" name="Date" class="form-control" id="datetimepicker1" placeholder="วันที่" required=""></div>
+                                <div class="col-md-3" style="display: inline"><input type="text" name="Date" class="form-control" id="datetimepicker" placeholder="วันที่" required=""></div>
 
                                 <div class="col-md-3" style="display: inline">
                                       
@@ -284,7 +304,7 @@
             <div class="ui clearing divider"></div>
                 <div class="ui raised segment">
                   <br>
-                  <form class="form-horizontal transition visible" action="{{ url('/room/reservations/'.$Room->roomID) }}" enctype="multipart/form-data" method="post"  id="reservationform" style="display: block !important;">
+                  <form class="form-horizontal transition visible" action="{{ url('/room/addtable/create/'.$Room->roomID) }}" enctype="multipart/form-data" method="post"  id="reservationform" style="display: block !important;">
                       <input type="hidden" name="_token" value="{{ csrf_token() }}">
                           <font size="3">
                             <div class="form-group">
@@ -324,7 +344,7 @@
    
 
   <!-- Scripts -->
-    <script src="{{ asset('/js/semantic.min.js') }}"></script>
+     <script src="{{ asset('/js/semantic.min.js') }}"></script>
     <script>
         function goBack() {
             window.history.back();
@@ -334,14 +354,29 @@
     <script type="text/javascript">
           var date = new Date();
   date.setHours(0,0,0,0);
-  $(function () {
+        $(function () {
+             $('#datetimepicker').datetimepicker({
+                format: 'DD-MM-YYYY'
+            });
+        });
+          $(function () {
              $('#datetimepicker1').datetimepicker({
                 format: 'DD-MM-YYYY'
             });
         });
-        
+        $(function () {
+             $('#datetimepicker2').datetimepicker({
+                format: 'HH:mm',
+                useCurrent: 'day'
+            });
+        });
+        $(function () {
+             $('#datetimepicker3').datetimepicker({
+                format: 'HH:mm',
+                useCurrent: 'day'
+            });
+        });
     </script>
-
 </div>
 
 
