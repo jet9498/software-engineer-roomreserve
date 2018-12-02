@@ -29,7 +29,7 @@
 
 
     </head>
-<body id="bodycolor">
+<body id="bodycolor" onload="startTime()">
 
 
   <nav class="navbar navbar-inverse navbar-fixed-top">
@@ -164,6 +164,14 @@
             <div class="hr"></div>
           </h2>
                     <div class="ui clearing divider"></div>
+                     <br>
+                       @foreach ($Table as $Tables)
+                          @if ($Tables->roomID == $Room->roomID)
+                            <font color="red">*</font><font>วันสิ้นสุดของเทอมนี้ : <?php echo substr($Tables->Date, 8 ,2); ?>-<?php echo substr($Tables->Date, 5 ,2); ?>-<?php echo (int)substr($Tables->Date, 0 ,4)+543; ?></font>
+                            @break
+                        @endif
+                        @endforeach    
+                      <br>
 
                     <!-- ////////////////////// ส่วนของตาราง //////////////// -->
                     <?php
@@ -192,10 +200,8 @@
                         </td>
                     <?php }?>
                       </tr>
-                    <?php
-                    // วนลูปแสดงจำนวนวันตามที่กำหนด
-                    for($i_day=0;$i_day<$num_dayShow;$i_day++){
-                    ?>
+                   <!--  // วนลูปแสดงจำนวนวันตามที่กำหนด -->
+                    @for($i_day=0;$i_day<$num_dayShow;$i_day++)
                       <tr>
                         <td align="center" valign="middle" height="50" class="day_schedule" bgcolor="#101010">
                         <div class="day_schedule_text">
@@ -204,20 +210,20 @@
 
                         </div>
                         </td>
-                    <?php for($i_time=0;$i_time<$sc_numCol-1;$i_time++){sleep(0.1);?>
+                    @for($i_time=0;$i_time<$sc_numCol-1;$i_time++)
                       <?php $check=false ?>
-                      <?php foreach ($Table as $Tables): sleep(0.1);?>
-                        <?php if ($Tables->roomID == $Room->roomID && $Tables->Day == $eng_day_arr[$i_day] && $Tables->TableStart == "$sc_timeStep[$i_time]:00"): ?>
+                      @foreach ($Table as $Tables)
+                        @if ($Tables->roomID == $Room->roomID && $Tables->Day == $eng_day_arr[$i_day] && $Tables->TableStart == "$sc_timeStep[$i_time]:00")
                           <td align="center" valign="middle" height="50" bgcolor="#B92000"></td>
                           <?php $check=true; break;?>
-                        <?php endif; ?>
-                      <?php endforeach; ?>
-                      <?php if (!$check): ?>
+                        @endif
+                      @endforeach
+                      @if (!$check)
                         <td align="center" valign="middle" height="50" bgcolor="#FFFFFF"></td>
-                      <?php endif; ?>
-                    <?php  }?>
+                      @endif
+                    @endfor
                       </tr>
-                    <?php }?>
+                    @endfor
                     </table>
                 </div>
                 <!-- ////////////////////// ส่วนของตาราง //////////////// -->
@@ -236,14 +242,21 @@
                   <th class="bg-primary">Cancle</th>
                 </tr>
                 </thead>
+                <?php $i=0 ?>
           @foreach($Rsroom as $Rsrooms)
           @if($Room->roomID == $Rsrooms->roomID)
-                  <tbody>
+                  <tbody >
+                  
                   <tr>
                    <td class="bg-warning"><font size="3"><?php echo substr($Rsrooms->RsStart, 8 ,2); ?>-<?php echo substr($Rsrooms->RsStart, 5 ,2); ?>-<?php echo (int)substr($Rsrooms->RsStart, 0 ,4)+543; ?></font></td>
                    <td class="bg-warning"><font size="3"><?php echo substr($Rsrooms->RsStart, 11 ,9); ?> - <?php echo substr($Rsrooms->RsEnd, 11 ,9); ?></font></td>
                    <td class="bg-warning">
-                  <img width="12" height="12" src="{{ asset('/img/demo/circlewaiting.png') }}">&nbsp;<font size="3" color="red">รอใช้งาน</font></td>
+                  @if($status[$i] == "รอใช้งาน")  
+                        <img width="12" height="12" src="{{ asset('/img/demo/circlewaiting.png') }}">&nbsp;<font size="3" color="red">{{$status[$i]}}</font>
+                  @else
+                        <img width="12" height="12" src="{{ asset('/img/demo/circleready.png') }}">&nbsp;<font size="3" color="red">{{$status[$i]}}</font>
+                  @endif
+                    </td>
                   <form action="{{ url('/room/reservations/'.$Rsrooms->RsroomID.'') }}" method="post">
                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
                            <input type="hidden" name="_method" value="DELETE">
@@ -251,6 +264,7 @@
                   </form>
                   </tr>
                   </tbody>
+                  <?php $i++ ?>
           @endif
           @endforeach
              </table>
@@ -321,9 +335,9 @@
     </script>
 
     <script type="text/javascript">
-          var date = new Date();
-  date.setHours(0,0,0,0);
-  $(function () {
+        var date = new Date();
+        date.setHours(0,0,0,0);
+        $(function () {
              $('#datetimepicker1').datetimepicker({
                 format: 'DD-MM-YYYY'
             });
@@ -341,6 +355,33 @@
             });
         });
     </script>
+
+    <script>
+      function startTime() {
+          var today = new Date();
+          var y = today.getFullYear();
+          var M = today.getMonth()+1;
+          var d = today.getDate();
+          var h = today.getHours();
+          var m = today.getMinutes();
+          var s = today.getSeconds();
+          h = checkTime(h);
+          m = checkTime(m);
+          s = checkTime(s);
+          M = checkTime(M);
+          d = checkTime(d);
+          document.getElementById('txt').innerHTML =
+          y+"-"+M+"-"+d+" "+h + ":" + m + ":" + s;
+          var t = setTimeout(startTime, 500);
+          
+
+      }
+      function checkTime(i) {
+          if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
+          return i;
+      }
+    </script>
+
 </div>
 
 

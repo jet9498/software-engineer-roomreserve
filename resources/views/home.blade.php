@@ -44,12 +44,13 @@
         <ul class="nav navbar-nav navbar-left" id="left-Menu">
 
           <li class="active"><a href="#section3">หน้าหลัก</a></li>
-          <li><a href="#section1">รายการห้อง</a></li>
+          @if(Auth::guest() || Auth::user()->status != 1)
+            <li><a href="#section1">รายการห้อง</a></li>
+            <li><a href="#" data-toggle="modal" data-target="#fam">ข้อปฏิบัติ</a></li>
+            <li><a href="#section2">ติดต่อเรา</a></li>
+          @else
 
-
-
-          <li><a href="#" data-toggle="modal" data-target="#fam">ข้อปฏิบัติ</a></li>
-          <li><a href="#section2">ติดต่อเรา</a></li>
+          @endif
           
         </ul>
         <ul class="nav navbar-nav navbar-right">
@@ -193,26 +194,32 @@
 
 
 
+ 
+ @if(Auth::guest() || Auth::user()->status != 1)
+    <div id="section3">
+    <div id="background">
+      <div class="col-md-12 col-sm-12 col-xs-12" id="allTextWelcome">
+      <div class="col-md-12" style="text-align: center;">
 
-
-  <div id="section3">
-  <div id="background">
-    <div class="col-md-12 col-sm-12 col-xs-12" id="allTextWelcome">
-    <div class="col-md-12" style="text-align: center;">
-
-        <font id="welcometext">ระบบจองห้องเรียนออนไลน์</font>
-    </div>
-    <div class="col-md-12 columDes" style="text-align: center;">
-        <font id="destext" >สะดวก มีประสิทธิภาพ ใช้งานง่าย</font>
-    </div>
+          <font id="welcometext">ระบบจองห้องเรียนออนไลน์</font>
+      </div>
+      <div class="col-md-12 columDes" style="text-align: center;">
+          <font id="destext" >สะดวก มีประสิทธิภาพ ใช้งานง่าย</font>
+      </div>
+      </div>
     </div>
   </div>
-</div>
+ @else
+    
+@endif
 
   <div class="container" id="section1" style="padding-top: 50px">
-
-    <font id="room">Room</font>
-    <font id="share">Reservation</font>
+    @if(Auth::guest() || Auth::user()->status != 1)
+      <font id="room">Room</font>
+      <font id="share">Reservation</font>
+    @else
+      <font id="room">Admin</font>
+    @endif
     @if (Auth::guest())
         <!--do nothing -->
     @elseif(Auth::user()->status == 1)
@@ -328,29 +335,32 @@
   <br>
   <br>
   <br>
+  @if(Auth::guest() || Auth::user()->status != 1)
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 footer" id="section2">
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 leftfooter" style="padding-left:10vw"style="height:auto;">
+          <button id="borderButton" style="margin-bottom:40px;font-size:17px !important;">วันทำการจองห้อง</button>
+          <p style="color:white;">เปิดให้บริการทุกวัน วันจันทร์ - อาทิตย์ เวลา 9.00–23.00 น.</p>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 rightfooter" style="padding-left:10vw"style="height:auto;">
+          <button id="borderButton" style="margin-bottom:40px;font-size:17px !important;">ติดต่อห้องช่าง</button>
+          <font style="color:white;display:block;">Room Kasetsart University Sriracha Campus</font>
+          <font style="color:white;display:block;margin-top:40px;">เว็บไซต์ : -</font>
+          <font style="color:white;display:block;">อีเมลล์ : Niwes@eng.src.ku.ac.th</font>
+          <font style="color:white;display:block;">โทรศัพท์ : 038-354-581-4 #2822</font>
 
-  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 footer" id="section2">
-      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 leftfooter" style="padding-left:10vw"style="height:auto;">
-        <button id="borderButton" style="margin-bottom:40px;font-size:17px !important;">วันทำการจองห้อง</button>
-        <p style="color:white;">เปิดให้บริการทุกวัน วันจันทร์ - อาทิตย์ เวลา 9.00–23.00 น.</p>
-      </div>
-      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 rightfooter" style="padding-left:10vw"style="height:auto;">
-        <button id="borderButton" style="margin-bottom:40px;font-size:17px !important;">ติดต่อห้องช่าง</button>
-        <font style="color:white;display:block;">Room Kasetsart University Sriracha Campus</font>
-        <font style="color:white;display:block;margin-top:40px;">เว็บไซต์ : -</font>
-        <font style="color:white;display:block;">อีเมลล์ : Niwes@eng.src.ku.ac.th</font>
-        <font style="color:white;display:block;">โทรศัพท์ : 038-354-581-4 #2822</font>
 
 
+        </div>
+        <div id="desktopfooter">
+          <font  style="margin-bottom:20px;width:100%;left:0;text-align:center;position:absolute;bottom:0;display:block;color:#DE2714;font-size:14px;">Copyright @ 2018, Room Reservation Powered By <font style="color:white;">Computer Engineering-KUSRC</font></font>
+        </div>
+        <div id="mobilefooter">
+          <font style="margin-bottom:20px;width:100%;left:0;text-align:center;position:absolute;bottom:0;display:block;color:#DE2714;font-size:14px;">Powered By <font style="color:white;">CPE-KUSRC @ 2018</font></font>
+        </div>
+      </div>
+    @else
 
-      </div>
-      <div id="desktopfooter">
-        <font  style="margin-bottom:20px;width:100%;left:0;text-align:center;position:absolute;bottom:0;display:block;color:#DE2714;font-size:14px;">Copyright @ 2018, Room Reservation Powered By <font style="color:white;">Computer Engineering-KUSRC</font></font>
-      </div>
-      <div id="mobilefooter">
-        <font style="margin-bottom:20px;width:100%;left:0;text-align:center;position:absolute;bottom:0;display:block;color:#DE2714;font-size:14px;">Powered By <font style="color:white;">CPE-KUSRC @ 2018</font></font>
-      </div>
-    </div>
+    @endif
 
 
 </main>

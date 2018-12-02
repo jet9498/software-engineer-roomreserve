@@ -13,7 +13,8 @@ use Carbon\Carbon;
 class ReservationsController extends Controller
 {
     public function create($id,Request $request)
-    {
+    {   
+
         $rooms = Room::find($id);
         $RsDate = $request->input('RsDate');
         $RsDate = date('Y-m-d', strtotime($RsDate));
@@ -45,12 +46,12 @@ class ReservationsController extends Controller
 
 
         //จอง1ชม.ขึ้นไป
-        $timeStart1Hour = Carbon::parse($timeStartinput);
-        $timeEnd1Hour = Carbon::parse($timeEndinput);
-        if($timeStart1Hour->diffInMinutes($timeEnd1Hour) < 60 ){
-            \Session::flash('flash_message','กรุณาจองห้องอย่างน้อย 1 ชั่วโมง');
-            return redirect()->back();
-        }
+        // $timeStart1Hour = Carbon::parse($timeStartinput);
+        // $timeEnd1Hour = Carbon::parse($timeEndinput);
+        // if($timeStart1Hour->diffInMinutes($timeEnd1Hour) < 60 ){
+        //     \Session::flash('flash_message','กรุณาจองห้องอย่างน้อย 1 ชั่วโมง');
+        //     return redirect()->back();
+        // }
 
         //เช็คจองเวลาที่ผ่านไปแล้ว
         $timenow = Carbon::now();
@@ -70,26 +71,26 @@ class ReservationsController extends Controller
         }
 
         //จองได้9โมงเป็นต้นไป
-        if($timeStartinput<'09:00:00'){
-                \Session::flash('flash_message','เวลาในการจองห้องต้องอยู่ในช่วง 9.00 - 23.00');
-                return redirect()->back();
-        }
+        // if($timeStartinput<'09:00:00'){
+        //         \Session::flash('flash_message','เวลาในการจองห้องต้องอยู่ในช่วง 9.00 - 23.00');
+        //         return redirect()->back();
+        // }
 
         //จองไม่เกิน5ทุ่ม
-        if($timeEndinput > '23:00:00'){
-                \Session::flash('flash_message','เวลาในการจองห้องต้องอยู่ในช่วง 9.00 - 23.00');
-                return redirect()->back();
-        }
-        if($timeEndinput < $timeStartinput){
-                \Session::flash('flash_message','เวลาในการจองไม่ถูกต้อง');
-                 return redirect()->back();
-        }
+        // if($timeEndinput > '23:00:00'){
+        //         \Session::flash('flash_message','เวลาในการจองห้องต้องอยู่ในช่วง 9.00 - 23.00');
+        //         return redirect()->back();
+        // }
+        // if($timeEndinput < $timeStartinput){
+        //         \Session::flash('flash_message','เวลาในการจองไม่ถูกต้อง');
+        //          return redirect()->back();
+        // }
 
         //overlap
         $tables = Table::get();
         $rsrooms = Rsroom::get();
         $day = strtoupper(substr($Date->format('l'), 0, 2));
-
+        
         //เช็คoverlapกับตารางเรียนทั้งเทอม
         foreach ($tables as $table) {
                 if($table->roomID == $rooms->roomID){ //เช็คว่าห้องตรงกันมั้ย
@@ -104,6 +105,19 @@ class ReservationsController extends Controller
                                 }
                                 if($timeStartinput > $table->TableStart && $timeStartinput < $table->TableEnd){
                                         \Session::flash('flash_message','เวลานี้ไม่สามารถจองได้');
+                                        return redirect()->back();
+                                }
+                        }
+                }
+        }
+
+        foreach ($tables as $table) {
+                $datetable = Carbon::parse($table->Date);
+                $datetable = $datetable->toDateString();
+                if($table->roomID == $rooms->roomID){ //เช็คว่าห้องตรงกันมั้ย
+                        if($dateRentStart > $datetable){
+                                if($dateRentStart >= $table->Date){
+                                        \Session::flash('flash_message','เกินกำหนดการจอง');
                                         return redirect()->back();
                                 }
                         }
@@ -151,18 +165,30 @@ class ReservationsController extends Controller
       $Rooms = Room::find($id);
       $Rsroom = Rsroom::get();
       $Table = Table::get();
-
+      
+      $i=0;
       foreach ($Rsroom as $Rsrooms) {
               $timenow = Carbon::now();
               $timenow = $timenow->toDatetimeString();
+              $timestart = $Rsrooms->RsStart;
               $timeout = $Rsrooms->RsEnd;
               // dd($timeout);
+              if($timenow >= $timestart){
+                      $status[$i] = "กำลังใช้งาน";
+
+              }
+              else{
+                      $status[$i] = "รอใช้งาน";
+              }
+
               if($timenow > $timeout){
                       $delete = Rsroom::where('RsroomID',$Rsrooms->RsroomID)->delete();
               }
+              $i++;
       }
 
-      return view('room.reservations')->with('Room',$Rooms)->with('Rsroom',$Rsroom)->with('Table',$Table);
+
+      return view('room.reservations')->with('Room',$Rooms)->with('Rsroom',$Rsroom)->with('Table',$Table)->with('status',$status);
     }
     public function destroyReserve($id){
             $Rsrooms = Rsroom::find($id);

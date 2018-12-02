@@ -16,6 +16,8 @@
     <link rel="stylesheet" href="{{ asset('/css/styleaddtable.css') }}">
     <link rel="stylesheet" href="{{ asset('/css/stylesemantic.css') }}">
      <link rel="stylesheet" href="{{ asset('/css/styleapp.css') }}">
+     <link rel="stylesheet" href="{{ asset('/css/styleReservations.css') }}">
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <script src="{{ asset('/js/styleapp.js') }}"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
@@ -42,21 +44,15 @@
         <ul class="nav navbar-nav navbar-left" id="left-Menu">
 
 
-          <li style="border-bottom:2px solid red;"><a href="/">หน้าหลัก</a></li>
+          <li style="border-bottom:2px solid red;"><a href="/">Back</a></li>
 
-
-
-
-
-          <li><a href="#" data-toggle="modal" data-target="#fam">ข้อปฏิบัติ</a></li>
-          <li><a href="#"data-toggle="modal" data-target="#contact">ติดต่อเรา</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
         @if (Auth::guest())
             <li><a href="{{ url('/login') }}"><span class="glyphicon glyphicon-log-in" ></span> เข้าสู่ระบบ</a></li>
 
         @else
-            <li><a href="{{ url('/logout') }}"><span class="glyphicon glyphicon-log-in" ></span> ออกจากระบบ</a></li>
+            <li><a href="{{ url('/logout') }}"><span class="glyphicon glyphicon-log-in" ></span> {{Auth::user()->name}}</a></li>
         @endif
 
 
@@ -148,13 +144,36 @@
           <br>
           <br>
           <br>
+
+           @if(Session::has('flash_message'))
+            <div class="alert alert-danger"><em> <center><li>{!! session('flash_message') !!}</li></center></em></div>
+          @endif
+          @if(Session::has('flash_message2'))
+            <div class="alert alert-success"><em> <center><li>{!! session('flash_message2') !!}</li></center></em></div>
+          @endif
+          @if(Session::has('flash_message3'))
+            <div class="alert alert-danger"><em> <center><li>{!! session('flash_message3') !!}</li></center></em></div>
+          @endif
+          @if(Session::has('flash_message4'))
+            <div class="alert alert-success"><em> <center><li>{!! session('flash_message4') !!}</li></center></em></div>
+          @endif
           <h2 class="ui left floated header"style="width:100%"><font id="statustext" size="6" color="#B92000">STATUS</font><br>
             <font id="roomnametext" size="5" color="#828282">{{$Room->roomName}}</font>
             <div class="hr"></div>
           </h2>
 
+          @foreach ($Table as $Tables)
+            @if ($Tables->roomID == $Room->roomID)
+              <font color="red">*</font><font>วันสิ้นสุดของเทอมนี้ : <?php echo substr($Tables->Date, 8 ,2); ?>-<?php echo substr($Tables->Date, 5 ,2); ?>-<?php echo (int)substr($Tables->Date, 0 ,4)+543; ?></font>
+              @break
+          @endif
+          @endforeach    
+
           <form class="form-horizontal transition visible" action="{{ url('/room/addtable/add/'.$Room->roomID) }}" enctype="multipart/form-data" method="post" style="display: block !important;">
               <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                    
+                        
+
                     <!-- ////////////////////// ส่วนของตาราง //////////////// -->
                     <?php
                     // ส่วนของตัวแปรสำหรับกำหนด
@@ -223,30 +242,141 @@
           <br>
 
                 <div class="form-group">
-                        <div class="col-md-5 col-md-offset-5">
-                            <button type="submit" name="submit" class="btn btn-primary">
-                            <i class="write icon"></i>Submit</button>
-                        </div>
+                       <font size="3">
+                            <div class="form-group">
+                                <label class="col-md-5 control-label">วันสิ้นสุดของเทอมนี้<font color="red">**</font></label>
+                                <div class="col-md-3" style="display: inline"><input type="text" name="Date" class="form-control" id="datetimepicker" placeholder="วันที่" required=""></div>
+
+                                <div class="col-md-3" style="display: inline">
+                                      
+                                      <button type="submit" name="submit" class="btn btn-primary">Submit</button>
+                                </div>
+
+                            </div>
+
+                      </font>
+                    
                 </div>
           </form>
+          <br>
+          <br>
+
+          <div class="table-responsive table-inverse transition visible" id="table" style="display: block !important;">
+              <table class="table table-bordered" id="border">
+                <tbody><tr>
+                </tr></tbody><thead>
+                  <tr><th class="bg-primary">Date</th>
+                  <th class="bg-primary">Use Time</th>
+                  <th class="bg-primary">Status</th>
+                  <th class="bg-primary">Cancle</th>
+                </tr>
+                </thead>
+          @foreach($Rsroom as $Rsrooms)
+          @if($Room->roomID == $Rsrooms->roomID)
+                  <tbody>
+                  <tr>
+                   <td class="bg-warning"><font size="3"><?php echo substr($Rsrooms->RsStart, 8 ,2); ?>-<?php echo substr($Rsrooms->RsStart, 5 ,2); ?>-<?php echo (int)substr($Rsrooms->RsStart, 0 ,4)+543; ?></font></td>
+                   <td class="bg-warning"><font size="3"><?php echo substr($Rsrooms->RsStart, 11 ,9); ?> - <?php echo substr($Rsrooms->RsEnd, 11 ,9); ?></font></td>
+                   <td class="bg-warning">
+                  <img width="12" height="12" src="{{ asset('/img/demo/circlewaiting.png') }}">&nbsp;<font size="3" color="red">รอใช้งาน</font></td>
+                  <form action="{{ url('/room/addtable/delete/'.$Rsrooms->RsroomID.'') }}" method="post">
+                           <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                           <input type="hidden" name="_method" value="DELETE">
+                  <td class="bg-warning"><button class="btndanger"><i class="fa fa-close"></i></button></td>
+                  </form>
+                  </tr>
+                  </tbody>
+          @endif
+          @endforeach
+             </table>
+         </div>
+        </div>
+      </div>
+      <div class="container transition visible" id="form" style="display: block !important;">
+
+        <div class="row">
+            <div class="col-md-12 col-md-offset-0">
+                        <br>
+                        <br>
+                        <h2 class="ui left floated header">
+                        <font id="formtext" size="6" color="#B92000">FORM</font><br> <font id="reservetext" size="5" color="#828282">RESERVATION</font>
+                        </h2>
+            <div class="ui clearing divider"></div>
+                <div class="ui raised segment">
+                  <br>
+                  <form class="form-horizontal transition visible" action="{{ url('/room/addtable/create/'.$Room->roomID) }}" enctype="multipart/form-data" method="post"  id="reservationform" style="display: block !important;">
+                      <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                          <font size="3">
+                            <div class="form-group">
+                                <label class="col-md-5 control-label">Date<font color="red">**</font></label>
+
+                                <div class="col-md-3">
+                                      <input type="text" name="RsDate" class="form-control" id="datetimepicker1" placeholder="วันที่" required="">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-5 control-label">Time Start<font color="red">**</font></label>
+
+                                <div class="col-md-3">
+                                      <input type="text" name="RsStart" class="form-control" id="datetimepicker2" placeholder="เวลาเริ่มต้น" required="">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-5 control-label">Time End<font color="red">**</font></label>
+
+                                <div class="col-md-3">
+                                      <input type="text" name="RsEnd" class="form-control" id="datetimepicker3" placeholder="เวลาสิ้นสุด" required="">
+                                </div>
+                            </div>
+
+                          </font>
+                        <div class="form-group">
+                                <div class="col-md-5 col-md-offset-5">
+                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                </div>
+                        </div>
+                  </form>
+                  <br>
+              </div>
             </div>
         </div>
     <br>
-    <center>
-    <div class="navbar-fixed-bottom" id="para2" style="display: block;">
-        <i class="wizard icon"></i>
-        <font size="2"> Powered by CPE-KUSRC © 2018</font>
-    </div>
-    </center>
-    <!-- Scripts -->
+   
 
+  <!-- Scripts -->
+     <script src="{{ asset('/js/semantic.min.js') }}"></script>
     <script>
         function goBack() {
             window.history.back();
         }
     </script>
 
-
+    <script type="text/javascript">
+          var date = new Date();
+  date.setHours(0,0,0,0);
+        $(function () {
+             $('#datetimepicker').datetimepicker({
+                format: 'DD-MM-YYYY'
+            });
+        });
+          $(function () {
+             $('#datetimepicker1').datetimepicker({
+                format: 'DD-MM-YYYY'
+            });
+        });
+        $(function () {
+             $('#datetimepicker2').datetimepicker({
+                format: 'HH:mm',
+                useCurrent: 'day'
+            });
+        });
+        $(function () {
+             $('#datetimepicker3').datetimepicker({
+                format: 'HH:mm',
+                useCurrent: 'day'
+            });
+        });
+    </script>
 </div>
 
 

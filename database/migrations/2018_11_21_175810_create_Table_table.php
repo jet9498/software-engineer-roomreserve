@@ -19,6 +19,7 @@ class CreateTableTable extends Migration
           $table->string('Day');
           $table->time('TableStart');
           $table->time('TableEnd');
+          $table->date('Date');
           $table->timestamps();
       });
     }

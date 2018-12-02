@@ -18,6 +18,8 @@ Route::post('/room/reservations/{id}', 'ReservationsController@create');
 Route::delete('/room/reservations/{id}', 'ReservationsController@destroyReserve');
 Route::get('/room/addtable/{id}', 'TableController@table');
 Route::post('/room/addtable/add/{id}', 'TableController@addtable');
+Route::delete('/room/addtable/delete/{id}', 'TableController@delete');
+Route::post('/room/addtable/create/{id}', 'TableController@create');
 Route::get('/room/view/{id}', 'RoomController@view');
 Route::get('/admin','AdminController@index') ;
 Route::get('/myreservation', 'RoomController@myreservation');
