@@ -164,6 +164,14 @@
             <div class="hr"></div>
           </h2>
                     <div class="ui clearing divider"></div>
+                     <br>
+                       @foreach ($Table as $Tables)
+                          @if ($Tables->roomID == $Room->roomID)
+                            <font color="red">*</font><font>วันสิ้นสุดของเทอมนี้ : <?php echo substr($Tables->Date, 8 ,2); ?>-<?php echo substr($Tables->Date, 5 ,2); ?>-<?php echo (int)substr($Tables->Date, 0 ,4)+543; ?></font>
+                            @break
+                        @endif
+                        @endforeach    
+                      <br>
 
                     <!-- ////////////////////// ส่วนของตาราง //////////////// -->
                     <?php
@@ -192,10 +200,8 @@
                         </td>
                     <?php }?>
                       </tr>
-                    <?php
-                    // วนลูปแสดงจำนวนวันตามที่กำหนด
-                    for($i_day=0;$i_day<$num_dayShow;$i_day++){
-                    ?>
+                   <!--  // วนลูปแสดงจำนวนวันตามที่กำหนด -->
+                    @for($i_day=0;$i_day<$num_dayShow;$i_day++)
                       <tr>
                         <td align="center" valign="middle" height="50" class="day_schedule" bgcolor="#101010">
                         <div class="day_schedule_text">
@@ -204,20 +210,20 @@
 
                         </div>
                         </td>
-                    <?php for($i_time=0;$i_time<$sc_numCol-1;$i_time++){sleep(0.1);?>
+                    @for($i_time=0;$i_time<$sc_numCol-1;$i_time++)
                       <?php $check=false ?>
-                      <?php foreach ($Table as $Tables): sleep(0.1);?>
-                        <?php if ($Tables->roomID == $Room->roomID && $Tables->Day == $eng_day_arr[$i_day] && $Tables->TableStart == "$sc_timeStep[$i_time]:00"): ?>
+                      @foreach ($Table as $Tables)
+                        @if ($Tables->roomID == $Room->roomID && $Tables->Day == $eng_day_arr[$i_day] && $Tables->TableStart == "$sc_timeStep[$i_time]:00")
                           <td align="center" valign="middle" height="50" bgcolor="#B92000"></td>
                           <?php $check=true; break;?>
-                        <?php endif; ?>
-                      <?php endforeach; ?>
-                      <?php if (!$check): ?>
+                        @endif
+                      @endforeach
+                      @if (!$check)
                         <td align="center" valign="middle" height="50" bgcolor="#FFFFFF"></td>
-                      <?php endif; ?>
-                    <?php  }?>
+                      @endif
+                    @endfor
                       </tr>
-                    <?php }?>
+                    @endfor
                     </table>
                 </div>
                 <!-- ////////////////////// ส่วนของตาราง //////////////// -->

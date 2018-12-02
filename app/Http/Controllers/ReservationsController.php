@@ -89,7 +89,7 @@ class ReservationsController extends Controller
         $tables = Table::get();
         $rsrooms = Rsroom::get();
         $day = strtoupper(substr($Date->format('l'), 0, 2));
-
+        
         //เช็คoverlapกับตารางเรียนทั้งเทอม
         foreach ($tables as $table) {
                 if($table->roomID == $rooms->roomID){ //เช็คว่าห้องตรงกันมั้ย
@@ -104,6 +104,19 @@ class ReservationsController extends Controller
                                 }
                                 if($timeStartinput > $table->TableStart && $timeStartinput < $table->TableEnd){
                                         \Session::flash('flash_message','เวลานี้ไม่สามารถจองได้');
+                                        return redirect()->back();
+                                }
+                        }
+                }
+        }
+
+        foreach ($tables as $table) {
+                $datetable = Carbon::parse($table->Date);
+                $datetable = $datetable->toDateString();
+                if($table->roomID == $rooms->roomID){ //เช็คว่าห้องตรงกันมั้ย
+                        if($dateRentStart > $datetable){
+                                if($dateRentStart >= $table->Date){
+                                        \Session::flash('flash_message','เกินกำหนดการจอง');
                                         return redirect()->back();
                                 }
                         }
