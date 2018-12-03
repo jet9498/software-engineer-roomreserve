@@ -76,6 +76,9 @@
             <div class="panel panel-default">
                 <div class="panel-heading">Login</div>
                 <div class="panel-body">
+                    @if(Session::has('flash_message'))
+                      <div class="alert alert-danger"><em> <center><li>{!! session('flash_message') !!}</li></center></em></div>
+                    @endif
                     <form class="form-horizontal" role="form" method="POST" action="{{ url('/login') }}">
                         {{ csrf_field() }}
 
@@ -335,6 +338,7 @@
   <br>
   <br>
   <br>
+  <div id="failLogin" style="display:none" data-value="{{ $fail }}"></div>
   @if(Auth::guest() || Auth::user()->status != 1)
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 footer" id="section2">
         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 leftfooter" style="padding-left:10vw"style="height:auto;">
@@ -407,6 +411,10 @@
 
 <script>
 $(document).ready(function(){
+  var fail = document.getElementById("failLogin").getAttribute('data-value');
+  if(fail == 1){
+    $('#id01').modal('show');
+  }
   // Add smooth scrolling to all links
   $("a").on('click', function(event) {
 
