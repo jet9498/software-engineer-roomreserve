@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Socialite;
 use App\User;
+use App\Room;
 use Illuminate\Http\Request;
 
 class LoginController extends Controller
@@ -52,12 +53,14 @@ class LoginController extends Controller
     }
     public function login()
     {
+        $fail = 1;
         if(Auth::attempt([$this->field() => request()->email , 'password' => request()->password])){
             return redirect()->back();
         }
         else{
+            $rooms = Room::get();
             \Session::flash('flash_message','คุณกรอก User ID หรือ รหัสผ่านผิด โปรดลองใหม่อีกครั้ง');
-            return 'kuyseng';
+            return view('home')->with('Rooms',$rooms)->with('fail',$fail);
         }
     }
     public function logout()

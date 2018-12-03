@@ -24,8 +24,9 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $fail = 0;
         $rooms = Room::get();
-        return view('home')->with('Rooms',$rooms);
+        return view('home')->with('Rooms',$rooms)->with('fail',$fail);
     }
     public function checklogin()
     {
