@@ -79,7 +79,7 @@
             <div class="panel panel-default">
                 <div class="panel-heading">Register</div>
                 <div class="panel-body">
-                    <form class="form-horizontal" role="form" method="POST" action="{{ url('/register') }}">
+                    <form class="form-horizontal" role="form" method="POST" action="{{ url('/createuser') }}">
                         {{ csrf_field() }}
 
                         <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
@@ -296,6 +296,11 @@
 @endif
 
   <div class="container" id="section1" style="padding-top: 50px">
+    @if(session()->has('message'))
+        <div class="alert alert-success">
+            {{ session()->get('message') }}
+        </div>
+    @endif
     @if(Auth::guest() || Auth::user()->status != 1)
       <font id="room">Room</font>
       <font id="share">Reservation</font>
