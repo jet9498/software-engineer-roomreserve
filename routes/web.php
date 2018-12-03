@@ -30,7 +30,7 @@ Route::post('/room/edit/{id}', 'RoomController@edit');
 Route::post('/room/delete/{id}', 'RoomController@delete');
 // 7 Routes = Restful API
 
-
+Route::get('/login', 'Auth\LoginController@login');
 Route::get('/logout', 'Auth\LoginController@logout');
 
 Auth::routes();

@@ -168,27 +168,36 @@ class ReservationsController extends Controller
       
       $i=0;
       foreach ($Rsroom as $Rsrooms) {
-              $timenow = Carbon::now();
-              $timenow = $timenow->toDatetimeString();
-              $timestart = $Rsrooms->RsStart;
-              $timeout = $Rsrooms->RsEnd;
-              // dd($timeout);
-              if($timenow >= $timestart){
-                      $status[$i] = "กำลังใช้งาน";
-
-              }
-              else{
-                      $status[$i] = "รอใช้งาน";
-              }
-
-              if($timenow > $timeout){
-                      $delete = Rsroom::where('RsroomID',$Rsrooms->RsroomID)->delete();
-              }
-              $i++;
+          $timenow = Carbon::now();
+          $timenow = $timenow->toDatetimeString();
+          $timestart = $Rsrooms->RsStart;
+          $timeout = $Rsrooms->RsEnd;
+          // dd($timeout);
+          //dd("hi");
+          if($timenow > $timeout){
+                  $delete = Rsroom::where('RsroomID',$Rsrooms->RsroomID)->delete();
+          }
       }
-
-
-      return view('room.reservations')->with('Room',$Rooms)->with('Rsroom',$Rsroom)->with('Table',$Table)->with('status',$status);
+        if(count($Rsroom)!=0){
+            foreach ($Rsroom as $Rsrooms) {
+                    $timenow = Carbon::now();
+                      $timenow = $timenow->toDatetimeString();
+                      $timestart = $Rsrooms->RsStart;
+                      $timeout = $Rsrooms->RsEnd;
+                    if($timenow >= $timestart){
+                              $status[$i] = "กำลังใช้งาน";
+                              $i++;
+                    }
+                    else {
+                              $status[$i] = "รอใช้งาน";
+                              $i++;              
+                    }
+                
+            }   
+            return view('room.reservations')->with('Room',$Rooms)->with('Rsroom',$Rsroom)->with('Table',$Table)->with('status',$status);    
+      }
+      return view('room.reservations')->with('Room',$Rooms)->with('Rsroom',$Rsroom)->with('Table',$Table);
+      
     }
     public function destroyReserve($id){
             $Rsrooms = Rsroom::find($id);

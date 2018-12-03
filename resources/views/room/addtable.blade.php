@@ -273,19 +273,29 @@
                 </thead>
           @foreach($Rsroom as $Rsrooms)
           @if($Room->roomID == $Rsrooms->roomID)
-                  <tbody>
+                  <tbody >
+                  
                   <tr>
                    <td class="bg-warning"><font size="3"><?php echo substr($Rsrooms->RsStart, 8 ,2); ?>-<?php echo substr($Rsrooms->RsStart, 5 ,2); ?>-<?php echo (int)substr($Rsrooms->RsStart, 0 ,4)+543; ?></font></td>
                    <td class="bg-warning"><font size="3"><?php echo substr($Rsrooms->RsStart, 11 ,9); ?> - <?php echo substr($Rsrooms->RsEnd, 11 ,9); ?></font></td>
                    <td class="bg-warning">
-                  <img width="12" height="12" src="{{ asset('/img/demo/circlewaiting.png') }}">&nbsp;<font size="3" color="red">รอใช้งาน</font></td>
-                  <form action="{{ url('/room/addtable/delete/'.$Rsrooms->RsroomID.'') }}" method="post">
+                  
+                    @if($status[$i] == "รอใช้งาน")  
+                          <img width="12" height="12" src="{{ asset('/img/demo/circlewaiting.png') }}">&nbsp;<font size="3" color="red">{{$status[$i]}}</font>
+                    @else
+                          <img width="12" height="12" src="{{ asset('/img/demo/circleready.png') }}">&nbsp;<font size="3" color="red">{{$status[$i]}}</font>
+                    @endif
+                  
+                  
+                    </td>
+                  <form action="{{ url('/room/reservations/'.$Rsrooms->RsroomID.'') }}" method="post">
                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
                            <input type="hidden" name="_method" value="DELETE">
                   <td class="bg-warning"><button class="btndanger"><i class="fa fa-close"></i></button></td>
                   </form>
                   </tr>
                   </tbody>
+                  <?php $i++ ?>
           @endif
           @endforeach
              </table>
