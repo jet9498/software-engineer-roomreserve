@@ -30,12 +30,15 @@ Route::post('/room/edit/{id}', 'RoomController@edit');
 Route::post('/room/delete/{id}', 'RoomController@delete');
 // 7 Routes = Restful API
 
-<<<<<<< HEAD
-Route::get('/login', 'Auth\LoginController@login');
-=======
+
 
 Route::post('/login', 'Auth\LoginController@login');
->>>>>>> b925ed2dc981ac85e797282d00ee94599d9823c7
+
 Route::get('/logout', 'Auth\LoginController@logout');
+
+Route::get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
+Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
+Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
+Route::post('password/reset', 'Auth\ResetPasswordController@reset');
 
 Auth::routes();

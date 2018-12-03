@@ -53,11 +53,12 @@ class LoginController extends Controller
     }
     public function login()
     {
-        $fail = 1;
+        $fail = 0;
         if(Auth::attempt([$this->field() => request()->email , 'password' => request()->password])){
             return redirect()->back();
         }
         else{
+            $fail = 1;
             $rooms = Room::get();
             \Session::flash('flash_message','คุณกรอก User ID หรือ รหัสผ่านผิด โปรดลองใหม่อีกครั้ง');
             return view('home')->with('Rooms',$rooms)->with('fail',$fail);
