@@ -41,16 +41,25 @@ class LoginController extends Controller
         $this->middleware('guest', ['except' => 'logout']);
 
     }
-    // public function login()
-    // {
-    //     if(Auth::attempt([$this->field() => request()->StudentID , 'password' => request()->password])){
-    //         return redirect()->intended('/userlogin');
-    //     }
-    //     else{
-    //         \Session::flash('flash_message','คุณกรอก User ID หรือ รหัสผ่านผิด โปรดลองใหม่อีกครั้ง');
-    //         return redirect()->back();
-    //     }
-    // }
+    public function field()
+    {
+        if(filter_var(request()->email,FILTER_VALIDATE_EMAIL)){
+            return 'email';
+        }
+        else{
+            return 'email';
+        }
+    }
+    public function login()
+    {
+        if(Auth::attempt([$this->field() => request()->email , 'password' => request()->password])){
+            return redirect()->back();
+        }
+        else{
+            \Session::flash('flash_message','คุณกรอก User ID หรือ รหัสผ่านผิด โปรดลองใหม่อีกครั้ง');
+            return 'kuyseng';
+        }
+    }
     public function logout()
     {
         Auth::logout();
