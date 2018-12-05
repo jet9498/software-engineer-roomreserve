@@ -57,21 +57,19 @@
         </ul>
         <ul class="nav navbar-nav navbar-right">
 
-            @if (Auth::guest())
+            @if(Auth::guest() || Auth::user()->status != 1)
             <li><a href="#"data-toggle="modal" data-target="#id01"><span class="glyphicon glyphicon-log-in" ></span> เข้าสู่ระบบ</a></li>
             
         @else
-            <li><a href="{{ url('/logout') }}"><span class="glyphicon glyphicon-log-in" ></span> {{Auth::user()->name}}</a></li>
-        @endif
-
-             <li class="dropdown"><a data-toggle="dropdown" href="#">{{Auth::user()->name}}
+          
+             <li class="dropdown"><a data-toggle="dropdown" href="#"><img width="23" height="22" src="{{ asset('/img/demo/profile.png') }}">{{Auth::user()->name}}
             </a>
             <ul class="dropdown-menu">
 
-            <li><a href="{{ url('/usercreate') }}" ><img width="23" height="22" src="{{ asset('/img/demo/manage.ico') }}"> จัดการโปรไฟล์</a></li>
+            <li><a href="{{ url('/usercreate') }}" ><img width="23" height="22" src="{{ asset('/img/demo/fixing.png') }}"> จัดการโปรไฟล์</a></li>
 
             <li><a href="{{ url('/logout') }}" ><img width="23" height="22" src="{{ asset('/img/demo/logout.png') }}"> ออกจากระบบ</a></li>
-
+   @endif
         </ul>
       </div>
     </div>
