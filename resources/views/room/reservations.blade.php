@@ -258,7 +258,7 @@
                 </div>
                 <!-- ////////////////////// ส่วนของตาราง //////////////// -->
           <br>
-                <font color="red">*</font><font>สีแดงคือเวลาที่ไม่สามารถจองได้</font><font color="red">*</font>
+                <font color="red">*</font><font>สีฟ้าคือเวลาที่ไม่สามารถจองได้</font><font color="red">*</font>
           <br>
           <br>
 
@@ -363,11 +363,12 @@
                     <br>
                     <br>
           </div>
+          <br>
+          <br>
+          <br>
       </div>
     </div>
-    <br>
-    <center>
-    </center>
+
     <!-- Scripts -->
     <script src="{{ asset('/js/semantic.min.js') }}"></script>
     <script>

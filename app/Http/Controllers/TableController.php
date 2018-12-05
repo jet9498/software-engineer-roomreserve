@@ -29,6 +29,7 @@ class TableController extends Controller
       $create = new Table;
       $create->roomID = $request->input('TableID',$room->roomID);
       $create->Subject = $request->input('Subject');
+      $create->Name = $request->input('Name');
       $create->Day = $request->input('Day');
       $TableStart = $request->input('TableStart');
       $TableEnd = $request->input('TableEnd');
