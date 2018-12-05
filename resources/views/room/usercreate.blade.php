@@ -12,19 +12,19 @@
 
     <!-- Styles -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('/css/styleHome.css') }}">
-    <link rel="stylesheet" href="{{ asset('/css/styleReservation.css') }}">
-    <link rel="stylesheet" href="{{ asset('/css/stylesemantic.css') }}">
-     <link rel="stylesheet" href="{{ asset('/css/styleapp.css') }}">
+    <link rel="stylesheet" href="http://127.0.0.1:8000/css/styleHome.css">
+    <link rel="stylesheet" href="http://127.0.0.1:8000/css/styleReservation.css">
+    <link rel="stylesheet" href="http://127.0.0.1:8000/css/stylesemantic.css">
+     <link rel="stylesheet" href="http://127.0.0.1:8000/css/styleapp.css">
 
-    <script src="{{ asset('/js/styleapp.js') }}"></script>
+    <script src="http://127.0.0.1:8000/js/styleapp.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.min.js"></script>
 
-  <link rel="stylesheet" href="{{ asset('/css/Datetimepicker.css') }}">
+  <link rel="stylesheet" href="http://127.0.0.1:8000/css/Datetimepicker.css">
 
-  <script src="{{ asset('/js/datetimepicker.min.js') }}"></script>
+  <script src="http://127.0.0.1:8000/js/datetimepicker.min.js"></script>
 
 
     </head>
@@ -55,11 +55,8 @@
           <li><a href="#"data-toggle="modal" data-target="#contact">ติดต่อเรา</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
-            <li class="dropdown"><a data-toggle="dropdown" href="#">{{Auth::user()->name}}
-            </a>
-            <ul class="dropdown-menu">                            
-            <li><a href="{{ url('/logout') }}" ><img width="23" height="22" src="{{ asset('/img/demo/logout.png') }}"> ออกจากระบบ</a></li>
-        </ul>
+                        <li><a href="http://127.0.0.1:8000/logout"><span class="glyphicon glyphicon-log-in" ></span> Phongsatorn</a></li>
+                </ul>
       </div>
     </div>
   </nav>
@@ -133,6 +130,69 @@
     </div>
   </div>
 
+  <div class="modal fade " id="id01" role="dialog" style="z-index: 9999">
+    <!--ล็อคอินของ laravel user-->
+  <div class="container">
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <div class="panel panel-default">
+                <div class="panel-heading">Login</div>
+                <div class="panel-body">
+                    <form class="form-horizontal" role="form" method="POST" action="http://127.0.0.1:8000/login">
+                        <input type="hidden" name="_token" value="b1B4ubL65WDVk91XXDUyldGQkNbZ0NcOE7t1Aj2F">
+
+                        <div class="form-group">
+                            <label for="email" class="col-md-4 control-label">E-Mail Address</label>
+
+                            <div class="col-md-6">
+                                <input id="email" type="email" class="form-control" name="email" value="" required autofocus>
+
+                                                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="password" class="col-md-4 control-label">Password</label>
+
+                            <div class="col-md-6">
+                                <input id="password" type="password" class="form-control" name="password" required>
+
+                                                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-6 col-md-offset-4">
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" name="remember"> Remember Me
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-8 col-md-offset-4">
+                                <button type="submit" class="btn btn-primary">
+                                    Login
+                                </button>
+                                <!-- เงื่อนไขเวลา จะเข้าหน้า Admin -->
+
+                                <button class="btn btn-primary"href="#" data-toggle="modal" data-target="#id02">
+                                    Admin
+                                </button>
+
+
+                                <a class="btn btn-link" href="http://127.0.0.1:8000/password/reset">
+                                    Forgot Your Password?
+                                </a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
 
     <div id="loading">
     </div>
@@ -147,28 +207,38 @@
           <br>
           <br>
 
-
-          <h2 class="ui left floated header"style="width:100%"><font id="statustext" size="6" color="#B92000">STATUS</font><br>
-            
+                    
+          <h2 class="ui left floated header"style="width:100%"><font id="statustext" size="6" color="#B92000">User</font><br>
+            <font id="roomnametext" size="5" color="#828282">Create</font>
             <div class="hr"></div>
 
           </h2>
 
           </h2>
-                    
+                    <div class="ui clearing divider"></div>
+
+                    <!-- ////////////////////// ส่วนของตาราง //////////////// -->
+                                        <br>
+                    <div class="wrap_schedule"  style="overflow-x:auto;">
+
+                <!-- ////////////////////// ส่วนของตาราง //////////////// -->
           <br>
-                          <div class="table-responsive table-inverse transition visible" id="table" style="display: block !important;">
-                              <table class="table table-bordered" id="border">
-                                <tbody><tr>
-                                </tr></tbody><thead>
-                                  <tr><th class="bg-primary">Name</th>
-                                  <th class="bg-primary">Email</th>
-                                  <th class="bg-primary">Password</th>
-                                </tr>
-                                </thead>
-                                     
-                                    </table>
-                            </div>
+                         
+         
+          <div class="table-responsive table-inverse transition visible" id="table" style="display: block !important;">
+              <table class="table table-bordered" id="border">
+                <tbody><tr>
+                </tr></tbody><thead>
+                  <tr><th class="bg-primary">Date</th>
+                  <th class="bg-primary">Use Time</th>
+                  <th class="bg-primary">Status</th>
+                </tr>
+                </thead>
+                              </table>
+            </div>
+        </div>
+      </div>
+
     <center>
     <div class="navbar-fixed-bottom" id="para2" style="display: block;">
         <i class="wizard icon"></i>
@@ -176,7 +246,7 @@
     </div>
     </center>
     <!-- Scripts -->
-    <script src="{{ asset('/js/semantic.min.js') }}"></script>
+    <script src="http://127.0.0.1:8000/js/semantic.min.js"></script>
     <script>
         function goBack() {
             window.history.back();

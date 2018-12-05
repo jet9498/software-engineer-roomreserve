@@ -12,8 +12,10 @@
 */
 
 Route::get('/', 'HomeController@index');
+Route::get('/usercreate', 'UserController@index');
 
 Route::get('/room/reservations/{id}', 'ReservationsController@index');
+Route::delete('/room/reservations/{id}', 'ReservationsController@destroy');
 Route::post('/room/reservations/{id}', 'ReservationsController@create');
 Route::delete('/room/reservations/{id}', 'ReservationsController@destroyReserve');
 Route::get('/room/addtable/{id}', 'TableController@table');
