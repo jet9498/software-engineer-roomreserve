@@ -13,7 +13,7 @@
     <!-- Styles -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('/css/styleHome.css') }}">
-    <link rel="stylesheet" href="{{ asset('/css/styleReservation.css') }}">
+    <link rel="stylesheet" href="{{ asset('/css/styleReservations.css') }}">
     <link rel="stylesheet" href="{{ asset('/css/stylesemantic.css') }}">
      <link rel="stylesheet" href="{{ asset('/css/styleapp.css') }}">
 
@@ -55,13 +55,34 @@
           <li><a href="#"data-toggle="modal" data-target="#contact">ติดต่อเรา</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
-            @if (Auth::guest())
+
+          @if (Auth::guest())
+
             <li><a href="#"data-toggle="modal" data-target="#id01"><span class="glyphicon glyphicon-log-in" ></span> เข้าสู่ระบบ</a></li>
 
 
+
+        </ul>
+      </li>
+        </ul>
+
+
         @else
-            <li><a href="{{ url('/logout') }}"><span class="glyphicon glyphicon-log-in" ></span> {{Auth::user()->name}}</a></li>
+
+            <li class="dropdown"><a data-toggle="dropdown" href="#">{{Auth::user()->name}}
+            </a>
+            <ul class="dropdown-menu">
+            @if(Auth::guest() || Auth::user()->status != 1)
+            <li href="{{ url('/usercreate') }}"><a href="{{ url('/usercreate') }}" ><img width="23" height="22" src="{{ asset('/img/demo/manage.ico') }}"> จัดการโปรไฟล์</a></li>
+
+            <li><a href="{{ url('/logout') }}" ><img width="23" height="22" src="{{ asset('/img/demo/logout.png') }}"> ออกจากระบบ</a></li>
+            @else
+            <li><a href="section4" ><img width="23" height="22" src="{{ asset('/img/demo/manage.ico') }}">  จัดการโปรไฟล์</a></li>
+            <li><a href="{{ url('/logout') }}" ><img width="23" height="22" src="{{ asset('/img/demo/logout.png') }}"> ออกจากระบบ</a></li>
+            @endif
         @endif
+
+
         </ul>
       </div>
     </div>
@@ -144,6 +165,9 @@
             <div class="panel panel-default">
                 <div class="panel-heading">Login</div>
                 <div class="panel-body">
+                    @if(Session::has('flash_message'))
+                      <div class="alert alert-danger"><em> <center><li>{!! session('flash_message') !!}</li></center></em></div>
+                    @endif
                     <form class="form-horizontal" role="form" method="POST" action="{{ url('/login') }}">
                         {{ csrf_field() }}
 
@@ -192,11 +216,6 @@
                                 </button>
                                 <!-- เงื่อนไขเวลา จะเข้าหน้า Admin -->
 
-                                <button class="btn btn-primary"href="#" data-toggle="modal" data-target="#id02">
-                                    Admin
-                                </button>
-
-
                                 <a class="btn btn-link" href="{{ url('/password/reset') }}">
                                     Forgot Your Password?
                                 </a>
@@ -209,6 +228,7 @@
     </div>
 </div>
 </div>
+
 
 
 
