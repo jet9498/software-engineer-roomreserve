@@ -63,14 +63,12 @@
             <li><a href="#"data-toggle="modal" data-target="#id01"><span class="glyphicon glyphicon-log-in" ></span> เข้าสู่ระบบ</a></li>
 
 
-<<<<<<< HEAD
-=======
 
         </ul>
       </li>
         </ul>
 
->>>>>>> c110cda63ca362feb0ef1973c9174d4eb1379d42
+
         @else
 
             <li class="dropdown"><a data-toggle="dropdown" href="#">{{Auth::user()->name}}

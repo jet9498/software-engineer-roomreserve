@@ -243,7 +243,7 @@
           </h2>
 
           </h2>
-        
+
            <br>
              @foreach ($Datetable as $Datetables)
                 @if ($Datetables->roomID == $Room->roomID)
@@ -297,6 +297,7 @@
                           @if(count($Table)!=0)
                               @foreach ($Table as $Tables)
                                 <?php $check=true;?>
+                                @if($Tables->roomID == $Room->roomID)
                                     @if($Tables->Day == $eng_day_arr[$i_day])
                                         @if($sc_timeStep[$i_time].':00' == $Tables->TableStart)
                                             <?php $num=0; ?>
@@ -315,6 +316,7 @@
                                             @endwhile
                                         @endif
                                     @endif
+                                  @endif
                               @endforeach
                           @endif
                           <?php $css_use="class=\"activity\""; ?>
