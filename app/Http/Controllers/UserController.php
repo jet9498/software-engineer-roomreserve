@@ -11,9 +11,9 @@ use Carbon\Carbon;
 
 class UserController extends Controller
 {
-        public function index($id){
-                $Rooms = Room::find($id);
-                $Rsroom = Rsroom::find($id);
+        public function index(){
+                $Rooms = Room::get();
+                $Rsroom = Rsroom::get();
 
                 $i=0;
                 foreach ($Rsroom as $Rsrooms) {
@@ -43,9 +43,9 @@ class UserController extends Controller
                               }
 
                       }
-                      return view('/user')->with('Room',$Rooms)->with('Rsroom',$Rsroom)->with('status',$status);
+                      return view('room.usercreate')->with('Room',$Rooms)->with('Rsroom',$Rsroom)->with('status',$status);
                 }
-                return view('/user')->with('Room',$Rooms)->with('Rsroom',$Rsroom);
+                return view('room.usercreate')->with('Room',$Rooms)->with('Rsroom',$Rsroom);
         }
 
         public function destroy($id){

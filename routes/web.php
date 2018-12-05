@@ -12,7 +12,7 @@
 */
 
 Route::get('/', 'HomeController@index');
-Route::get('/user/{id}', 'UserController@index');
+Route::get('/usercreate', 'UserController@index');
 
 Route::get('/room/reservations/{id}', 'ReservationsController@index');
 Route::delete('/room/reservations/{id}', 'ReservationsController@destroy');
