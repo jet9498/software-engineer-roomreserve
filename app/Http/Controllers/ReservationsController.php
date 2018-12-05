@@ -77,14 +77,14 @@ class ReservationsController extends Controller
         }
 
         //จองไม่เกิน5ทุ่ม
-        if($timeEndinput > '23:00:00'){
-                \Session::flash('flash_message','เวลาในการจองห้องต้องอยู่ในช่วง 9.00 - 23.00');
-                return redirect()->back();
-        }
-        if($timeEndinput < $timeStartinput){
-                \Session::flash('flash_message','เวลาในการจองไม่ถูกต้อง');
-                 return redirect()->back();
-        }
+        // if($timeEndinput > '23:00:00'){
+        //         \Session::flash('flash_message','เวลาในการจองห้องต้องอยู่ในช่วง 9.00 - 23.00');
+        //         return redirect()->back();
+        // }
+        // if($timeEndinput < $timeStartinput){
+        //         \Session::flash('flash_message','เวลาในการจองไม่ถูกต้อง(เวลาเริ่มมากกว่าเวลาสิ้นสุด)');
+        //          return redirect()->back();
+        // }
 
         //overlap
         $tables = Table::get();
