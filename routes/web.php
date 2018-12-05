@@ -34,6 +34,10 @@ Route::post('/room/create', 'RoomController@store');
 Route::post('/room/edit/{id}', 'RoomController@edit');
 Route::post('/room/delete/{id}', 'RoomController@delete');
 
+Route::get('/room/usercreate/{id}','UserController@changepassword');
+Route::put('/room/usercreate/{id}','UserController@updatepassword');
+
+
 Route::get('/manageid','AdminController@manageid') ;
 
 // 7 Routes = Restful API

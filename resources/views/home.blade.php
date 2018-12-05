@@ -515,6 +515,7 @@
 <script>
 $(document).ready(function(){
   var fail = document.getElementById("failLogin").getAttribute('data-value');
+  
   if(fail == 1){
     $('#id01').modal('show');
   }
