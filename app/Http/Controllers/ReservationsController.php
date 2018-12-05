@@ -8,6 +8,7 @@ use App\Rsroom;
 use App\Room;
 use App\User;
 use App\Table;
+use App\Datetable;
 use Carbon\Carbon;
 
 class ReservationsController extends Controller
@@ -46,12 +47,12 @@ class ReservationsController extends Controller
 
 
         //จอง1ชม.ขึ้นไป
-        // $timeStart1Hour = Carbon::parse($timeStartinput);
-        // $timeEnd1Hour = Carbon::parse($timeEndinput);
-        // if($timeStart1Hour->diffInMinutes($timeEnd1Hour) < 60 ){
-        //     \Session::flash('flash_message','กรุณาจองห้องอย่างน้อย 1 ชั่วโมง');
-        //     return redirect()->back();
-        // }
+        $timeStart1Hour = Carbon::parse($timeStartinput);
+        $timeEnd1Hour = Carbon::parse($timeEndinput);
+        if($timeStart1Hour->diffInMinutes($timeEnd1Hour) < 60 ){
+            \Session::flash('flash_message','กรุณาจองห้องอย่างน้อย 1 ชั่วโมง');
+            return redirect()->back();
+        }
 
         //เช็คจองเวลาที่ผ่านไปแล้ว
         $timenow = Carbon::now();
@@ -165,6 +166,8 @@ class ReservationsController extends Controller
       $Rooms = Room::find($id);
       $Rsroom = Rsroom::get();
       $Table = Table::get();
+      $user = User::get();
+      $datetable= Datetable::get();
 
       $i=0;
       foreach ($Rsroom as $Rsrooms) {
@@ -179,12 +182,14 @@ class ReservationsController extends Controller
           }
       }
         if(count($Rsroom)!=0){
+
             foreach ($Rsroom as $Rsrooms) {
                     $timenow = Carbon::now();
                       $timenow = $timenow->toDatetimeString();
                       $timestart = $Rsrooms->RsStart;
                       $timeout = $Rsrooms->RsEnd;
                     if($timenow >= $timestart){
+
                               $status[$i] = "กำลังใช้งาน";
                               $i++;
                     }
@@ -194,9 +199,9 @@ class ReservationsController extends Controller
                     }
 
             }
-            return view('room.reservations')->with('Room',$Rooms)->with('Rsroom',$Rsroom)->with('Table',$Table)->with('status',$status);
+            return view('room.reservations')->with('Room',$Rooms)->with('Rsroom',$Rsroom)->with('Table',$Table)->with('status',$status)->with('user',$user)->with('Datetable',$datetable);
       }
-      return view('room.reservations')->with('Room',$Rooms)->with('Rsroom',$Rsroom)->with('Table',$Table);
+      return view('room.reservations')->with('Room',$Rooms)->with('Rsroom',$Rsroom)->with('Table',$Table)->with('user',$user)->with('Datetable',$datetable);
 
     }
     public function destroyReserve($id){

@@ -44,7 +44,7 @@
         <ul class="nav navbar-nav navbar-left" id="left-Menu">
 
 
-          <li style="border-bottom:2px solid red;"><a href="/">Back</a></li>
+          <li style="border-bottom:2px solid red;"><a href="/">หน้าแรก</a></li>
 
         </ul>
         <ul class="nav navbar-nav navbar-right">
@@ -162,18 +162,6 @@
             <div class="hr"></div>
           </h2>
 
-          @foreach ($Table as $Tables)
-            @if ($Tables->roomID == $Room->roomID)
-              <font color="red">*</font><font>วันสิ้นสุดของเทอมนี้ : <?php echo substr($Tables->Date, 8 ,2); ?>-<?php echo substr($Tables->Date, 5 ,2); ?>-<?php echo (int)substr($Tables->Date, 0 ,4)+543; ?></font>
-              @break
-          @endif
-          @endforeach    
-
-          <form class="form-horizontal transition visible" action="{{ url('/room/addtable/add/'.$Room->roomID) }}" enctype="multipart/form-data" method="post" style="display: block !important;">
-              <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                    
-                        
-
                     <!-- ////////////////////// ส่วนของตาราง //////////////// -->
                     <?php
                     // ส่วนของตัวแปรสำหรับกำหนด
@@ -201,10 +189,10 @@
                         </td>
                     <?php }?>
                       </tr>
-                    <?php
-                    // วนลูปแสดงจำนวนวันตามที่กำหนด
-                    for($i_day=0;$i_day<$num_dayShow;$i_day++){
-                    ?>
+
+                    <!-- // วนลูปแสดงจำนวนวันตามที่กำหนด -->
+                    @for($i_day=0;$i_day<$num_dayShow;$i_day++)
+
                       <tr>
                         <td align="center" valign="middle" height="50" class="day_schedule" bgcolor="#101010">
                         <div class="day_schedule_text">
@@ -213,93 +201,52 @@
 
                         </div>
                         </td>
-                    <?php for($i_time=0;$i_time<$sc_numCol-1;$i_time++){sleep(0.1);?>
-                      <?php $check=false ?>
-                      <?php foreach ($Table as $Tables): sleep(0.1);?>
-                        <?php if ($Tables->roomID == $Room->roomID && $Tables->Day == $eng_day_arr[$i_day] && $Tables->TableStart == "$sc_timeStep[$i_time]:00"): ?>
-                          <td align="center" valign="middle" height="50" bgcolor="#B92000">
-                            <input type="checkbox" name="Day[]" value="<?=$eng_day_arr[$i_day]?>" checked>
-                            <input type="hidden" name="Day[]" value="<?=$sc_timeStep[$i_time]?>:00">
-                            <input type="hidden" name="Day[]" value="<?=$sc_timeStep[$i_time+1]?>:00">
-                          </td>
-                          <?php $check=true; break;?>
-                        <?php endif; ?>
-                      <?php endforeach; ?>
-                      <?php if (!$check): ?>
-                        <td align="center"  height="50">
-                          <input type="checkbox" name="Day[]" value="<?=$eng_day_arr[$i_day]?>"><?php sleep(0.1);?>
-                          <input type="hidden" name="Day[]" value="<?=$sc_timeStep[$i_time]?>:00"><?php sleep(0.1);?>
-                          <input type="hidden" name="Day[]" value="<?=$sc_timeStep[$i_time+1]?>:00"><?php sleep(0.1);?>
+                    @for($i_time=0;$i_time<$sc_numCol-1;$i_time++)
+                        @if(count($Table)!=0)
+                            @foreach ($Table as $Tables)
+                              <?php $check=true;?>
+                              @if($Tables->roomID == $Room->roomID)
+                                  @if($Tables->Day == $eng_day_arr[$i_day])
+                                      @if($sc_timeStep[$i_time].':00' == $Tables->TableStart)
+                                          <?php $num=0; ?>
+                                          @while($check!=false)
+                                              <?php $i_time++;$num++;?>
+                                              @if($sc_timeStep[$i_time].':00' == $Tables->TableEnd)
+                                                  <?php $css_use="class=\"activity\"";
+                                                  $dataShowIN=$Tables->Subject;
+                                                  $colspan="colspan=\"".$num."\"";
+                                                  $check=false;
+                                                  ?>
+                                                  <td <?=$css_use?> <?=$colspan?> align="center" valign="middle" height="50" bgcolor="#3399FF">
+
+                                                      <form action="{{ url('/room/addtable/delete/'.$Tables->TableID.'') }}" method="post">
+                                                               <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                                               <input type="hidden" name="_method" value="DELETE">
+                                                              <font color="#DCDCDC" size="3"><?=$dataShowIN?> <button class="btndanger" style="font-size: 10px"><i class="fa fa-close"></i></button> </font>
+                                                      </form>
+                                                  </td>
+                                              @endif
+                                          @endwhile
+                                      @endif
+                                  @endif
+                                @endif
+                            @endforeach
+                        @endif
+                        <?php $css_use="class=\"activity\""; ?>
+                        <?php $dataShowIN="";
+                        $colspan="colspan=\""."0"."\"";
+                        ?>
+                        <td <?=$css_use?> <?=$colspan?> align="center" valign="middle" height="50">
+                            <?php  echo $dataShowIN;?>
                         </td>
-                      <?php endif; ?>
-                    <?php  }?>
+                    @endfor
                       </tr>
-                    <?php }?>
+                    @endfor
                     </table>
                 </div>
                 <!-- ////////////////////// ส่วนของตาราง //////////////// -->
           <br>
-          <br>
-
-                <div class="form-group">
-                       <font size="3">
-                            <div class="form-group">
-                                <label class="col-md-5 control-label">วันสิ้นสุดของเทอมนี้<font color="red">**</font></label>
-                                <div class="col-md-3" style="display: inline"><input type="text" name="Date" class="form-control" id="datetimepicker" placeholder="วันที่" required=""></div>
-
-                                <div class="col-md-3" style="display: inline">
-                                      
-                                      <button type="submit" name="submit" class="btn btn-primary">Submit</button>
-                                </div>
-
-                            </div>
-
-                      </font>
-                    
-                </div>
-          </form>
-          <br>
-          <br>
-
-          <div class="table-responsive table-inverse transition visible" id="table" style="display: block !important;">
-              <table class="table table-bordered" id="border">
-                <tbody><tr>
-                </tr></tbody><thead>
-                  <tr><th class="bg-primary">Date</th>
-                  <th class="bg-primary">Use Time</th>
-                  <th class="bg-primary">Status</th>
-                  <th class="bg-primary">Cancle</th>
-                </tr>
-                </thead>
-          @foreach($Rsroom as $Rsrooms)
-          @if($Room->roomID == $Rsrooms->roomID)
-                  <tbody >
-                  
-                  <tr>
-                   <td class="bg-warning"><font size="3"><?php echo substr($Rsrooms->RsStart, 8 ,2); ?>-<?php echo substr($Rsrooms->RsStart, 5 ,2); ?>-<?php echo (int)substr($Rsrooms->RsStart, 0 ,4)+543; ?></font></td>
-                   <td class="bg-warning"><font size="3"><?php echo substr($Rsrooms->RsStart, 11 ,9); ?> - <?php echo substr($Rsrooms->RsEnd, 11 ,9); ?></font></td>
-                   <td class="bg-warning">
-                  
-                    @if($status[$i] == "รอใช้งาน")  
-                          <img width="12" height="12" src="{{ asset('/img/demo/circlewaiting.png') }}">&nbsp;<font size="3" color="red">{{$status[$i]}}</font>
-                    @else
-                          <img width="12" height="12" src="{{ asset('/img/demo/circleready.png') }}">&nbsp;<font size="3" color="red">{{$status[$i]}}</font>
-                    @endif
-                  
-                  
-                    </td>
-                  <form action="{{ url('/room/reservations/'.$Rsrooms->RsroomID.'') }}" method="post">
-                           <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                           <input type="hidden" name="_method" value="DELETE">
-                  <td class="bg-warning"><button class="btndanger"><i class="fa fa-close"></i></button></td>
-                  </form>
-                  </tr>
-                  </tbody>
-                  <?php $i++ ?>
-          @endif
-          @endforeach
-             </table>
-         </div>
+          <div class="hr"></div>
         </div>
       </div>
       <div class="container transition visible" id="form" style="display: block !important;">
@@ -307,35 +254,70 @@
         <div class="row">
             <div class="col-md-12 col-md-offset-0">
                         <br>
-                        <br>
+
                         <h2 class="ui left floated header">
                         <font id="formtext" size="6" color="#B92000">FORM</font><br> <font id="reservetext" size="5" color="#828282">RESERVATION</font>
                         </h2>
             <div class="ui clearing divider"></div>
                 <div class="ui raised segment">
                   <br>
-                  <form class="form-horizontal transition visible" action="{{ url('/room/addtable/create/'.$Room->roomID) }}" enctype="multipart/form-data" method="post"  id="reservationform" style="display: block !important;">
+                  <form class="form-horizontal transition visible" action="{{ url('/room/addtable/add/'.$Room->roomID) }}" enctype="multipart/form-data" method="post" style="display: block !important;">
                       <input type="hidden" name="_token" value="{{ csrf_token() }}">
                           <font size="3">
+                            <?php $check=true; ?>
                             <div class="form-group">
-                                <label class="col-md-5 control-label">Date<font color="red">**</font></label>
+                                <label class="col-md-5 control-label">End Term<font color="red">**</font></label>
+                                  @if(count($Datetable)!=0)
+                                    @foreach ($Datetable as $Datetables)
+                                      @if ($Datetables->roomID == $Room->roomID)
+                                        <div class="col-md-3" style="display: inline"><input type="text" name="EndTerm" class="form-control" id="datetimepicker" value='<?php echo substr($Datetables->EndTerm, 8 ,2); ?>-<?php echo substr($Datetables->EndTerm, 5 ,2); ?>-
+                                          <?php echo (int)substr($Datetables->EndTerm, 0 ,4); ?>' placeholder="วันที่" required=""></div>
+                                        <?php $check=false;?>
+                                        @break
+                                    @endif
+                                    @endforeach
+                                  @endif
+                                  @if($check==true)
+                                    <div class="col-md-3" style="display: inline"><input type="text" name="Date" class="form-control" id="datetimepicker" placeholder="วันที่" required=""></div>
+                                  @endif
+                            </div>
+
+                          <div class="form-group">
+                              <label class="col-md-5 control-label">Day<font color="red">**</font></label>
+                              <div class="col-md-3">
+                                <select name="Day">
+                                  <option value="MO">จันทร์</option>
+                                  <option value="TU">อังคาร</option>
+                                  <option value="WE">พุธ</option>
+                                  <option value="TH">พฤหัสบดี</option>
+                                  <option value="FR">ศุกร์</option>
+                                  <option value="SA">เสาร์</option>
+                                  <option value="SU">อาทิตย์</option>
+                                </select>
+                              </div>
+                          </div>
+
+
+                            <div class="form-group">
+                                <label class="col-md-5 control-label">Subject<font color="red">**</font></label>
 
                                 <div class="col-md-3">
-                                      <input type="text" name="RsDate" class="form-control" id="datetimepicker1" placeholder="วันที่" required="">
+                                      <input type="text" name="Subject" class="form-control"  placeholder="วิชา" required="">
                                 </div>
                             </div>
+
                             <div class="form-group">
                                 <label class="col-md-5 control-label">Time Start<font color="red">**</font></label>
 
                                 <div class="col-md-3">
-                                      <input type="text" name="RsStart" class="form-control" id="datetimepicker2" placeholder="เวลาเริ่มต้น" required="">
+                                      <input type="text" name="TableStart" class="form-control" id="datetimepicker2" placeholder="เวลาเริ่มต้น" required="">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-md-5 control-label">Time End<font color="red">**</font></label>
 
                                 <div class="col-md-3">
-                                      <input type="text" name="RsEnd" class="form-control" id="datetimepicker3" placeholder="เวลาสิ้นสุด" required="">
+                                      <input type="text" name="TableEnd" class="form-control" id="datetimepicker3" placeholder="เวลาสิ้นสุด" required="">
                                 </div>
                             </div>
 
@@ -351,7 +333,7 @@
             </div>
         </div>
     <br>
-   
+
 
   <!-- Scripts -->
      <script src="{{ asset('/js/semantic.min.js') }}"></script>
@@ -376,13 +358,13 @@
         });
         $(function () {
              $('#datetimepicker2').datetimepicker({
-                format: 'HH:mm',
+                format: 'HH:00',
                 useCurrent: 'day'
             });
         });
         $(function () {
              $('#datetimepicker3').datetimepicker({
-                format: 'HH:mm',
+                format: 'HH:00',
                 useCurrent: 'day'
             });
         });

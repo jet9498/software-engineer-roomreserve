@@ -165,9 +165,9 @@
           </h2>
                     <div class="ui clearing divider"></div>
                      <br>
-                       @foreach ($Table as $Tables)
-                          @if ($Tables->roomID == $Room->roomID)
-                            <font color="red">*</font><font>วันสิ้นสุดของเทอมนี้ : <?php echo substr($Tables->Date, 8 ,2); ?>-<?php echo substr($Tables->Date, 5 ,2); ?>-<?php echo (int)substr($Tables->Date, 0 ,4)+543; ?></font>
+                       @foreach ($Datetable as $Datetables)
+                          @if ($Datetables->roomID == $Room->roomID)
+                            <font color="red">*</font><font>วันสิ้นสุดของเทอมนี้ : <?php echo substr($Datetables->EndTerm, 8 ,2); ?>-<?php echo substr($Datetables->EndTerm, 5 ,2); ?>-<?php echo (int)substr($Datetables->EndTerm, 0 ,4)+543; ?></font>
                             @break
                         @endif
                         @endforeach
@@ -200,30 +200,54 @@
                         </td>
                     <?php }?>
                       </tr>
-                   <!--  // วนลูปแสดงจำนวนวันตามที่กำหนด -->
-                    @for($i_day=0;$i_day<$num_dayShow;$i_day++)
-                      <tr>
-                        <td align="center" valign="middle" height="50" class="day_schedule" bgcolor="#101010">
-                        <div class="day_schedule_text">
-                            <font color="#DCDCDC" size="3"><?=$thai_day_arr[$i_day]?></font>
-                            <br>
+                      <!-- // วนลูปแสดงจำนวนวันตามที่กำหนด -->
+                      @for($i_day=0;$i_day<$num_dayShow;$i_day++)
 
-                        </div>
-                        </td>
-                    @for($i_time=0;$i_time<$sc_numCol-1;$i_time++)
-                      <?php $check=false ?>
-                      @foreach ($Table as $Tables)
-                        @if ($Tables->roomID == $Room->roomID && $Tables->Day == $eng_day_arr[$i_day] && $Tables->TableStart == "$sc_timeStep[$i_time]:00")
-                          <td align="center" valign="middle" height="50" bgcolor="#B92000"></td>
-                          <?php $check=true; break;?>
-                        @endif
-                      @endforeach
-                      @if (!$check)
-                        <td align="center" valign="middle" height="50" bgcolor="#FFFFFF"></td>
-                      @endif
-                    @endfor
-                      </tr>
-                    @endfor
+                        <tr>
+                          <td align="center" valign="middle" height="50" class="day_schedule" bgcolor="#101010">
+                          <div class="day_schedule_text">
+                              <font color="#DCDCDC" size="3"><?=$thai_day_arr[$i_day]?></font>
+                              <br>
+
+                          </div>
+                          </td>
+                      @for($i_time=0;$i_time<$sc_numCol-1;$i_time++)
+                          @if(count($Table)!=0)
+                              @foreach ($Table as $Tables)
+                                <?php $check=true;?>
+                                  @if($Tables->roomID == $Room->roomID)
+                                    @if($Tables->Day == $eng_day_arr[$i_day])
+                                        @if($sc_timeStep[$i_time].':00' == $Tables->TableStart)
+                                            <?php $num=0; ?>
+                                            @while($check!=false)
+                                                <?php $i_time++;$num++;?>
+                                                @if($sc_timeStep[$i_time].':00' == $Tables->TableEnd)
+                                                    <?php $css_use="class=\"activity\"";
+                                                    $dataShowIN=$Tables->Subject;
+                                                    $colspan="colspan=\"".$num."\"";
+                                                    $check=false;
+                                                    ?>
+                                                    <td <?=$css_use?> <?=$colspan?> align="center" valign="middle" height="50" bgcolor="#3399FF">
+                                                                <font color="#DCDCDC" size="3"><?=$dataShowIN?> </font>
+                                                    </td>
+                                                @endif
+                                            @endwhile
+                                        @endif
+                                    @endif
+                                  @endif
+                              @endforeach
+                          @endif
+                          <?php $css_use="class=\"activity\""; ?>
+                          <?php $dataShowIN="";
+                          $colspan="colspan=\""."0"."\"";
+                          ?>
+                          <td <?=$css_use?> <?=$colspan?> align="center" valign="middle" height="50">
+                              <?php  echo $dataShowIN;?>
+                          </td>
+                      @endfor
+                        </tr>
+                      @endfor
+                      </table>
                     </table>
                 </div>
                 <!-- ////////////////////// ส่วนของตาราง //////////////// -->
@@ -239,6 +263,7 @@
                   <tr><th class="bg-primary">Date</th>
                   <th class="bg-primary">Use Time</th>
                   <th class="bg-primary">Status</th>
+                  <th class="bg-primary">Name</th>
                   <th class="bg-primary">Cancle</th>
                 </tr>
                 </thead>
@@ -259,8 +284,13 @@
                           <img width="12" height="12" src="{{ asset('/img/demo/circleready.png') }}">&nbsp;<font size="3" color="red">{{$status[$i]}}</font>
                     @endif
 
-
                     </td>
+                    @foreach($user as $users)
+                      @if($users->id == $Rsrooms->userID)
+                        <td class="bg-warning"><font size="3">{{$users->name}}</font></td>
+                        @break
+                      @endif
+                    @endforeach
                   <form action="{{ url('/room/reservations/'.$Rsrooms->RsroomID.'') }}" method="post">
                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
                            <input type="hidden" name="_method" value="DELETE">
@@ -268,9 +298,8 @@
                   </form>
                   </tr>
                   </tbody>
-
           @endif
-          <?php $i++ ?>
+            <?php $i++ ?>
           @endforeach
 
 

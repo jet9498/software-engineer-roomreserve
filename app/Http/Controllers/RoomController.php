@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use Auth;
 use Illuminate\Http\Request;
 use App\Rsroom;
 use App\Room;
 use App\Table;
-use \Auth;
+use App\User;
+use App\Datetable;
+use Carbon\Carbon;
 
 class RoomController extends Controller
 {
@@ -14,8 +17,43 @@ class RoomController extends Controller
     {
       $Rooms = Room::find($id);
       $Rsroom = Rsroom::get();
+      $datetable = Datetable::get();
       $Table = Table::get();
-      return view('room.view')->with('Room',$Rooms)->with('Rsroom',$Rsroom)->with('Table',$Table);
+      $user = User::get();
+
+      $i=0;
+      foreach ($Rsroom as $Rsrooms) {
+          $timenow = Carbon::now();
+          $timenow = $timenow->toDatetimeString();
+          $timestart = $Rsrooms->RsStart;
+          $timeout = $Rsrooms->RsEnd;
+          // dd($timeout);
+          //dd("hi");
+          if($timenow > $timeout){
+                  $delete = Rsroom::where('RsroomID',$Rsrooms->RsroomID)->delete();
+          }
+      }
+        if(count($Rsroom)!=0){
+
+            foreach ($Rsroom as $Rsrooms) {
+                    $timenow = Carbon::now();
+                      $timenow = $timenow->toDatetimeString();
+                      $timestart = $Rsrooms->RsStart;
+                      $timeout = $Rsrooms->RsEnd;
+                    if($timenow >= $timestart){
+
+                              $status[$i] = "กำลังใช้งาน";
+                              $i++;
+                    }
+                    else {
+                              $status[$i] = "รอใช้งาน";
+                              $i++;
+                    }
+
+            }
+            return view('room.view')->with('Room',$Rooms)->with('Rsroom',$Rsroom)->with('Table',$Table)->with('status',$status)->with('user',$user)->with('Datetable',$datetable);
+      }
+      return view('room.view')->with('Room',$Rooms)->with('Rsroom',$Rsroom)->with('Table',$Table)->with('user',$user)->with('Datetable',$datetable);
     }
     public function table($id)
     {
@@ -66,7 +104,7 @@ class RoomController extends Controller
     }
      public function delete($id)
     {
-      
+
      $destroy = Room::where('roomID',$id)->delete();
       return redirect()->back();
     }
