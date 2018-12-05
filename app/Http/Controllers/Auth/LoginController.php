@@ -55,9 +55,6 @@ class LoginController extends Controller
     {
         $fail = 0;
         if(Auth::attempt([$this->field() => request()->email , 'password' => request()->password])){
-                if(Auth::user()->status == 1){
-                        return redirect('/home.blade.php');
-                }
             return redirect()->back();
         }
         else{
