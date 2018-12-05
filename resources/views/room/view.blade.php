@@ -73,7 +73,7 @@
         @else
 
 
-            <li class="dropdown"><a data-toggle="dropdown" href="#">{{Auth::user()->name}}
+            <li class="dropdown"><a data-toggle="dropdown" href="#"><img width="23" height="22" src="{{ asset('/img/demo/profile.png') }}"> {{Auth::user()->name}}
             </a>
             <ul class="dropdown-menu">
             @if(Auth::guest() || Auth::user()->status != 1)
