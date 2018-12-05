@@ -59,11 +59,31 @@
         <ul class="nav navbar-nav navbar-right">
 
           @if (Auth::guest())
+
             <li><a href="#"data-toggle="modal" data-target="#id01"><span class="glyphicon glyphicon-log-in" ></span> เข้าสู่ระบบ</a></li>
 
 
+<<<<<<< HEAD
+=======
+
+        </ul>
+      </li>
+        </ul>
+
+>>>>>>> c110cda63ca362feb0ef1973c9174d4eb1379d42
         @else
-            <li><a href="{{ url('/logout') }}"><span class="glyphicon glyphicon-log-in" ></span> {{Auth::user()->name}}</a></li>
+
+            <li class="dropdown"><a data-toggle="dropdown" href="#">{{Auth::user()->name}}
+            </a>
+            <ul class="dropdown-menu">
+            @if(Auth::guest() || Auth::user()->status != 1)
+            <li><a href="{{ url('/usercreate') }}" ><img width="23" height="22" src="{{ asset('/img/demo/manage.ico') }}"> จัดการโปรไฟล์</a></li>
+
+            <li><a href="{{ url('/logout') }}" ><img width="23" height="22" src="{{ asset('/img/demo/logout.png') }}"> ออกจากระบบ</a></li>
+            @else
+            <li><a href="section4" ><img width="23" height="22" src="{{ asset('/img/demo/manage.ico') }}">  จัดการโปรไฟล์</a></li>
+            <li><a href="{{ url('/logout') }}" ><img width="23" height="22" src="{{ asset('/img/demo/logout.png') }}"> ออกจากระบบ</a></li>
+            @endif
         @endif
 
 
