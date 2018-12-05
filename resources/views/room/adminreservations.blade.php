@@ -289,7 +289,7 @@
                         @break
                       @endif
                     @endforeach
-                  <form action="{{ url('/room/reservations/'.$Rsrooms->RsroomID.'') }}" method="post">
+                  <form action="{{ url('/room/adminreservations/delete/'.$Rsrooms->RsroomID.'') }}" method="post">
                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
                            <input type="hidden" name="_method" value="DELETE">
                   <td class="bg-warning"><button class="btndanger"><i class="fa fa-close"></i></button></td>

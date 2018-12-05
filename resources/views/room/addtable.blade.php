@@ -278,7 +278,7 @@
                                     @endforeach
                                   @endif
                                   @if($check==true)
-                                    <div class="col-md-3" style="display: inline"><input type="text" name="Date" class="form-control" id="datetimepicker" placeholder="วันที่" required=""></div>
+                                    <div class="col-md-3" style="display: inline"><input type="text" name="EndTerm" class="form-control" id="datetimepicker" placeholder="วันที่" required=""></div>
                                   @endif
                             </div>
 
@@ -348,11 +348,6 @@
   date.setHours(0,0,0,0);
         $(function () {
              $('#datetimepicker').datetimepicker({
-                format: 'DD-MM-YYYY'
-            });
-        });
-          $(function () {
-             $('#datetimepicker1').datetimepicker({
                 format: 'DD-MM-YYYY'
             });
         });
