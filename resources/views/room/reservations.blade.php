@@ -56,7 +56,13 @@
           <li><a href="#"data-toggle="modal" data-target="#contact">ติดต่อเรา</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
-            <li><a href="{{ url('/logout') }}"><span class="glyphicon glyphicon-log-in" ></span> {{Auth::user()->name}}</a></li>
+             <li class="dropdown"><a data-toggle="dropdown" href="#">{{Auth::user()->name}}
+            </a>
+            <ul class="dropdown-menu">
+            
+            <li><a href="{{ url('/usercreate') }}" ><img width="23" height="22" src="{{ asset('/img/demo/manage.ico') }}"> จัดการโปรไฟล์</a></li>
+
+            <li><a href="{{ url('/logout') }}" ><img width="23" height="22" src="{{ asset('/img/demo/logout.png') }}"> ออกจากระบบ</a></li>
         </ul>
       </div>
     </div>
@@ -252,7 +258,7 @@
                 </div>
                 <!-- ////////////////////// ส่วนของตาราง //////////////// -->
           <br>
-                <font color="red">*</font><font>สีแดงคือเวลาที่ไม่สามารถจองได้</font><font color="red">*</font>
+                <font color="red">*</font><font>สีฟ้าคือเวลาที่ไม่สามารถจองได้</font><font color="red">*</font>
           <br>
           <br>
 
@@ -357,11 +363,12 @@
                     <br>
                     <br>
           </div>
+          <br>
+          <br>
+          <br>
       </div>
     </div>
-    <br>
-    <center>
-    </center>
+
     <!-- Scripts -->
     <script src="{{ asset('/js/semantic.min.js') }}"></script>
     <script>

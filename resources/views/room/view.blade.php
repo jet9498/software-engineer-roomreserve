@@ -336,7 +336,7 @@
 
           <br>
 
-                   <font color="red">*</font><font>สีแดงคือเวลาที่ไม่สามารถจองได้</font><font color="red">*</font>
+                   <font color="red">*</font><font>สีฟ้าคือเวลาที่ไม่สามารถจองได้</font><font color="red">*</font>
                    <br>
 
           <br>
@@ -385,18 +385,15 @@
 
              </table>
          </div>
+         <br>
+         <br>
+         <br>
 
 
 
         </div>
       </div>
 
-    <center>
-    <div class="navbar-fixed-bottom" id="para2" style="display: block;">
-        <i class="wizard icon"></i>
-        <font size="2"> Powered by CPE-KUSRC © 2018</font>
-    </div>
-    </center>
     <!-- Scripts -->
     <script src="{{ asset('/js/semantic.min.js') }}"></script>
     <script>
