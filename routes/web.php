@@ -21,7 +21,7 @@ Route::delete('/room/reservations/{id}', 'ReservationsController@destroyReserve'
 
 Route::get('/room/adminreservations/{id}', 'AdminreservationsController@index');
 Route::post('/room/adminreservations/{id}', 'AdminreservationsController@create');
-Route::delete('/room/adminreservations/{id}', 'AdminreservationsController@destroyReserve');
+Route::delete('/room/adminreservations/delete/{id}', 'AdminreservationsController@destroyReserve');
 
 Route::get('/room/addtable/{id}', 'TableController@table');
 Route::post('/room/addtable/add/{id}', 'TableController@addtable');

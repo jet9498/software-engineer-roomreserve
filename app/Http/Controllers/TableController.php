@@ -39,16 +39,20 @@ class TableController extends Controller
               \Session::flash('flash_message','เวลาเริ่มต้องน้อยกว่าเวลาจบ');
               return redirect()->back();
       }
-
+      if($create->TableStart == $create->TableEnd){
+              \Session::flash('flash_message','เวลาเริ่มต้องไม่เท่ากับเวลาจบ');
+              return redirect()->back();
+      }
       if($create->TableStart<'09:00:00'){
               \Session::flash('flash_message','เวลาในการจองต้องอยู่ในช่วง 9.00 - 22.00');
               return redirect()->back();
       }
 
-      if($create->TableStart > '22:00:00'){
+      if($create->TableEnd > '22:00:00'){
               \Session::flash('flash_message','เวลาในการจองต้องอยู่ในช่วง 9.00 - 22.00');
               return redirect()->back();
       }
+
       if(count($Tables)!=0){
         foreach ($Tables as $Table) {
           if($create->Day == $Table->Day){
@@ -69,19 +73,18 @@ class TableController extends Controller
       }
       if(count($Rsrooms)!=0){
         foreach ($Rsrooms as $Rsroom) {
-          $RsDate = $Rsoom->RsStart;
+          $RsDate = $Rsroom->RsStart;
           $RsDate = date('Y-m-d', strtotime($RsDate));
           $Date = Carbon::parse($RsDate);
-          $Date = $Date->toDateString();
           $Day = strtoupper(substr($Date->format('l'), 0, 2));
 
-          $RsStart = $Rsoom->RsStart;
+          $RsStart = $Rsroom->RsStart;
           $RsStart = date('H:i', strtotime($RsStart));
           $RsStart .=':00';
           $RsStart = Carbon::parse($RsStart);
           $RsStart = $RsStart->toTimeString();
 
-          $RsEnd = $Rsoom->RsEnd;
+          $RsEnd = $Rsroom->RsEnd;
           $RsEnd = date('H:i', strtotime($RsEnd));
           $RsEnd .=':00';
           $RsEnd = Carbon::parse($RsEnd);
@@ -117,7 +120,7 @@ class TableController extends Controller
 
       if(count($Rsrooms)!=0){
         foreach ($Rsrooms as $Rsroom) {
-          $RsDate = $Rsoom->RsStart;
+          $RsDate = $Rsroom->RsStart;
           $RsDate = date('Y-m-d', strtotime($RsDate));
           $Date = Carbon::parse($RsDate);
           $Date = $Date->toDateString();
@@ -137,7 +140,7 @@ class TableController extends Controller
               \Session::flash('flash_message','End Term ต้องมากกว่าวันปัจจุบัน');
               return redirect()->back();
       }
-      
+
       $create->save();
       $create1->save();
       \Session::flash('flash_message4','ลงเวลาสำเร็จ');
