@@ -13,6 +13,7 @@
 
 Route::get('/', 'HomeController@index');
 Route::get('/usercreate', 'UserController@index');
+Route::delete('/usercreate/{id}', 'UserController@destroy');
 
 Route::get('/room/reservations/{id}', 'ReservationsController@index');
 Route::delete('/room/reservations/{id}', 'ReservationsController@destroy');

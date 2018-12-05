@@ -12,53 +12,16 @@ use Carbon\Carbon;
 class UserController extends Controller
 {
         public function index(){
-                $Rooms = Room::get();
-                $Rsroom = Rsroom::get();
-
-                $i=0;
-                foreach ($Rsroom as $Rsrooms) {
-                    $timenow = Carbon::now();
-                    $timenow = $timenow->toDatetimeString();
-                    $timestart = $Rsrooms->RsStart;
-                    $timeout = $Rsrooms->RsEnd;
-                    // dd($timeout);
-                    //dd("hi");
-                    if($timenow > $timeout){
-                            $delete = Rsroom::where('RsroomID',$Rsrooms->RsroomID)->delete();
-                    }
-                }
-                if(count($Rsroom)!=0){
-                      foreach ($Rsroom as $Rsrooms) {
-                              $timenow = Carbon::now();
-                                $timenow = $timenow->toDatetimeString();
-                                $timestart = $Rsrooms->RsStart;
-                                $timeout = $Rsrooms->RsEnd;
-                              if($timenow >= $timestart){
-                                        $status[$i] = "กำลังใช้งาน";
-                                        $i++;
-                              }
-                              else {
-                                        $status[$i] = "รอใช้งาน";
-                                        $i++;
-                              }
-
-                      }
-                      return view('room.usercreate')->with('Room',$Rooms)->with('Rsroom',$Rsroom)->with('status',$status);
-                }
-                return view('room.usercreate')->with('Room',$Rooms)->with('Rsroom',$Rsroom);
+                $users = User::get();
+                return view('room.usercreate')->with('users',$users);
         }
 
         public function destroy($id){
-                $Rsrooms = Rsroom::find($id);
-                $user = Auth::user()->id;
-                // dd($user);
-                if($Rsrooms->userID == $user){
-                        $delete = Rsroom::where('RsroomID',$Rsrooms->RsroomID)->delete();
-                        \Session::flash('flash_message4','ยกเลิกจองสำเร็จ!');
-                }
-                else{
-                        \Session::flash('flash_message3','ไม่สามารถยกเลิกการจองของผู้อื่นได้');
-                }
+                $user = User::where('id',$id)->first();
+
+                User::where('id',$user->id)->delete();
+                \Session::flash('flash_message3','ลบ user สำเร็จ');
+
                 return redirect()->back();
         }
 }

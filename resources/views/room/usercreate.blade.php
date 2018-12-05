@@ -229,12 +229,23 @@
               <table class="table table-bordered" id="border">
                 <tbody><tr>
                 </tr></tbody><thead>
-                  <tr><th class="bg-primary">Date</th>
-                  <th class="bg-primary">Use Time</th>
-                  <th class="bg-primary">Status</th>
+                  <tr><th class="bg-primary">Name</th>
+                  <th class="bg-primary">Email</th>
+                  <th class="bg-primary">Manage</th>
                 </tr>
+                @foreach($users as $user)
+                  <tr>
+                    <td>{{$user->name}}</td>
+                    <td>{{$user->email}}</td>
+                    <form action="{{ url('/usercreate'.'/'.$user->id) }}" method="post">
+                           <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                           <input type="hidden" name="_method" value="DELETE">
+                    <td class="bg-warning"><button class="btndanger"><i class="fa fa-close"></i></button></td>
+                    </form>
+                  </tr>
+                @endforeach
                 </thead>
-                              </table>
+              </table>
             </div>
         </div>
       </div>
