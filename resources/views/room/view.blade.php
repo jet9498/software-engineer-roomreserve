@@ -13,9 +13,10 @@
     <!-- Styles -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('/css/styleHome.css') }}">
-    <link rel="stylesheet" href="{{ asset('/css/styleReservation.css') }}">
+    <link rel="stylesheet" href="{{ asset('/css/styleReservations.css') }}">
     <link rel="stylesheet" href="{{ asset('/css/stylesemantic.css') }}">
      <link rel="stylesheet" href="{{ asset('/css/styleapp.css') }}">
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <script src="{{ asset('/js/styleapp.js') }}"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
@@ -28,7 +29,7 @@
 
 
     </head>
-<body id="bodycolor">
+<body id="bodycolor" onload="startTime()">
 
 
   <nav class="navbar navbar-inverse navbar-fixed-top">
@@ -55,13 +56,13 @@
           <li><a href="#"data-toggle="modal" data-target="#contact">ติดต่อเรา</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
-            @if (Auth::guest())
-            <li><a href="#"data-toggle="modal" data-target="#id01"><span class="glyphicon glyphicon-log-in" ></span> เข้าสู่ระบบ</a></li>
+             <li class="dropdown"><a data-toggle="dropdown" href="#">{{Auth::user()->name}}
+            </a>
+            <ul class="dropdown-menu">
 
+            <li><a href="{{ url('/usercreate') }}" ><img width="23" height="22" src="{{ asset('/img/demo/manage.ico') }}"> จัดการโปรไฟล์</a></li>
 
-        @else
-            <li><a href="{{ url('/logout') }}"><span class="glyphicon glyphicon-log-in" ></span> {{Auth::user()->name}}</a></li>
-        @endif
+            <li><a href="{{ url('/logout') }}" ><img width="23" height="22" src="{{ asset('/img/demo/logout.png') }}"> ออกจากระบบ</a></li>
         </ul>
       </div>
     </div>
@@ -79,7 +80,7 @@
         <div class="modal-body">
           <p>
         <b>
-          <span>1) ในการจองห้องจะต้องจอง 1 ชั่วโมงขึ้นไป </span>
+          <span>1) ในการจองห้องจะต้องจอง 1 ชั่วโมงขึ้นไป</span>
           <br>
           <span>2) ท่านสามารถยกเลิก / แก้ไข การจองของตนเองได้ที่หน้าการจองของท่านได้ทันที</span>
           <br>
@@ -136,84 +137,6 @@
     </div>
   </div>
 
-  <div class="modal fade " id="id01" role="dialog" style="z-index: 9999">
-    <!--ล็อคอินของ laravel user-->
-  <div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Login</div>
-                <div class="panel-body">
-                    <form class="form-horizontal" role="form" method="POST" action="{{ url('/login') }}">
-                        {{ csrf_field() }}
-
-                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label for="email" class="col-md-4 control-label">E-Mail Address</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required autofocus>
-
-                                @if ($errors->has('email'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                            <label for="password" class="col-md-4 control-label">Password</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control" name="password" required>
-
-                                @if ($errors->has('password'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" name="remember"> Remember Me
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-md-8 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary">
-                                    Login
-                                </button>
-                                <!-- เงื่อนไขเวลา จะเข้าหน้า Admin -->
-
-                                <button class="btn btn-primary"href="#" data-toggle="modal" data-target="#id02">
-                                    Admin
-                                </button>
-
-
-                                <a class="btn btn-link" href="{{ url('/password/reset') }}">
-                                    Forgot Your Password?
-                                </a>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-</div>
-
-
-
-
-
 
 
     <div id="loading">
@@ -235,24 +158,26 @@
           @if(Session::has('flash_message2'))
             <div class="alert alert-success"><em> <center><li>{!! session('flash_message2') !!}</li></center></em></div>
           @endif
+          @if(Session::has('flash_message3'))
+            <div class="alert alert-danger"><em> <center><li>{!! session('flash_message3') !!}</li></center></em></div>
+          @endif
+          @if(Session::has('flash_message4'))
+            <div class="alert alert-success"><em> <center><li>{!! session('flash_message4') !!}</li></center></em></div>
+          @endif
 
           <h2 class="ui left floated header"style="width:100%"><font id="statustext" size="6" color="#B92000">STATUS</font><br>
             <font id="roomnametext" size="5" color="#828282">{{$Room->roomName}}</font>
             <div class="hr"></div>
-
           </h2>
-
-          </h2>
-
-           <br>
-             @foreach ($Datetable as $Datetables)
-                @if ($Datetables->roomID == $Room->roomID)
-                  <font color="red">*</font><font>วันสิ้นสุดของเทอมนี้ : <?php echo substr($Datetables->EndTerm, 8 ,2); ?>-<?php echo substr($Datetables->EndTerm, 5 ,2); ?>-<?php echo (int)substr($Datetables->EndTerm, 0 ,4)+543; ?></font>
-                  @break
-              @endif
-              @endforeach
-            <br>
-
+                    <div class="ui clearing divider"></div>
+                     <br>
+                       @foreach ($Datetable as $Datetables)
+                          @if ($Datetables->roomID == $Room->roomID)
+                            <font color="red">*</font><font>วันสิ้นสุดของเทอมนี้ : <?php echo substr($Datetables->EndTerm, 8 ,2); ?>-<?php echo substr($Datetables->EndTerm, 5 ,2); ?>-<?php echo (int)substr($Datetables->EndTerm, 0 ,4)+543; ?></font>
+                            @break
+                        @endif
+                        @endforeach
+                      <br>
 
                     <!-- ////////////////////// ส่วนของตาราง //////////////// -->
                     <?php
@@ -266,7 +191,7 @@
                     ////////////////////// ส่วนของการจัดการตารางเวลา /////////////////////
                     ?>
                     <br>
-                    <div class="wrap_schedule"  style="overflow-x:auto;">
+                    <div class="wrap_schedule" style="overflow-x:auto;">
                     <table  align="center" border="1" cellspacing="2" cellpadding="2"style="border-collapse:collapse;" >
                       <tr class="time_schedule">
                         <td align="center" valign="middle" height="50" bgcolor="#101010">
@@ -281,7 +206,6 @@
                         </td>
                     @endfor
                       </tr>
-
                       <!-- // วนลูปแสดงจำนวนวันตามที่กำหนด -->
                       @for($i_day=0;$i_day<$num_dayShow;$i_day++)
 
@@ -297,7 +221,7 @@
                           @if(count($Table)!=0)
                               @foreach ($Table as $Tables)
                                 <?php $check=true;?>
-                                @if($Tables->roomID == $Room->roomID)
+                                  @if($Tables->roomID == $Room->roomID)
                                     @if($Tables->Day == $eng_day_arr[$i_day])
                                         @if($sc_timeStep[$i_time].':00' == $Tables->TableStart)
                                             <?php $num=0; ?>
@@ -333,14 +257,12 @@
                     </table>
                 </div>
                 <!-- ////////////////////// ส่วนของตาราง //////////////// -->
-
+          <br>
+                <font color="red">*</font><font>สีฟ้าคือเวลาที่ไม่สามารถจองได้</font><font color="red">*</font>
+          <br>
           <br>
 
-                   <font color="red">*</font><font>สีฟ้าคือเวลาที่ไม่สามารถจองได้</font><font color="red">*</font>
-                   <br>
-
-          <br>
-              <div class="table-responsive table-inverse transition visible" id="table" style="display: block !important;">
+          <div class="table-responsive table-inverse transition visible" id="table" style="display: block !important;">
               <table class="table table-bordered" id="border">
                 <tbody><tr>
                 </tr></tbody><thead>
@@ -348,7 +270,6 @@
                   <th class="bg-primary">Use Time</th>
                   <th class="bg-primary">Status</th>
                   <th class="bg-primary">Name</th>
-
                 </tr>
                 </thead>
                 <?php $i=0 ?>
@@ -375,32 +296,22 @@
                         @break
                       @endif
                     @endforeach
-
                   </tr>
                   </tbody>
-                  <?php $i++ ?>
           @endif
+            <?php $i++ ?>
           @endforeach
 
 
              </table>
          </div>
-         <br>
-         <br>
-         <br>
-
-
-
         </div>
       </div>
 
-    <!-- Scripts -->
-    <script src="{{ asset('/js/semantic.min.js') }}"></script>
-    <script>
-        function goBack() {
-            window.history.back();
-        }
-    </script>
+
+
 </div>
+
+
 </body>
 </html>
