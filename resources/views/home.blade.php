@@ -48,20 +48,20 @@
             <li><a href="#section1">รายการห้อง</a></li>
             <li><a href="#" data-toggle="modal" data-target="#fam">ข้อปฏิบัติ</a></li>
             <li><a href="#section2">ติดต่อเรา</a></li>
-           
+
 
           @else
              <li><a href="#" data-toggle="modal" data-target="#register">สร้างไอดี</a></li>
-
+             <li><a href="{{ url('/manageid') }}" >จัดการไอดี</a></li>
           @endif
-          
+
         </ul>
         <ul class="nav navbar-nav navbar-right">
 
           @if (Auth::guest())
             <li><a href="#"data-toggle="modal" data-target="#id01"><span class="glyphicon glyphicon-log-in" ></span> เข้าสู่ระบบ</a></li>
 
- 
+
         @else
             <li><a href="{{ url('/logout') }}"><span class="glyphicon glyphicon-log-in" ></span> {{Auth::user()->name}}</a></li>
         @endif
@@ -204,7 +204,7 @@
                                     Login
                                 </button>
                                 <!-- เงื่อนไขเวลา จะเข้าหน้า Admin -->
-                                
+
                                 <a class="btn btn-link" href="{{ url('/password/reset') }}">
                                     Forgot Your Password?
                                 </a>
@@ -254,15 +254,15 @@
                             </div>
                         </div>
 
-                        
+
 
                         <div class="form-group">
                             <div class="col-md-8 col-md-offset-4">
                                 <button type="submit" class="btn btn-primary">
                                     สร้างห้อง
                                 </button>
-                                 
-                                
+
+
                             </div>
                         </div>
                     </form>
@@ -276,7 +276,7 @@
 
 
 
- 
+
  @if(Auth::guest() || Auth::user()->status != 1)
     <div id="section3">
     <div id="background">
@@ -292,7 +292,7 @@
     </div>
   </div>
  @else
-    
+
 @endif
 
   <div class="container" id="section1" style="padding-top: 50px">
@@ -311,7 +311,7 @@
         <!--do nothing -->
     @elseif(Auth::user()->status == 1)
         <button style="float:right" type="button" data-toggle="modal" data-target="#createRoom">สร้างห้อง</button>
-       
+
     @endif
   <div class="hr"></div>
     <br>
@@ -352,14 +352,14 @@
                             </div>
                         </div>
 
-                        
+
 
                         <div class="form-group">
                             <div class="col-md-8 col-md-offset-4">
                                 <button type="submit" class="btn btn-primary">
                                     แก้ไขห้อง
                                 </button>
-                                
+
                             </div>
                         </div>
                     </form>
@@ -377,15 +377,15 @@
         <div class="card" style="text-align:center">
 
           @if($Room->imgUrl == null)
-           
+
             <img src="{{$Room->imgUrl}}" style="width:100%;height: 150px">
-          @else 
-          
+          @else
+
            @if (Auth::guest())
-        
+
           <img src="{{$Room->imgUrl}}" style="width:100%;height: 150px">
           @elseif(Auth::user()->status == 1)
-        
+
           <form class="form-horizontal" role="form" method="POST"  data-toggle="modal" data-target="#{{ $Room->roomID }}">{{ csrf_field() }}
             <img  src="img/demo/compose.png" style="position:absolute;right:0; margin-top:3px;margin-right:50px; width:25px;height:25px ">
           </form>
@@ -405,12 +405,13 @@
               <a href="#" target='_parent'data-toggle="modal" data-target="#id01"><button id="button-menu" data-toggle="modal" data-target="#login-modal"><font id="textButton">จอง</font></button></a>
               <a href="{{ url('/room/view/'.$Room->roomID.'') }}" target='_parent'><button id="button-menu1" data-toggle="modal" ><font id="textButton">ตารางเวลา</font></button></a>
               @elseif(Auth::user()->status == 1)
-              <a href="{{ url('/room/addtable/'.$Room->roomID.'') }}" target='_parent'><button id="button-menu" data-toggle="modal" data-target="#login-modal"><font id="textButton">Show</font></button></a>
+              <a href="{{ url('/room/addtable/'.$Room->roomID.'') }}" target='_parent'><button id="button-menu" data-toggle="modal" data-target="#login-modal"><font id="textButton">ตารางเทอม</font></button></a>
+              <a href="{{ url('/room/adminreservations/'.$Room->roomID.'') }}" target='_parent'><button id="button-menu" data-toggle="modal" data-target="#login-modal"><font id="textButton">จอง</font></button></a>
               @else
               <a href="{{ url('/room/reservations/'.$Room->roomID.'') }}" target='_parent'><button id="button-menu" data-toggle="modal" data-target="#login-modal"><font id="textButton">จอง</font></button></a>
               <a href="{{ url('/room/view/'.$Room->roomID.'') }}" target='_parent'><button id="button-menu1" data-toggle="modal" ><font id="textButton">ตารางเวลา</font></button></a>
               @endif
-              
+
 
 
     </div>

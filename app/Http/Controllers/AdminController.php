@@ -25,7 +25,12 @@
         $user->password =  bcrypt($request->input('password'));
         $user->save();
 
-        return redirect()->back()->with('message', 'IT WORKS!');;
+        return redirect()->back()->with('message', 'สร้าง ไอดีสำเร็จ!');;
+    }
+    public function manageid()
+    {
+        $rooms = Room::get();
+        return view('room/manageid')->with('Rooms',$rooms);
     }
   }
 

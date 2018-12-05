@@ -16,10 +16,10 @@ class CreateTableTable extends Migration
       Schema::create('table', function (Blueprint $table) {
           $table->increments('TableID');
           $table->integer('roomID');
+          $table->string('Subject');
           $table->string('Day');
           $table->time('TableStart');
           $table->time('TableEnd');
-          $table->date('Date');
           $table->timestamps();
       });
     }
