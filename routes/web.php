@@ -31,9 +31,11 @@ Route::post('/room/create', 'RoomController@store');
 Route::post('/room/edit/{id}', 'RoomController@edit');
 Route::post('/room/delete/{id}', 'RoomController@delete');
 // 7 Routes = Restful API
+//user chane new password//
+Route::get('/room/usercreate/{id}','UserController@changepassword');
+Route::put('/room/usercreate/{id}','UserController@updatepassword');
 
-
-
+//========//
 Route::post('/login', 'Auth\LoginController@login');
 
 Route::get('/logout', 'Auth\LoginController@logout');

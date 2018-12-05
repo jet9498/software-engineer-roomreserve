@@ -55,8 +55,14 @@
           <li><a href="#"data-toggle="modal" data-target="#contact">ติดต่อเรา</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
-                        <li><a href="http://127.0.0.1:8000/logout"><span class="glyphicon glyphicon-log-in" ></span> Phongsatorn</a></li>
-                </ul>
+                  <li class="dropdown"><a data-toggle="dropdown" href="#">{{Auth::user()->name}}
+            </a>
+            <ul class="dropdown-menu">
+           
+            <li><a href="{{ url('/usercreate') }}" ><img width="23" height="22" src="{{ asset('/img/demo/manage.ico') }}"> จัดการโปรไฟล์</a></li>
+
+            <li><a href="{{ url('/logout') }}" ><img width="23" height="22" src="{{ asset('/img/demo/logout.png') }}"> ออกจากระบบ</a></li>
+           
       </div>
     </div>
   </nav>
@@ -138,14 +144,14 @@
             <div class="panel panel-default">
                 <div class="panel-heading">Login</div>
                 <div class="panel-body">
-                    <form class="form-horizontal" role="form" method="POST" action="http://127.0.0.1:8000/login">
-                        <input type="hidden" name="_token" value="b1B4ubL65WDVk91XXDUyldGQkNbZ0NcOE7t1Aj2F">
+                    <form class="form-horizontal" role="form" method="POST" action="{{ url('/login') }}">
+                        <input type="hidden" name="_token" value="">
 
                         <div class="form-group">
                             <label for="email" class="col-md-4 control-label">E-Mail Address</label>
 
                             <div class="col-md-6">
-                                <input id="email" type="email" class="form-control" name="email" value="" required autofocus>
+                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required autofocus>
 
                                                             </div>
                         </div>
@@ -194,6 +200,10 @@
 </div>
 </div>
 
+
+
+ 
+
     <div id="loading">
     </div>
     <div id="app">
@@ -202,19 +212,29 @@
         <div class="container transition visible" id="allmenu" style="display: block !important;">
     <div class="row">
         <div class="col-md-12 col-md-offset-0">
+          
+           
           <br>
           <br>
           <br>
           <br>
 
                     
-          <h2 class="ui left floated header"style="width:100%"><font id="statustext" size="6" color="#B92000">User</font><br>
+          <h2 class="ui left floated header"style="width:100%"><font id="statustext" size="6" color="#B92000">User</font><span></span>
             <font id="roomnametext" size="5" color="#828282">Create</font>
             <div class="hr"></div>
 
           </h2>
-
-          </h2>
+            <div class="ui clearing divider"></div>
+<div class="ui grey two item stackable menu" id="menu">    
+                    <a class="item" href="#"data-toggle="modal" data-target="#change-password">
+                        <img src="{{ asset('/img/demo/key.png') }}"><font size="2">&nbsp;เปลี่ยนรหัสผ่าน</font></a>
+                    
+                    <a class="item" href="#"data-toggle="modal" data-target="#edit-profile">
+                        <img src="{{ asset('/img/demo/profile.png') }}"><font size="2">&nbsp;แก้ไขโปรไฟล์</font></a>
+                          
+                </div>
+          
                     <div class="ui clearing divider"></div>
 
                     <!-- ////////////////////// ส่วนของตาราง //////////////// -->
@@ -223,8 +243,137 @@
 
                 <!-- ////////////////////// ส่วนของตาราง //////////////// -->
           <br>
-                         
-         
+           <div class="modal fade " id="change-password" role="dialog" style="z-index: 9999">
+                        <div class="container" id = "allmenu">
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <br>
+            <br>
+            <br>
+            <br>
+            
+                            
+                        <div class="ui clearing divider"></div>
+            <div class="ui raised segment">
+                <br>
+                <br>
+
+                @if(Session::has('flash_message'))
+                <div class="alert alert-danger"><em> <center><li><font size="3" >{!! session('flash_message') !!}</font></li></center></em></div>
+              @endif
+                  <form class="form-horizontal" action="{{ url('/room/usercreate/'.Crypt::encrypt(Auth::user()->id)) }}" method="post" enctype="multipart/form-data" onsubmit="return confirm('คุณแน่ใจที่จะเปลี่ยนพาสเวิร์ดแล้วใช่ไหม?')">
+                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                    <input type="hidden" name="_method" value="PUT">
+                    <font size ="3">
+                      <div class="form-group">
+                        <label class="col-md-4 control-label">Old Password<font color ="red">**</font></label>
+                        <div class="col-md-6">
+                          <input type="password" name="oldpassword" class="form-control" required>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="col-md-4 control-label">New Password<font color ="red">**</font></label>
+                        <div class="col-md-6">
+                          <input type="password" name="password" class="form-control" required>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label for="password-confirm" class="col-md-4 control-label">Confirm New Password<font color ="red">**</font></label>
+
+                        <div class="col-md-6">
+                            <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
+                        </div>
+                      </div>
+                    </font>
+                    <div class="form-group">
+                         <div class="col-md-6 col-md-offset-4">
+                           <button type="submit" class="btn btn-primary">
+                               <i class="write icon"></i>Submit
+                          </button>
+                        </div>              
+                    </div>
+               </form>
+                           <br>
+        </div>
+        <br>
+        <br>
+    </div>
+</div>
+    </div> 
+       </div>
+<div class="modal fade " id="edit-profile" role="dialog" style="z-index: 9999">
+                <div class="container" id = "allmenu">
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <br>
+            <br>
+            <br>
+            <br>
+            
+                          
+                 
+                        <div class="ui clearing divider"></div>
+            <div class="ui raised segment">
+                <br>
+                <br>
+
+                                    <form class="form-horizontal" method="POST" action="" onsubmit="return confirm('คุณแน่ใจที่จะเปลี่ยนข้อมูล Profile ใช่ไหม?')">
+                        <input type="hidden" name="_token" value="8yekQgPZFocMmiX5QZbLF4HjbEJSg1FG3GJuOQlq">
+                        <input type="hidden" name="_method" value="PUT">
+                        <font size ="3">
+                                <input id="StudentID" type="hidden" name="StudentID" value="admin">
+
+                              <div class="form-group">
+                                <label for="Firstname" class="col-md-4 control-label">Name</label>
+
+                                <div class="col-md-6">
+                                    <input id="Firstname" type="text" class="form-control" name="Firstname" value="" required>
+
+                                </div>
+                              </div>
+
+                            
+                          <div id = "hide">
+                                    
+                                </div>
+                            
+                            <div class="form-group">
+                                <label for="email" class="col-md-4 control-label">E-Mail Address</label>
+
+                                <div class="col-md-6">
+                                    <input id="email" type="email" class="form-control" name="email" value="" required>
+
+                                </div>
+                            </div>
+                            
+                            <div class="form-group" >
+                                <label for="Phone" class="col-md-4 control-label">Phone</label>
+
+                                <div class="col-md-6">
+                                    <input id="Phone" type="text" class="form-control" name="Phone" value="" required>
+
+                                </div>
+                            </div>
+                        </font>
+
+                        <div class="form-group">
+                            <div class="col-md-6 col-md-offset-4">
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="write icon"></i>Submit
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                                
+                <br>
+            </div>
+            <br>
+            <br>
+    </div>
+</div>
+    </div> 
+</div>
+
           <div class="table-responsive table-inverse transition visible" id="table" style="display: block !important;">
               <table class="table table-bordered" id="border">
                 <tbody><tr>
@@ -252,6 +401,36 @@
             window.history.back();
         }
     </script>
+    <script>
+$(document).ready(function(){
+  var fail = document.getElementById("failLogin").getAttribute('data-value');
+  if(fail == 1){
+    $('#change-password').modal('show');
+  }
+  // Add smooth scrolling to all links
+  $("a").on('click', function(event) {
+
+    // Make sure this.hash has a value before overriding default behavior
+    if (this.hash !== "") {
+      // Prevent default anchor click behavior
+      event.preventDefault();
+
+      // Store hash
+      var hash = this.hash;
+
+      // Using jQuery's animate() method to add smooth page scroll
+      // The optional number (800) specifies the number of milliseconds it takes to scroll to the specified area
+      $('html, body').animate({
+        scrollTop: $(hash).offset().top
+      }, 800, function(){
+
+        // Add hash (#) to URL when done scrolling (default click behavior)
+        window.location.hash = hash;
+      });
+    } // End if
+  });
+});
+</script>
 </div>
 </body>
 </html>
