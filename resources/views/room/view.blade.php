@@ -57,8 +57,8 @@
         <ul class="nav navbar-nav navbar-right">
             @if (Auth::guest())
             <li><a href="#"data-toggle="modal" data-target="#id01"><span class="glyphicon glyphicon-log-in" ></span> เข้าสู่ระบบ</a></li>
-
-
+            @elseif(Auth::user()->status == 1)
+            <li><a href="/"data-toggle="modal" data-target="#id01"><span class="glyphicon glyphicon-log-in" ></span> เข้าสู่ระบบ</a></li>
         @else
             <li><a href="{{ url('/logout') }}"><span class="glyphicon glyphicon-log-in" ></span> {{Auth::user()->name}}</a></li>
         @endif

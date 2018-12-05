@@ -87,17 +87,20 @@ class UserController extends Controller
         }
         $admin = Auth::user()->status;
         $staff = -1;
+        $rsroom = Rsroom::get();
         if($staff != Auth::user()->id){
             $staff = User::find($id);
         }      
         if(Auth::user()->id == $id || Auth::user()->status == 1){
             if(Auth::user()->id == 1 && Auth::user()->id != $id ){
                 return view('room.usercreate')->with('admin',$admin)
-                                              ->with('staff',$staff);
+                                              ->with('staff',$staff)
+                                              ->with('Rsroom',$rsroom);
             }
             else{
                 return view('room.usercreate')->with('admin',$admin)
-                                              ->with('staff',$staff);
+                                              ->with('staff',$staff)
+                                              ->with('Rsroom',$rsroom);
             }
 
         }
@@ -124,7 +127,7 @@ class UserController extends Controller
         if(password_verify($request->input('oldpassword'),$update->password) ){
             $update->password = Hash::make($request->input('password'));
             $update->save();
-            \Session::flash('flash_message','เปลี่ยนพาสเวิร์ดสำเร็จ!');
+            \Session::flash('flash_message4','เปลี่ยนพาสเวิร์ดสำเร็จ!');
             if($id == auth::user()->id){
                 return redirect()->to('/room/usercreate/'.$idbefore);
             }
