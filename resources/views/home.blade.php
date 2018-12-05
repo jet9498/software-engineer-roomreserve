@@ -52,7 +52,7 @@
 
           @else
              <li><a href="#" data-toggle="modal" data-target="#register">สร้างไอดี</a></li>
-
+             <li><a href="{{ url('/manageid') }}" >จัดการไอดี</a></li>
           @endif
 
         </ul>
@@ -68,13 +68,14 @@
       </li>
         </ul>
 
+
         @else
 
             <li class="dropdown"><a data-toggle="dropdown" href="#">{{Auth::user()->name}}
             </a>
             <ul class="dropdown-menu">
             @if(Auth::guest() || Auth::user()->status != 1)
-            <li><a href="{{ url('/usercreate') }}" ><img width="23" height="22" src="{{ asset('/img/demo/manage.ico') }}"> จัดการโปรไฟล์</a></li>
+            <li href="{{ url('/usercreate') }}"><a href="{{ url('/usercreate') }}" ><img width="23" height="22" src="{{ asset('/img/demo/manage.ico') }}"> จัดการโปรไฟล์</a></li>
 
             <li><a href="{{ url('/logout') }}" ><img width="23" height="22" src="{{ asset('/img/demo/logout.png') }}"> ออกจากระบบ</a></li>
             @else
@@ -422,7 +423,8 @@
               <a href="#" target='_parent'data-toggle="modal" data-target="#id01"><button id="button-menu" data-toggle="modal" data-target="#login-modal"><font id="textButton">จอง</font></button></a>
               <a href="{{ url('/room/view/'.$Room->roomID.'') }}" target='_parent'><button id="button-menu1" data-toggle="modal" ><font id="textButton">ตารางเวลา</font></button></a>
               @elseif(Auth::user()->status == 1)
-              <a href="{{ url('/room/addtable/'.$Room->roomID.'') }}" target='_parent'><button id="button-menu" data-toggle="modal" data-target="#login-modal"><font id="textButton">Show</font></button></a>
+              <a href="{{ url('/room/addtable/'.$Room->roomID.'') }}" target='_parent'><button id="button-menu" data-toggle="modal" data-target="#login-modal"><font id="textButton">ตารางเทอม</font></button></a>
+              <a href="{{ url('/room/adminreservations/'.$Room->roomID.'') }}" target='_parent'><button id="button-menu" data-toggle="modal" data-target="#login-modal"><font id="textButton">จอง</font></button></a>
               @else
               <a href="{{ url('/room/reservations/'.$Room->roomID.'') }}" target='_parent'><button id="button-menu" data-toggle="modal" data-target="#login-modal"><font id="textButton">จอง</font></button></a>
               <a href="{{ url('/room/view/'.$Room->roomID.'') }}" target='_parent'><button id="button-menu1" data-toggle="modal" ><font id="textButton">ตารางเวลา</font></button></a>

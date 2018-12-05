@@ -13,9 +13,10 @@
     <!-- Styles -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('/css/styleHome.css') }}">
-    <link rel="stylesheet" href="{{ asset('/css/styleReservation.css') }}">
+    <link rel="stylesheet" href="{{ asset('/css/styleReservations.css') }}">
     <link rel="stylesheet" href="{{ asset('/css/stylesemantic.css') }}">
      <link rel="stylesheet" href="{{ asset('/css/styleapp.css') }}">
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <script src="{{ asset('/js/styleapp.js') }}"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
@@ -28,7 +29,7 @@
 
 
     </head>
-<body id="bodycolor">
+<body id="bodycolor" onload="startTime()">
 
 
   <nav class="navbar navbar-inverse navbar-fixed-top">
@@ -55,13 +56,7 @@
           <li><a href="#"data-toggle="modal" data-target="#contact">ติดต่อเรา</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
-            @if (Auth::guest())
-            <li><a href="#"data-toggle="modal" data-target="#id01"><span class="glyphicon glyphicon-log-in" ></span> เข้าสู่ระบบ</a></li>
-
-
-        @else
             <li><a href="{{ url('/logout') }}"><span class="glyphicon glyphicon-log-in" ></span> {{Auth::user()->name}}</a></li>
-        @endif
         </ul>
       </div>
     </div>
@@ -79,7 +74,7 @@
         <div class="modal-body">
           <p>
         <b>
-          <span>1) ในการจองห้องจะต้องจอง 1 ชั่วโมงขึ้นไป </span>
+          <span>1) ในการจองห้องจะต้องจอง 1 ชั่วโมงขึ้นไป</span>
           <br>
           <span>2) ท่านสามารถยกเลิก / แก้ไข การจองของตนเองได้ที่หน้าการจองของท่านได้ทันที</span>
           <br>
@@ -136,84 +131,6 @@
     </div>
   </div>
 
-  <div class="modal fade " id="id01" role="dialog" style="z-index: 9999">
-    <!--ล็อคอินของ laravel user-->
-  <div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Login</div>
-                <div class="panel-body">
-                    <form class="form-horizontal" role="form" method="POST" action="{{ url('/login') }}">
-                        {{ csrf_field() }}
-
-                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label for="email" class="col-md-4 control-label">E-Mail Address</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required autofocus>
-
-                                @if ($errors->has('email'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                            <label for="password" class="col-md-4 control-label">Password</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control" name="password" required>
-
-                                @if ($errors->has('password'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" name="remember"> Remember Me
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-md-8 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary">
-                                    Login
-                                </button>
-                                <!-- เงื่อนไขเวลา จะเข้าหน้า Admin -->
-
-                                <button class="btn btn-primary"href="#" data-toggle="modal" data-target="#id02">
-                                    Admin
-                                </button>
-
-
-                                <a class="btn btn-link" href="{{ url('/password/reset') }}">
-                                    Forgot Your Password?
-                                </a>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-</div>
-
-
-
-
-
 
 
     <div id="loading">
@@ -235,24 +152,26 @@
           @if(Session::has('flash_message2'))
             <div class="alert alert-success"><em> <center><li>{!! session('flash_message2') !!}</li></center></em></div>
           @endif
+          @if(Session::has('flash_message3'))
+            <div class="alert alert-danger"><em> <center><li>{!! session('flash_message3') !!}</li></center></em></div>
+          @endif
+          @if(Session::has('flash_message4'))
+            <div class="alert alert-success"><em> <center><li>{!! session('flash_message4') !!}</li></center></em></div>
+          @endif
 
           <h2 class="ui left floated header"style="width:100%"><font id="statustext" size="6" color="#B92000">STATUS</font><br>
             <font id="roomnametext" size="5" color="#828282">{{$Room->roomName}}</font>
             <div class="hr"></div>
-
           </h2>
-
-          </h2>
-
-           <br>
-             @foreach ($Datetable as $Datetables)
-                @if ($Datetables->roomID == $Room->roomID)
-                  <font color="red">*</font><font>วันสิ้นสุดของเทอมนี้ : <?php echo substr($Datetables->EndTerm, 8 ,2); ?>-<?php echo substr($Datetables->EndTerm, 5 ,2); ?>-<?php echo (int)substr($Datetables->EndTerm, 0 ,4)+543; ?></font>
-                  @break
-              @endif
-              @endforeach
-            <br>
-
+                    <div class="ui clearing divider"></div>
+                     <br>
+                       @foreach ($Datetable as $Datetables)
+                          @if ($Datetables->roomID == $Room->roomID)
+                            <font color="red">*</font><font>วันสิ้นสุดของเทอมนี้ : <?php echo substr($Datetables->EndTerm, 8 ,2); ?>-<?php echo substr($Datetables->EndTerm, 5 ,2); ?>-<?php echo (int)substr($Datetables->EndTerm, 0 ,4)+543; ?></font>
+                            @break
+                        @endif
+                        @endforeach
+                      <br>
 
                     <!-- ////////////////////// ส่วนของตาราง //////////////// -->
                     <?php
@@ -266,22 +185,21 @@
                     ////////////////////// ส่วนของการจัดการตารางเวลา /////////////////////
                     ?>
                     <br>
-                    <div class="wrap_schedule"  style="overflow-x:auto;">
+                    <div class="wrap_schedule" style="overflow-x:auto;">
                     <table  align="center" border="1" cellspacing="2" cellpadding="2"style="border-collapse:collapse;" >
                       <tr class="time_schedule">
                         <td align="center" valign="middle" height="50" bgcolor="#101010">
                         &nbsp;</td>
-
-                    @for($i_time=0;$i_time<$sc_numCol-1;$i_time++)
-
+                    <?php
+                    for($i_time=0;$i_time<$sc_numCol-1;$i_time++){
+                    ?>
                         <td align="center" valign="middle" height="50" bgcolor="#101010">
                         <div class="time_schedule_text" >
                             <font color="#DCDCDC" size="3"><?=$sc_timeStep[$i_time]?> - <?=$sc_timeStep[$i_time+1]?></font>
                         </div>
                         </td>
-                    @endfor
+                    <?php }?>
                       </tr>
-
                       <!-- // วนลูปแสดงจำนวนวันตามที่กำหนด -->
                       @for($i_day=0;$i_day<$num_dayShow;$i_day++)
 
@@ -297,7 +215,6 @@
                           @if(count($Table)!=0)
                               @foreach ($Table as $Tables)
                                 <?php $check=true;?>
-                                @if($Tables->roomID == $Room->roomID)
                                     @if($Tables->Day == $eng_day_arr[$i_day])
                                         @if($sc_timeStep[$i_time].':00' == $Tables->TableStart)
                                             <?php $num=0; ?>
@@ -316,7 +233,6 @@
                                             @endwhile
                                         @endif
                                     @endif
-                                  @endif
                               @endforeach
                           @endif
                           <?php $css_use="class=\"activity\""; ?>
@@ -333,14 +249,12 @@
                     </table>
                 </div>
                 <!-- ////////////////////// ส่วนของตาราง //////////////// -->
-
+          <br>
+                <font color="red">*</font><font>สีแดงคือเวลาที่ไม่สามารถจองได้</font><font color="red">*</font>
+          <br>
           <br>
 
-                   <font color="red">*</font><font>สีแดงคือเวลาที่ไม่สามารถจองได้</font><font color="red">*</font>
-                   <br>
-
-          <br>
-              <div class="table-responsive table-inverse transition visible" id="table" style="display: block !important;">
+          <div class="table-responsive table-inverse transition visible" id="table" style="display: block !important;">
               <table class="table table-bordered" id="border">
                 <tbody><tr>
                 </tr></tbody><thead>
@@ -348,7 +262,7 @@
                   <th class="bg-primary">Use Time</th>
                   <th class="bg-primary">Status</th>
                   <th class="bg-primary">Name</th>
-
+                  <th class="bg-primary">Cancle</th>
                 </tr>
                 </thead>
                 <?php $i=0 ?>
@@ -375,7 +289,11 @@
                         @break
                       @endif
                     @endforeach
-
+                  <form action="{{ url('/room/adminreservations/delete/'.$Rsrooms->RsroomID.'') }}" method="post">
+                           <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                           <input type="hidden" name="_method" value="DELETE">
+                  <td class="bg-warning"><button class="btndanger"><i class="fa fa-close"></i></button></td>
+                  </form>
                   </tr>
                   </tbody>
                   <?php $i++ ?>
@@ -385,17 +303,62 @@
 
              </table>
          </div>
-
-
-
         </div>
       </div>
+      <div class="container transition visible" id="form" style="display: block !important;">
 
-    <center>
-    <div class="navbar-fixed-bottom" id="para2" style="display: block;">
-        <i class="wizard icon"></i>
-        <font size="2"> Powered by CPE-KUSRC © 2018</font>
+        <div class="row">
+            <div class="col-md-12 col-md-offset-0">
+                        <br>
+                        <br>
+                        <h2 class="ui left floated header">
+                        <font id="formtext" size="6" color="#B92000">FORM</font><br> <font id="reservetext" size="5" color="#828282">RESERVATION</font>
+                        </h2>
+            <div class="ui clearing divider"></div>
+                <div class="ui raised segment">
+                  <br>
+                  <form class="form-horizontal transition visible" action="{{ url('/room/reservations/'.$Room->roomID) }}" enctype="multipart/form-data" method="post"  id="reservationform" style="display: block !important;">
+                      <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                          <font size="3">
+                            <div class="form-group">
+                                <label class="col-md-5 control-label">Date<font color="red">**</font></label>
+
+                                <div class="col-md-3">
+                                      <input type="text" name="RsDate" class="form-control" id="datetimepicker1" placeholder="วันที่" required="">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-5 control-label">Time Start<font color="red">**</font></label>
+
+                                <div class="col-md-3">
+                                      <input type="text" name="RsStart" class="form-control" id="datetimepicker2" placeholder="เวลาเริ่มต้น" required="">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-5 control-label">Time End<font color="red">**</font></label>
+
+                                <div class="col-md-3">
+                                      <input type="text" name="RsEnd" class="form-control" id="datetimepicker3" placeholder="เวลาสิ้นสุด" required="">
+                                </div>
+                            </div>
+
+                          </font>
+                        <div class="form-group">
+                                <div class="col-md-5 col-md-offset-5">
+                                    <button type="submit" class="btn btn-primary">
+                                    <i class="write icon"></i>Submit</button>
+                                </div>
+                        </div>
+                  </form>
+                  <br>
+              </div>
+                    <br>
+                    <br>
+          </div>
+      </div>
     </div>
+    <br>
+    <center>
     </center>
     <!-- Scripts -->
     <script src="{{ asset('/js/semantic.min.js') }}"></script>
@@ -404,6 +367,57 @@
             window.history.back();
         }
     </script>
+
+    <script type="text/javascript">
+        var date = new Date();
+        date.setHours(0,0,0,0);
+        $(function () {
+             $('#datetimepicker1').datetimepicker({
+                format: 'DD-MM-YYYY'
+            });
+        });
+        $(function () {
+             $('#datetimepicker2').datetimepicker({
+                format: 'HH:mm',
+                useCurrent: 'day'
+            });
+        });
+        $(function () {
+             $('#datetimepicker3').datetimepicker({
+                format: 'HH:mm',
+                useCurrent: 'day'
+            });
+        });
+    </script>
+
+    <script>
+      function startTime() {
+          var today = new Date();
+          var y = today.getFullYear();
+          var M = today.getMonth()+1;
+          var d = today.getDate();
+          var h = today.getHours();
+          var m = today.getMinutes();
+          var s = today.getSeconds();
+          h = checkTime(h);
+          m = checkTime(m);
+          s = checkTime(s);
+          M = checkTime(M);
+          d = checkTime(d);
+          document.getElementById('txt').innerHTML =
+          y+"-"+M+"-"+d+" "+h + ":" + m + ":" + s;
+          var t = setTimeout(startTime, 500);
+
+
+      }
+      function checkTime(i) {
+          if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
+          return i;
+      }
+    </script>
+
 </div>
+
+
 </body>
 </html>

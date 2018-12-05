@@ -11,7 +11,7 @@ use App\Table;
 use App\Datetable;
 use Carbon\Carbon;
 
-class ReservationsController extends Controller
+class AdminreservationsController extends Controller
 {
     public function create($id,Request $request)
     {
@@ -78,14 +78,14 @@ class ReservationsController extends Controller
         }
 
         //จองไม่เกิน5ทุ่ม
-        // if($timeEndinput > '23:00:00'){
-        //         \Session::flash('flash_message','เวลาในการจองห้องต้องอยู่ในช่วง 9.00 - 23.00');
-        //         return redirect()->back();
-        // }
-        // if($timeEndinput < $timeStartinput){
-        //         \Session::flash('flash_message','เวลาในการจองไม่ถูกต้อง(เวลาเริ่มมากกว่าเวลาสิ้นสุด)');
-        //          return redirect()->back();
-        // }
+        if($timeEndinput > '23:00:00'){
+                \Session::flash('flash_message','เวลาในการจองห้องต้องอยู่ในช่วง 9.00 - 23.00');
+                return redirect()->back();
+        }
+        if($timeEndinput < $timeStartinput){
+                \Session::flash('flash_message','เวลาในการจองไม่ถูกต้อง');
+                 return redirect()->back();
+        }
 
         //overlap
         $tables = Table::get();
@@ -159,7 +159,7 @@ class ReservationsController extends Controller
         $create->RsEnd = $dateRentStart." ".$timeEndinput;
         $create->save();
         \Session::flash('flash_message2','จองเวลาสำเร็จ!');
-        return redirect()->to('/room/reservations/'.$rooms->roomID);
+        return redirect()->to('/room/adminreservations/'.$rooms->roomID);
     }
      public function index($id)
     {
@@ -199,22 +199,16 @@ class ReservationsController extends Controller
                     }
 
             }
-            return view('room.reservations')->with('Room',$Rooms)->with('Rsroom',$Rsroom)->with('Table',$Table)->with('status',$status)->with('user',$user)->with('Datetable',$datetable);
+            return view('room.adminreservations')->with('Room',$Rooms)->with('Rsroom',$Rsroom)->with('Table',$Table)->with('status',$status)->with('user',$user)->with('Datetable',$datetable);
       }
-      return view('room.reservations')->with('Room',$Rooms)->with('Rsroom',$Rsroom)->with('Table',$Table)->with('user',$user)->with('Datetable',$datetable);
+      return view('room.adminreservations')->with('Room',$Rooms)->with('Rsroom',$Rsroom)->with('Table',$Table)->with('user',$user)->with('Datetable',$datetable);
 
     }
     public function destroyReserve($id){
             $Rsrooms = Rsroom::find($id);
             $user = Auth::user()->id;
-            // dd($user);
-            if($Rsrooms->userID == $user){
-                    $delete = Rsroom::where('RsroomID',$Rsrooms->RsroomID)->delete();
-                    \Session::flash('flash_message4','ยกเลิกจองสำเร็จ!');
-            }
-            else{
-                    \Session::flash('flash_message3','ไม่สามารถยกเลิกการจองของผู้อื่นได้');
-            }
+            $delete = Rsroom::where('RsroomID',$Rsrooms->RsroomID)->delete();
+            \Session::flash('flash_message4','ยกเลิกจองสำเร็จ!');
             return redirect()->back();
     }
 }
