@@ -213,7 +213,7 @@
                                               <?php $i_time++;$num++;?>
                                               @if($sc_timeStep[$i_time].':00' == $Tables->TableEnd)
                                                   <?php $css_use="class=\"activity\"";
-                                                  $dataShowIN=$Tables->Subject;
+                                                  $dataShowIN=$Tables->Name." - ".$Tables->Subject;
                                                   $colspan="colspan=\"".$num."\"";
                                                   $check=false;
                                                   ?>
@@ -297,6 +297,13 @@
                               </div>
                           </div>
 
+                          <div class="form-group">
+                              <label class="col-md-5 control-label">Name<font color="red">**</font></label>
+
+                              <div class="col-md-3">
+                                    <input type="text" name="Name" class="form-control"  placeholder="ชื่อผู้สอน" required="">
+                              </div>
+                          </div>
 
                             <div class="form-group">
                                 <label class="col-md-5 control-label">Subject<font color="red">**</font></label>

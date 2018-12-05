@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="{{ asset('/css/styleReservations.css') }}">
     <link rel="stylesheet" href="{{ asset('/css/stylesemantic.css') }}">
      <link rel="stylesheet" href="{{ asset('/css/styleapp.css') }}">
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <script src="{{ asset('/js/styleapp.js') }}"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
@@ -28,7 +29,7 @@
 
 
     </head>
-<body id="bodycolor">
+<body id="bodycolor" onload="startTime()">
 
 
   <nav class="navbar navbar-inverse navbar-fixed-top">
@@ -100,7 +101,7 @@
         <div class="modal-body">
           <p>
         <b>
-          <span>1) ในการจองห้องจะต้องจอง 1 ชั่วโมงขึ้นไป </span>
+          <span>1) ในการจองห้องจะต้องจอง 1 ชั่วโมงขึ้นไป</span>
           <br>
           <span>2) ท่านสามารถยกเลิก / แก้ไข การจองของตนเองได้ที่หน้าการจองของท่านได้ทันที</span>
           <br>
@@ -255,24 +256,26 @@
           @if(Session::has('flash_message2'))
             <div class="alert alert-success"><em> <center><li>{!! session('flash_message2') !!}</li></center></em></div>
           @endif
+          @if(Session::has('flash_message3'))
+            <div class="alert alert-danger"><em> <center><li>{!! session('flash_message3') !!}</li></center></em></div>
+          @endif
+          @if(Session::has('flash_message4'))
+            <div class="alert alert-success"><em> <center><li>{!! session('flash_message4') !!}</li></center></em></div>
+          @endif
 
           <h2 class="ui left floated header"style="width:100%"><font id="statustext" size="6" color="#B92000">STATUS</font><br>
             <font id="roomnametext" size="5" color="#828282">{{$Room->roomName}}</font>
             <div class="hr"></div>
-
           </h2>
-
-          </h2>
-
-           <br>
-             @foreach ($Datetable as $Datetables)
-                @if ($Datetables->roomID == $Room->roomID)
-                  <font color="red">*</font><font>วันสิ้นสุดของเทอมนี้ : <?php echo substr($Datetables->EndTerm, 8 ,2); ?>-<?php echo substr($Datetables->EndTerm, 5 ,2); ?>-<?php echo (int)substr($Datetables->EndTerm, 0 ,4)+543; ?></font>
-                  @break
-              @endif
-              @endforeach
-            <br>
-
+                    <div class="ui clearing divider"></div>
+                     <br>
+                       @foreach ($Datetable as $Datetables)
+                          @if ($Datetables->roomID == $Room->roomID)
+                            <font color="red">*</font><font>วันสิ้นสุดของเทอมนี้ : <?php echo substr($Datetables->EndTerm, 8 ,2); ?>-<?php echo substr($Datetables->EndTerm, 5 ,2); ?>-<?php echo (int)substr($Datetables->EndTerm, 0 ,4)+543; ?></font>
+                            @break
+                        @endif
+                        @endforeach
+                      <br>
 
                     <!-- ////////////////////// ส่วนของตาราง //////////////// -->
                     <?php
@@ -286,7 +289,7 @@
                     ////////////////////// ส่วนของการจัดการตารางเวลา /////////////////////
                     ?>
                     <br>
-                    <div class="wrap_schedule"  style="overflow-x:auto;">
+                    <div class="wrap_schedule" style="overflow-x:auto;">
                     <table  align="center" border="1" cellspacing="2" cellpadding="2"style="border-collapse:collapse;" >
                       <tr class="time_schedule">
                         <td align="center" valign="middle" height="50" bgcolor="#101010">
@@ -301,7 +304,6 @@
                         </td>
                     @endfor
                       </tr>
-
                       <!-- // วนลูปแสดงจำนวนวันตามที่กำหนด -->
                       @for($i_day=0;$i_day<$num_dayShow;$i_day++)
 
@@ -317,7 +319,7 @@
                           @if(count($Table)!=0)
                               @foreach ($Table as $Tables)
                                 <?php $check=true;?>
-                                @if($Tables->roomID == $Room->roomID)
+                                  @if($Tables->roomID == $Room->roomID)
                                     @if($Tables->Day == $eng_day_arr[$i_day])
                                         @if($sc_timeStep[$i_time].':00' == $Tables->TableStart)
                                             <?php $num=0; ?>
@@ -353,14 +355,12 @@
                     </table>
                 </div>
                 <!-- ////////////////////// ส่วนของตาราง //////////////// -->
-
+          <br>
+                <font color="red">*</font><font>สีฟ้าคือเวลาที่ไม่สามารถจองได้</font><font color="red">*</font>
+          <br>
           <br>
 
-                   <font color="red">*</font><font>สีฟ้าคือเวลาที่ไม่สามารถจองได้</font><font color="red">*</font>
-                   <br>
-
-          <br>
-              <div class="table-responsive table-inverse transition visible" id="table" style="display: block !important;">
+          <div class="table-responsive table-inverse transition visible" id="table" style="display: block !important;">
               <table class="table table-bordered" id="border">
                 <tbody><tr>
                 </tr></tbody><thead>
@@ -368,7 +368,6 @@
                   <th class="bg-primary">Use Time</th>
                   <th class="bg-primary">Status</th>
                   <th class="bg-primary">Name</th>
-
                 </tr>
                 </thead>
                 <?php $i=0 ?>
@@ -395,32 +394,22 @@
                         @break
                       @endif
                     @endforeach
-
                   </tr>
                   </tbody>
-                  <?php $i++ ?>
           @endif
+            <?php $i++ ?>
           @endforeach
 
 
              </table>
          </div>
-         <br>
-         <br>
-         <br>
-
-
-
         </div>
       </div>
 
-    <!-- Scripts -->
-    <script src="{{ asset('/js/semantic.min.js') }}"></script>
-    <script>
-        function goBack() {
-            window.history.back();
-        }
-    </script>
+
+
 </div>
+
+
 </body>
 </html>

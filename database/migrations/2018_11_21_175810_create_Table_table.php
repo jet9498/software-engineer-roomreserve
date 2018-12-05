@@ -17,6 +17,7 @@ class CreateTableTable extends Migration
           $table->increments('TableID');
           $table->integer('roomID');
           $table->string('Subject');
+          $table->string('Name');
           $table->string('Day');
           $table->time('TableStart');
           $table->time('TableEnd');
