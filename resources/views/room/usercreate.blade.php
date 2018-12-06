@@ -59,11 +59,11 @@
                   <li class="dropdown"><a data-toggle="dropdown" href="#"><img width="23" height="22" src="{{ asset('/img/demo/profile.png') }}"> {{Auth::user()->name}}
             </a>
             <ul class="dropdown-menu">
-           
+
             <li><a href="{{ url('/usercreate') }}" ><img width="23" height="22" src="{{ asset('/img/demo/fixing.png') }}"> จัดการโปรไฟล์</a></li>
 
             <li><a href="{{ url('/logout') }}" ><img width="23" height="22" src="{{ asset('/img/demo/logout.png') }}"> ออกจากระบบ</a></li>
-           
+
       </div>
     </div>
   </nav>
@@ -203,7 +203,7 @@
 
 
 
- 
+
 
     <div id="loading">
     </div>
@@ -213,15 +213,18 @@
         <div class="container transition visible" id="allmenu" style="display: block !important;">
     <div class="row">
         <div class="col-md-12 col-md-offset-0">
-          
-           
+
+
           <br>
           <br>
           <br>
           <br>
-          
+
           @if(Session::has('flash_message4'))
             <div class="alert alert-success"><em> <center><li>{!! session('flash_message4') !!}</li></center></em></div>
+          @endif
+          @if(Session::has('flash_message5'))
+            <div class="alert alert-danger"><em> <center><li>{!! session('flash_message5') !!}</li></center></em></div>
           @endif
           <h2 class="ui left floated header"style="width:100%"><font id="statustext" size="6" color="#B92000">User</font>
             <font id="roomnametext" size="5" color="#828282">Create</font>
@@ -229,15 +232,15 @@
 
           </h2>
             <div class="ui clearing divider"></div>
-            <div class="ui grey two item stackable menu" id="menu">    
+            <div class="ui grey two item stackable menu" id="menu">
                     <a class="item" href="#"data-toggle="modal" data-target="#change-password">
                         <img src="{{ asset('/img/demo/key.png') }}"><font size="2">&nbsp;เปลี่ยนรหัสผ่าน</font></a>
-                    
+
                     <a class="item" href="#"data-toggle="modal" data-target="#edit-profile">
                         <img src="{{ asset('/img/demo/profile1.png') }}"><font size="2">&nbsp;แก้ไขโปรไฟล์</font></a>
-                          
+
                 </div>
-          
+
                     <div class="ui clearing divider"></div>
 
                     <!-- ////////////////////// ส่วนของตาราง //////////////// -->
@@ -247,12 +250,12 @@
                 <!-- ////////////////////// ส่วนของตาราง //////////////// -->
           <br>
            <div class="modal fade " id="change-password" role="dialog" style="z-index: 9999">
-                  
+
               <div class="container">
                 <div class="row">
                   <div class="col-md-8 col-md-offset-2">
                     <div class="panel panel-default">
-                    
+
 
                       <div class="ui clearing divider"></div>
                         <div class="ui raised segment">
@@ -268,7 +271,7 @@
               @if(Session::has('flash_message'))
                 <div class="alert alert-danger"><em> <center><li><font size="3" >{!! session('flash_message') !!}</font></li></center></em></div>
               @endif
-              
+
                 <form class="form-horizontal" action="{{ url('/room/usercreate/'.Crypt::encrypt(Auth::user()->id)) }}" method="post" enctype="multipart/form-data" onsubmit="return confirm('คุณแน่ใจที่จะเปลี่ยนพาสเวิร์ดแล้วใช่ไหม?')">
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                     <input type="hidden" name="_method" value="PUT">
@@ -298,30 +301,30 @@
                            <button type="submit" class="btn btn-primary">
                                <i class="write icon"></i>Submit
                           </button>
-                        </div>              
+                        </div>
                     </div>
                </form>
-              
+
              <br>
         </div>
                         </div>
                     </div>
                   </div>
-                </div> 
-              </div>      
+                </div>
+              </div>
          </div>
 <div class="modal fade " id="edit-profile" role="dialog" style="z-index: 9999">
-               
+
            <div class="container">
                 <div class="row">
                   <div class="col-md-8 col-md-offset-2">
                     <div class="panel panel-default">
-                      
-                         
+
+
                     </div>
                   </div>
-                </div> 
-              </div>      
+                </div>
+              </div>
 </div>
 
 
