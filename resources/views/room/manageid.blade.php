@@ -64,27 +64,7 @@
     <font id="room">Edit</font>
     <font id="share">by Admin</font>
    <div class="hr"></div>
-    <br>
-    <div class="container text-center" style="margin-bottom: 40px">
-      <div class="row content">
-        <font id="room">ลงตารางเวลา</font>
-          <div class="row content">
-            @foreach($Rooms as $Room)
-              <div class="col-sm-3 ">
-                <ul  class="nav nav-pills nav-stacked">
-                  <h4><b>{{ $Room->roomName }}</b></h4>
-                  <!-- <a href="{{ url('/room/reservations/'.$Room->roomID.'') }}" target='_parent'><button id="button-menu" data-toggle="modal" ><font id="textButton"><span class="glyphicon glyphicon-pencil"></span> ลงตารางเวลา</font></button></a> -->
-                  <li ><a href="{{ url('/myreservation') }}" id="button-menu"><font id="textButton"><span class="glyphicon glyphicon-pencil"></span> ลงตารางเวลา</font></a></li>
-            <!-- <a href="{{ url('/myreservation') }}" target='_parent'><button id="button-menu1" data-toggle="modal" ><font id="textButton"><span class="glyphicon">&#xe065;</span> แก้ไขการจองห้อง</font></button></a> -->
-                </ul>
-              </div>
-            @endforeach
-          </div>
-      </div>
-      <br>
-    </div>
-
-    <div class="hr"></div>
+    
     @if(Session::has('flash_message4'))
             <div class="alert alert-success"><em> <center><li>{!! session('flash_message4') !!}</li></center></em></div>
           @endif
@@ -235,21 +215,6 @@
                 
                     <tbody >
 
-
-
-        <!-- <div class="col-md-3 col-sm-4 col-xs-12">
-          <div class="card" style="text-align:center">
-            <img src="img/demo/{{$Room->remember_token}}" alt="Avatar" style="width:100%">
-              <h4><b>{{ $Room->roomName }}</b></h4>
-
-              <div class="col-md-13 columButton" style="text-align: center">
-
-                <a href="{{ url('/room/reservations/'.$Room->roomID.'') }}" target='_parent'><button id="button-menu" data-toggle="modal" ><font id="textButton"><span class="glyphicon glyphicon-pencil"></span> จองห้องทั้งเทอม</font></button></a>
-
-
-              </div>
-          </div>
-        </div> -->
 
      </div>
      @else
