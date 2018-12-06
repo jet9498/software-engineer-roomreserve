@@ -139,7 +139,7 @@
 
         <div class="container transition visible" id="allmenu" style="display: block !important;">
     <div class="row">
-        <div class="col-md-15 col-md-offset-0">
+        <div class="col-md-12 col-md-offset-0" style="width:1250px;">
           <br>
           <br>
           <br>
@@ -178,12 +178,12 @@
                     <div class="wrap_schedule">
                     <table  align="center" border="1" cellspacing="2" cellpadding="2"style="border-collapse:collapse;" >
                       <tr class="time_schedule">
-                        <td align="center" valign="middle" height="50" bgcolor="#101010">
+                        <td align="center" valign="middle" height="60" bgcolor="#101010">
                         &nbsp;</td>
                     <?php
                     for($i_time=0;$i_time<$sc_numCol-1;$i_time++){
                     ?>
-                        <td align="center" valign="middle" height="50" width="100" bgcolor="#101010">
+                        <td align="center" valign="middle" height="60" bgcolor="#101010">
                         <div class="time_schedule_text" >
                             <font color="#DCDCDC" size="3"><?=$sc_timeStep[$i_time]?> - <?=$sc_timeStep[$i_time+1]?></font>
                         </div>
@@ -195,7 +195,7 @@
                     @for($i_day=0;$i_day<$num_dayShow;$i_day++)
 
                       <tr>
-                        <td align="center" valign="middle" height="50" width="50" class="day_schedule" bgcolor="#101010">
+                        <td align="center" valign="middle" height="60" class="day_schedule" bgcolor="#101010">
                         <div class="day_schedule_text">
                             <font color="#DCDCDC" size="3"><?=$thai_day_arr[$i_day]?></font>
                             <br>
@@ -257,7 +257,7 @@
                         <br>
 
                         <h2 class="ui left floated header">
-                        <font id="formtext" size="6" color="#B92000">FORM</font><br> <font id="reservetext" size="5" color="#828282">RESERVATION</font>
+                        <font id="formtext" size="6" color="#B92000">FORM</font><br> <font id="reservetext" size="5" color="#828282">Class Schedule</font>
                         </h2>
             <div class="ui clearing divider"></div>
                 <div class="ui raised segment">
@@ -361,14 +361,14 @@
         });
         $(function () {
              $('#datetimepicker2').datetimepicker({
-                format: 'HH:00',
+                format: 'HH:mm',
                 stepping: 30,
                 useCurrent: 'day'
             });
         });
         $(function () {
              $('#datetimepicker3').datetimepicker({
-                format: 'HH:00',
+                format: 'HH:mm',
                 stepping: 30,
                 useCurrent: 'day'
             });
