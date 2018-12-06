@@ -39,6 +39,10 @@ Route::put('/room/usercreate/{id}','UserController@updatepassword');
 
 
 Route::get('/manageid','AdminController@manageid') ;
+Route::delete('/manageid/{id}','AdminController@destroy');
+Route::put('/manageinfo/{id}','AdminController@updateinfo');
+// Route::get('/manageid/{id}','AdminController@changepassword');
+Route::put('/manageid/{id}','AdminController@updatepassword');
 
 // 7 Routes = Restful API
 

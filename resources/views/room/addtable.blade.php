@@ -362,12 +362,14 @@
         $(function () {
              $('#datetimepicker2').datetimepicker({
                 format: 'HH:00',
+                stepping: 30,
                 useCurrent: 'day'
             });
         });
         $(function () {
              $('#datetimepicker3').datetimepicker({
                 format: 'HH:00',
+                stepping: 30,
                 useCurrent: 'day'
             });
         });

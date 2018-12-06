@@ -206,10 +206,18 @@ class ReservationsController extends Controller
     public function destroyReserve($id){
             $Rsrooms = Rsroom::find($id);
             $user = Auth::user()->id;
+            $timenow = Carbon::now();
+            $timenow = $timenow->toDatetimeString();
+            $timestart = $Rsrooms->RsStart;
             // dd($user);
             if($Rsrooms->userID == $user){
-                    $delete = Rsroom::where('RsroomID',$Rsrooms->RsroomID)->delete();
-                    \Session::flash('flash_message4','ยกเลิกจองสำเร็จ!');
+                    if($timenow >= $timestart){
+                            \Session::flash('flash_message5','ห้องกำลังใช้งานไม่สามารถยกเลิกจองได้'); 
+                    }
+                    else{
+                            $delete = Rsroom::where('RsroomID',$Rsrooms->RsroomID)->delete();
+                            \Session::flash('flash_message4','ยกเลิกจองสำเร็จ!');
+                    }
             }
             else{
                     \Session::flash('flash_message3','ไม่สามารถยกเลิกการจองของผู้อื่นได้');

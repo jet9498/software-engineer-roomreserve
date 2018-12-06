@@ -71,15 +71,15 @@
 
         @else
 
-            <li class="dropdown"><a data-toggle="dropdown" href="#">{{Auth::user()->name}}
+            <li class="dropdown"><a data-toggle="dropdown" href="#"><img width="23" height="22" src="{{ asset('/img/demo/profile.png') }}"> {{Auth::user()->name}}
             </a>
             <ul class="dropdown-menu">
             @if(Auth::guest() || Auth::user()->status != 1)
-            <li href="{{ url('/usercreate') }}"><a href="{{ url('/usercreate') }}" ><img width="23" height="22" src="{{ asset('/img/demo/manage.ico') }}"> จัดการโปรไฟล์</a></li>
+            <li href="{{ url('/usercreate') }}"><a href="{{ url('/usercreate') }}" ><img width="23" height="22" src="{{ asset('/img/demo/fixing.png') }}"> จัดการโปรไฟล์</a></li>
 
             <li><a href="{{ url('/logout') }}" ><img width="23" height="22" src="{{ asset('/img/demo/logout.png') }}"> ออกจากระบบ</a></li>
             @else
-            <li><a href="section4" ><img width="23" height="22" src="{{ asset('/img/demo/manage.ico') }}">  จัดการโปรไฟล์</a></li>
+            <li><a href="section4" ><img width="23" height="22" src="{{ asset('/img/demo/fixing.png') }}">  จัดการโปรไฟล์</a></li>
             <li><a href="{{ url('/logout') }}" ><img width="23" height="22" src="{{ asset('/img/demo/logout.png') }}"> ออกจากระบบ</a></li>
             @endif
         @endif
@@ -515,7 +515,6 @@
 <script>
 $(document).ready(function(){
   var fail = document.getElementById("failLogin").getAttribute('data-value');
-
   if(fail == 1){
     $('#id01').modal('show');
   }

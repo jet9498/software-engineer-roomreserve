@@ -56,11 +56,11 @@
           <li><a href="#"data-toggle="modal" data-target="#contact">ติดต่อเรา</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
-             <li class="dropdown"><a data-toggle="dropdown" href="#">{{Auth::user()->name}}
+             <li class="dropdown"><a data-toggle="dropdown" href="#"><img width="23" height="22" src="{{ asset('/img/demo/profile.png') }}"> {{Auth::user()->name}}
             </a>
             <ul class="dropdown-menu">
 
-            <li><a href="{{ url('/usercreate') }}" ><img width="23" height="22" src="{{ asset('/img/demo/manage.ico') }}"> จัดการโปรไฟล์</a></li>
+            <li><a href="{{ url('/usercreate') }}" ><img width="23" height="22" src="{{ asset('/img/demo/fixing.png') }}"> จัดการโปรไฟล์</a></li>
 
             <li><a href="{{ url('/logout') }}" ><img width="23" height="22" src="{{ asset('/img/demo/logout.png') }}"> ออกจากระบบ</a></li>
         </ul>
@@ -163,6 +163,9 @@
           @endif
           @if(Session::has('flash_message4'))
             <div class="alert alert-success"><em> <center><li>{!! session('flash_message4') !!}</li></center></em></div>
+          @endif
+          @if(Session::has('flash_message5'))
+            <div class="alert alert-danger"><em> <center><li>{!! session('flash_message5') !!}</li></center></em></div>
           @endif
 
           <h2 class="ui left floated header"style="width:100%"><font id="statustext" size="6" color="#B92000">STATUS</font><br>
@@ -393,12 +396,14 @@
         $(function () {
              $('#datetimepicker2').datetimepicker({
                 format: 'HH:mm',
+                stepping: 30,
                 useCurrent: 'day'
             });
         });
         $(function () {
              $('#datetimepicker3').datetimepicker({
                 format: 'HH:mm',
+                stepping: 30,
                 useCurrent: 'day'
             });
         });
