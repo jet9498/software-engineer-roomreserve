@@ -55,6 +55,10 @@ class LoginController extends Controller
     {
         $fail = 0;
         if(Auth::attempt([$this->field() => request()->email , 'password' => request()->password])){
+                if(Auth::user()->status == 1){
+                        $rooms = Room::get();
+                        return view('home')->with('Rooms',$rooms)->with('fail',$fail);
+                }
             return redirect()->back();
         }
         else{

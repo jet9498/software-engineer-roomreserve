@@ -379,12 +379,14 @@
         $(function () {
              $('#datetimepicker2').datetimepicker({
                 format: 'HH:mm',
+                stepping: 30,
                 useCurrent: 'day'
             });
         });
         $(function () {
              $('#datetimepicker3').datetimepicker({
                 format: 'HH:mm',
+                stepping: 30,
                 useCurrent: 'day'
             });
         });
