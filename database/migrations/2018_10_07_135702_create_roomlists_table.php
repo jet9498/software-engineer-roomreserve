@@ -17,6 +17,7 @@ class CreateRoomlistsTable extends Migration
             $table->increments('roomID');
             $table->string('roomName');
             $table->string('roomDescription');
+            $table->integer('status');
             $table->rememberToken()->nullable();
             $table->string('imgUrl')->nullable();
             $table->timestamps();
