@@ -51,9 +51,10 @@
 
 
 
-
+          @if(Auth::user()->status == 0)
           <li><a href="#" data-toggle="modal" data-target="#fam">ข้อปฏิบัติ</a></li>
           <li><a href="#"data-toggle="modal" data-target="#contact">ติดต่อเรา</a></li>
+          @endif
         </ul>
         <ul class="nav navbar-nav navbar-right">
                   <li class="dropdown"><a data-toggle="dropdown" href="#"><img width="23" height="22" src="{{ asset('/img/demo/profile.png') }}"> {{Auth::user()->name}}
@@ -227,7 +228,7 @@
             <div class="alert alert-danger"><em> <center><li>{!! session('flash_message5') !!}</li></center></em></div>
           @endif
           <h2 class="ui left floated header"style="width:100%"><font id="statustext" size="6" color="#B92000">User</font>
-            <font id="roomnametext" size="5" color="#828282">Create</font>
+            <font id="roomnametext" size="5" color="#828282">Information</font>
             <div class="hr"></div>
 
           </h2>
@@ -327,7 +328,8 @@
               </div>
 </div>
 
-
+          @if(Auth::user()->status == 0)
+          @if(count($Rsroom) != 0)
           <div class="table-responsive table-inverse transition visible" id="table" style="display: block !important;">
               <table class="table table-bordered" id="border">
                 <tbody><tr>
@@ -342,7 +344,12 @@
                 </thead>
                 <?php $i=0 ?>
                 <?php $j=0 ?>
+          @else
+            <ul  class ="alert alert-danger">
+            <font size ="3">ไม่มีข้อมูลการจอง</font>
+            </ul>
 
+          @endif
           @foreach($Rsroom as $Rsrooms)
           @if(Auth::user()->id == $Rsrooms->userID)
                   <tbody >
@@ -371,6 +378,7 @@
 
                   <?php $j++ ?>
                   <?php $i++ ?>
+
           @endif
 
 
@@ -379,6 +387,23 @@
 
              </table>
          </div>
+         @else
+            <div class="container" style="background-color: white">
+            <div class="row">
+            <div class="col-md-6 img">
+            <img src="http://libapp.src.ku.ac.th/seimg/user.png"  alt="" class="img-rounded">
+              </div>
+              <div class="col-md-6 details">
+                <blockquote>
+                  <h5>{{Auth::user()->name}}</h5>
+                  <small><cite title="Source Title">{{Auth::user()->email}}<i class="icon-map-marker"></i></cite></small>
+                  <small><cite title="Source Title">{{Auth::user()->created_at}}<i class="icon-map-marker"></i></cite></small>
+                </blockquote>
+                
+              </div>
+            </div>
+          </div>
+          @endif
         </div>
       </div>
 
