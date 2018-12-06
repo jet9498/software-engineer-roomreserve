@@ -17,6 +17,7 @@ class ReservationsController extends Controller
     {
 
         $rooms = Room::find($id);
+        $datetable = Datetable::get();
         $RsDate = $request->input('RsDate');
         $RsDate = date('Y-m-d', strtotime($RsDate));
         $Date = Carbon::parse($RsDate);
@@ -112,15 +113,13 @@ class ReservationsController extends Controller
                 }
         }
 
-        foreach ($tables as $table) {
-                $datetable = Carbon::parse($table->Date);
-                $datetable = $datetable->toDateString();
+        foreach ($datetable as $datetables) {
+                $datetable1 = Carbon::parse($datetables->EndTerm);
+                $datetable1 = $datetable1->toDateString();
                 if($table->roomID == $rooms->roomID){ //เช็คว่าห้องตรงกันมั้ย
-                        if($dateRentStart > $datetable){
-                                if($dateRentStart >= $table->Date){
-                                        \Session::flash('flash_message','เกินกำหนดการจอง');
-                                        return redirect()->back();
-                                }
+                        if($dateRentStart > $datetable1){
+                              \Session::flash('flash_message','เกินกำหนดการจอง');
+                              return redirect()->back();
                         }
                 }
         }

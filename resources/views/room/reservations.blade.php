@@ -59,7 +59,7 @@
              <li class="dropdown"><a data-toggle="dropdown" href="#">{{Auth::user()->name}}
             </a>
             <ul class="dropdown-menu">
-            
+
             <li><a href="{{ url('/usercreate') }}" ><img width="23" height="22" src="{{ asset('/img/demo/manage.ico') }}"> จัดการโปรไฟล์</a></li>
 
             <li><a href="{{ url('/logout') }}" ><img width="23" height="22" src="{{ asset('/img/demo/logout.png') }}"> ออกจากระบบ</a></li>
@@ -171,12 +171,17 @@
           </h2>
                     <div class="ui clearing divider"></div>
                      <br>
+                        <?php $check=true; ?>
                        @foreach ($Datetable as $Datetables)
                           @if ($Datetables->roomID == $Room->roomID)
                             <font color="red">*</font><font>วันสิ้นสุดของเทอมนี้ : <?php echo substr($Datetables->EndTerm, 8 ,2); ?>-<?php echo substr($Datetables->EndTerm, 5 ,2); ?>-<?php echo (int)substr($Datetables->EndTerm, 0 ,4)+543; ?></font>
+                            <?php $check=false; ?>
                             @break
-                        @endif
-                        @endforeach
+                          @endif
+                      @endforeach
+                      @if ($check==true)
+                        <font color="red">**</font><font>ยังไม่กำหนดวันสุดท้ายของเทอม</font><font color="red">**</font>
+                      @endif
                       <br>
 
                     <!-- ////////////////////// ส่วนของตาราง //////////////// -->

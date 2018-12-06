@@ -139,7 +139,7 @@
 
         <div class="container transition visible" id="allmenu" style="display: block !important;">
     <div class="row">
-        <div class="col-md-12 col-md-offset-0">
+        <div class="col-md-15 col-md-offset-0">
           <br>
           <br>
           <br>
@@ -169,8 +169,9 @@
                     $eng_day_arr=array("MO","TU","WE","TH","FR","SA","SU");
                     ////////////////////// ส่วนของการจัดการตารางเวลา /////////////////////
                     $num_dayShow=7;  // จำนวนวันที่โชว์ 1 - 7
-                    $sc_timeStep=array("09:00","10:00","11:00","12:00","13:00","14:00","15:00","16:00","17:00","18:00","19:00","20:00","21:00","22:00");
-                    $sc_numCol=14;
+                    $sc_timeStep=array("09:00","09:30","10:00","10:30","11:00","11:30","12:00","12:30","13:00","13:30","14:00","14:30","15:00","15:30"
+                                      ,"16:00","16:30","17:00","17:30","18:00","18:30","19:00","19:30","20:00","20:30","21:00","21:30","22:00");
+                    $sc_numCol=27;
                     ////////////////////// ส่วนของการจัดการตารางเวลา /////////////////////
                     ?>
                     <br>
@@ -182,7 +183,7 @@
                     <?php
                     for($i_time=0;$i_time<$sc_numCol-1;$i_time++){
                     ?>
-                        <td align="center" valign="middle" height="50" bgcolor="#101010">
+                        <td align="center" valign="middle" height="50" width="100" bgcolor="#101010">
                         <div class="time_schedule_text" >
                             <font color="#DCDCDC" size="3"><?=$sc_timeStep[$i_time]?> - <?=$sc_timeStep[$i_time+1]?></font>
                         </div>
@@ -194,7 +195,7 @@
                     @for($i_day=0;$i_day<$num_dayShow;$i_day++)
 
                       <tr>
-                        <td align="center" valign="middle" height="50" class="day_schedule" bgcolor="#101010">
+                        <td align="center" valign="middle" height="50" width="50" class="day_schedule" bgcolor="#101010">
                         <div class="day_schedule_text">
                             <font color="#DCDCDC" size="3"><?=$thai_day_arr[$i_day]?></font>
                             <br>
