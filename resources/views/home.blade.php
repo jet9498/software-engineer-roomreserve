@@ -79,7 +79,7 @@
 
             <li><a href="{{ url('/logout') }}" ><img width="23" height="22" src="{{ asset('/img/demo/logout.png') }}"> ออกจากระบบ</a></li>
             @else
-            <li><a href="section4" ><img width="23" height="22" src="{{ asset('/img/demo/fixing.png') }}">  จัดการโปรไฟล์</a></li>
+            <li><a href="{{ url('/usercreate') }}" ><img width="23" height="22" src="{{ asset('/img/demo/fixing.png') }}">  จัดการโปรไฟล์</a></li>
             <li><a href="{{ url('/logout') }}" ><img width="23" height="22" src="{{ asset('/img/demo/logout.png') }}"> ออกจากระบบ</a></li>
             @endif
         @endif
