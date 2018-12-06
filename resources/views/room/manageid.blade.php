@@ -65,7 +65,7 @@
     <font id="share">by Admin</font>
    <div class="hr"></div>
     <br>
-    <div class="container text-center">
+    <div class="container text-center" style="margin-bottom: 40px">
       <div class="row content">
         <font id="room">ลงตารางเวลา</font>
           <div class="row content">
@@ -83,42 +83,181 @@
       </div>
       <br>
     </div>
+
     <div class="hr"></div>
+    @if(Session::has('flash_message4'))
+            <div class="alert alert-success"><em> <center><li>{!! session('flash_message4') !!}</li></center></em></div>
+          @endif
+     @if(count($errors)>0)
+        <ul>
+          @foreach($errors->all() as $error)
+            <li class ="alert alert-danger"><font size ="3">{{$error}}</font></li>
+          @endforeach
+        </ul>
+      @endif
+    @if(count($Users) != 0)
+      <div class="table-responsive table-inverse transition visible" id="table" style="display: block !important;margin-top: 30px">
+                <table class="table table-bordered" id="border">
+                  <tbody><tr>
+                  </tr></tbody><thead>
+                    <tr><th class="bg-primary">Name</th>
+                    <th class="bg-primary">Email</th>
+                    <th class="bg-primary">Manage</th>
 
-    <div class="table-responsive table-inverse transition visible" id="table" style="display: block !important;">
-              <table class="table table-bordered" id="border">
-                <tbody><tr>
-                </tr></tbody><thead>
-                  <tr><th class="bg-primary">Name</th>
-                  <th class="bg-primary">Email</th>
-                  <th class="bg-primary">Password</th>
+                  </tr>
+                  @foreach($Users as $user)
+                    <tr style="background-color: white">
+                      <td>{{$user->name}}</td>
+                      <td>{{$user->email}}</td>
+                      <td>
+                      <div class="ui grey two item stackable menu" id="menu">    
+                      <button class="btn btn-warning" href="#"data-toggle="modal" data-target="#{{ $user->id }}password">
+                      <font size="2">&nbsp;เปลี่ยนรหัสผ่าน</font></button>
+                      <button class="btn btn-primary" href="#"data-toggle="modal" data-target="#{{ $user->id }}info">
+                      <font size="2">&nbsp;เปลี่ยนชื่อ</font></button>
+                      <form action="{{ url('/manageid'.'/'.$user->id) }}" style="display:inline" method="post">
+                          <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                          <input type="hidden" name="_method" value="DELETE">
+                          <button type="submit" class="btn btn-danger"> ลบ</button>
+                      </form>
+                      <div class="wrap_schedule"  style="overflow-x:auto;">
+
+                  <!-- ////////////////////// ส่วนของตาราง //////////////// -->
+            
+             <div class="modal fade " id="{{ $user->id }}password" role="dialog" style="z-index: 9999">
+                    
+                <div class="container">
+                  <div class="row">
+                    <div class="col-md-8 col-md-offset-2">
+                      <div class="panel panel-default">
+                      
+
+                        <div class="ui clearing divider"></div>
+                          <div class="ui raised segment">
+                                <br>
+                  <br>
+                   
+                @if(Session::has('flash_message'))
+                  <div class="alert alert-danger"><em> <center><li><font size="3" >{!! session('flash_message') !!}</font></li></center></em></div>
+                @endif
+                
+                  <form class="form-horizontal" action="{{ url('/manageid'.'/'.$user->id) }}" method="post" enctype="multipart/form-data" onsubmit="return confirm('คุณแน่ใจที่จะเปลี่ยนพาสเวิร์ดแล้วใช่ไหม?')">
+                      <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                      <input type="hidden" name="_method" value="PUT">
+                      <font size ="3">
+                        <div class="form-group">
+                          <label class="col-md-4 control-label">New Password<font color ="red">**</font></label>
+                          <div class="col-md-6">
+                            <input type="password" name="password" class="form-control" required>
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <label for="password-confirm" class="col-md-4 control-label">Confirm New Password<font color ="red">**</font></label>
+
+                          <div class="col-md-6">
+                              <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
+                          </div>
+                        </div>
+                      </font>
+                      <div class="form-group">
+                           <div class="col-md-6 col-md-offset-4">
+                             <button type="submit" class="btn btn-primary">
+                                 <i class="write icon"></i>Submit
+                            </button>
+                          </div>              
+                      </div>
+                 </form>
+                
+               <br>
+          </div>
+                          </div>
+                      </div>
+                    </div>
+                  </div> 
+                </div>      
+           </div>
+                        
+                      
+                        <div class="ui grey two item stackable menu" id="menu">    
+                      
+                      <div class="wrap_schedule"  style="overflow-x:auto;">
+                        <div class="modal fade " id="{{ $user->id }}info" role="dialog" style="z-index: 9999">
+                    
+                <div class="container">
+                  <div class="row">
+                    <div class="col-md-8 col-md-offset-2">
+                      <div class="panel panel-default">
+                      
+
+                        <div class="ui clearing divider"></div>
+                          <div class="ui raised segment">
+                                <br>
+                  <br>
                   
-                  <th class="bg-primary">Cancle</th>
-                </tr>
-                </thead>
-              
-                  <tbody >
-    <br>
+                @if(Session::has('flash_message'))
+                  <div class="alert alert-danger"><em> <center><li><font size="3" >{!! session('flash_message') !!}</font></li></center></em></div>
+                @endif
+                  
+                  <form class="form-horizontal" action="{{ url('/manageinfo'.'/'.$user->id) }}" method="post" enctype="multipart/form-data" onsubmit="return confirm('คุณแน่ใจที่จะเปลี่ยนชื่อแล้วใช่ไหม?')">
+                      <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                      <input type="hidden" name="_method" value="PUT">
+                      <font size ="3">
+                        <div class="form-group">
+                          <label class="col-md-4 control-label">New Information<font color ="red">**</font></label>
+                          <div class="col-md-6">
+                            <input value="{{$user->name}}" type="name" name="name" class="form-control" required>
+                          </div>
+                        </div>
+                        
+                      </font>
+                      <div class="form-group">
+                           <div class="col-md-6 col-md-offset-4">
+                             <button type="submit" class="btn btn-primary">
+                                 <i class="write icon"></i>Submit
+                            </button>
+                          </div>              
+                      </div>
+                 </form>
+                
+               <br>
+          </div>
+                          </div>
+                      </div>
+                    </div>
+                  </div> 
+                </div> 
+                      
+                      
+                      </td>
+                   </tr>
+                  @endforeach
+                  </thead>
+                
+                    <tbody >
 
 
-      <!-- <div class="col-md-3 col-sm-4 col-xs-12">
-        <div class="card" style="text-align:center">
-          <img src="img/demo/{{$Room->remember_token}}" alt="Avatar" style="width:100%">
-            <h4><b>{{ $Room->roomName }}</b></h4>
 
-            <div class="col-md-13 columButton" style="text-align: center">
+        <!-- <div class="col-md-3 col-sm-4 col-xs-12">
+          <div class="card" style="text-align:center">
+            <img src="img/demo/{{$Room->remember_token}}" alt="Avatar" style="width:100%">
+              <h4><b>{{ $Room->roomName }}</b></h4>
 
-              <a href="{{ url('/room/reservations/'.$Room->roomID.'') }}" target='_parent'><button id="button-menu" data-toggle="modal" ><font id="textButton"><span class="glyphicon glyphicon-pencil"></span> จองห้องทั้งเทอม</font></button></a>
+              <div class="col-md-13 columButton" style="text-align: center">
+
+                <a href="{{ url('/room/reservations/'.$Room->roomID.'') }}" target='_parent'><button id="button-menu" data-toggle="modal" ><font id="textButton"><span class="glyphicon glyphicon-pencil"></span> จองห้องทั้งเทอม</font></button></a>
 
 
-            </div>
-        </div>
-      </div> -->
+              </div>
+          </div>
+        </div> -->
 
-   </div>
-  <br>
-  <br>
-  <br>
+     </div>
+     @else
+      <ul  class ="alert alert-danger">
+        <font size ="3">ไม่มีข้อมูลผู้ใช้</font>
+      </ul>
+
+     @endif
   <!-- <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 footer" id="section2">
       <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 leftfooter" style="padding-left:10vw"style="height:auto;">
         <button id="borderButton" style="margin-bottom:40px;font-size:17px !important;">วันทำการจองห้อง</button>
@@ -208,6 +347,35 @@ $(document).ready(function(){
   });
 });
 </script>
+<script>
+$(document).ready(function(){
+  var fail = document.getElementById("failLogin").getAttribute('data-value');
+  if(fail == 1){
+    $('#change-password').modal('show');
+  }
+  // Add smooth scrolling to all links
+  $("a").on('click', function(event) {
 
+    // Make sure this.hash has a value before overriding default behavior
+    if (this.hash !== "") {
+      // Prevent default anchor click behavior
+      event.preventDefault();
+
+      // Store hash
+      var hash = this.hash;
+
+      // Using jQuery's animate() method to add smooth page scroll
+      // The optional number (800) specifies the number of milliseconds it takes to scroll to the specified area
+      $('html, body').animate({
+        scrollTop: $(hash).offset().top
+      }, 800, function(){
+
+        // Add hash (#) to URL when done scrolling (default click behavior)
+        window.location.hash = hash;
+      });
+    } // End if
+  });
+});
+</script>
 </body>
 </html>
